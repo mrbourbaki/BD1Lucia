@@ -17,7 +17,6 @@ CREATE TABLE editorial (
     fk_lugar INT NOT NULL,
     CONSTRAINT pk_id_edi PRIMARY KEY (id),
     CONSTRAINT fk_lugar_editorial FOREIGN KEY (fk_lugar) REFERENCES lugar (codigo)
-
 );
 
 CREATE TABLE clase (
@@ -92,7 +91,7 @@ CREATE TABLE club (
 	fk_lugar SERIAL NOT NULL,
 	fk_institucion SERIAL,
 	cuota INT,
-	CONSTRAINT pk_club PRIMARY KEY (id, codigo_postal),
+	CONSTRAINT pk_club PRIMARY KEY (id),
 	CONSTRAINT fK_lugar_club FOREIGN KEY (fk_lugar) REFERENCES lugar(codigo),
 	CONSTRAINT fK_institucion_club FOREIGN KEY (fk_institucion) REFERENCES institucion(id) 
 );
@@ -101,8 +100,8 @@ CREATE TABLE asoc_club (
     id_club INT NOT NULL,
     id_club_asoc INT NOT NULL,
     CONSTRAINT pk_asoc_club PRIMARY KEY (id_club,id_club_asoc),
-    CONSTRAINT fk_id_club FOREIGN KEY (id_club,id_club) references(id,codigo_postal),
-    CONSTRAINT fk_id_club_asoc FOREIGN KEY (id_club_asoc,id_club_asoc) references(id,codigo_postal)
+    CONSTRAINT fk_id_club FOREIGN KEY (id_club) REFERENCES club(id),
+    CONSTRAINT fk_id_club_asoc FOREIGN KEY (id_club_asoc) REFERENCES club(id)
 );
 
 CREATE TABLE calendario (
@@ -123,11 +122,10 @@ CREATE TABLE mejor_actor (
 
 CREATE TABLE cal_club (
     id_club INT NOT NULL,
-    cod_postal_club INT NOT NULL,
     fecha_cal DATE NOT NULL,
     id_obra INT NOT NULL,
-    CONSTRAINT pk_cal_club PRIMARY KEY (id_club,cod_postal_club,fecha_cal,id_obra),
-    CONSTRAINT fk_cal_club FOREIGN KEY (id_club,cod_postal_club) REFERENCES club(id,codigo_postal),
+    CONSTRAINT pk_cal_club PRIMARY KEY (id_club,fecha_cal,id_obra),
+    CONSTRAINT fk_cal_club FOREIGN KEY (id_club) REFERENCES club(id),
     CONSTRAINT fk_cal_club_cal FOREIGN KEY (fecha_cal,id_obra) REFERENCES calendario(fecha,id_obra)
 );
 
@@ -212,14 +210,13 @@ CREATE TABLE institucion (
 CREATE TABLE his_lector(
 	fecha_ini DATE NOT NULL,
     fk_lector INT NOT NULL,
-	fk_club_id INT NOT NULL,
-    fk_club_codigo_postal INT NOT NULL,
+	fk_club INT NOT NULL,
 	estatus BOOLEAN NOT NULL,
 	motivo_retiro VARCHAR(10),
 	fecha_fin DATE,
-	CONSTRAINT pk_his_lector PRIMARY KEY (fecha_ini,fk_lector,fk_club_id,fk_club_codigo_postal),
+	CONSTRAINT pk_his_lector PRIMARY KEY (fecha_ini,fk_lector,fk_club),
 	CONSTRAINT fk_lector_his FOREIGN KEY (fk_lector) REFERENCES lector(docidentidad),
-	CONSTRAINT fk_club_his FOREIGN KEY (fk_club,fk_club_codigo_postal) REFERENCES club(id,codigo_postal),
+	CONSTRAINT fk_club_his FOREIGN KEY (fk_club) REFERENCES club(id),
     CONSTRAINT Motivo_retiro CHECK (motivo_retiro IN ('INASISTENCIA','PAGO','VOLUNTARIO'))
 );
 
@@ -239,69 +236,62 @@ CREATE TABLE pago (
 CREATE TABLE grupo_lectura (
 	id SERIAL NOT NULL ,
 	fk_club INT NOT NULL,
-    fk_cod_postal INT NOT NULL,
 	tipo_grupo VARCHAR(7) NOT NULL,
 	dia NUMERIC NOT NULL,
 	hora_ini TIME NOT NULL,	
 	hora_fin TIME NOT NULL,
-	CONSTRAINT pk_grupo PRIMARY KEY (id,fk_club, fk_cod_postal),
-	CONSTRAINT fk_club_grupo FOREIGN KEY(fk_club,fk_cod_postal) REFERENCES club(id,codigo_postal),
+	CONSTRAINT pk_grupo PRIMARY KEY (id,fk_club),
+	CONSTRAINT fk_club_grupo FOREIGN KEY(fk_club) REFERENCES club(id),
     CONSTRAINT Dia CHECK(dia IN('1','2','3','4','5')),
     CONSTRAINT Tipo_grupo CHECK(tipo_grupo IN('NINO','ADULTO','JOVEN'))	
 );
 
 CREATE TABLE his_grupo (
-	fecha_ini_grupo DATE NOT NULL, 
-	fk_fecha_ini_hlector DATE NOT NULL,
+	fk_fecha_hlector DATE NOT NULL,
 	fk_lector INT NOT NULL,
 	fk_club   INT NOT NULL,
-    fk_club_cod INT NOT NULL,
-
-    fk_cod_postal INT NOT NULL,
 	fk_grupo INT NOT NULL,
-    fk_grupo_club INT NOT NULL,
-
+    fk_club_grupo INT NOT NULL,
+    fecha_ini DATE NOT NULL,
     fecha_fin DATE,
-
-	CONSTRAINT pk_hist_grupo PRIMARY KEY(fecha_ini,fk_fecha_ini_hlector,fk_lector,fk_club,fk_club_cod,fk_cod_postal,fk_grupo,fk_grupo_club),
-	CONSTRAINT fk_grupo_historico_grupo FOREIGN KEY(fk_grupo,fk_club,fk_cod_postal)REFERENCES grupo_lectura(id,fk_club,fk_cod_postal),
-	CONSTRAINT fk_hist_lector FOREIGN KEY (fk_fecha_ini_hlector,fk_lector,fk_club,fk_club_cod)REFERENCES his_lector(fecha_ini,fk_lector,fk_club,fk_club_codigo_postal)
+	CONSTRAINT pk_hist_grupo PRIMARY KEY(fk_fecha_hlector,fk_lector,fk_club,fk_grupo,fk_grupo_club),
+	CONSTRAINT fk_historico_grupo_grupo FOREIGN KEY(fk_grupo,fk_club_grupo)REFERENCES grupo_lectura(id,fk_club),
+	CONSTRAINT fk_hist_lector_grupo FOREIGN KEY (fk_fecha_hlector,fk_lector,fk_club)REFERENCES his_lector(fecha_ini,fk_lector,fk_club)
 );
 
 CREATE TABLE reunion (
     id SERIAL NOT NULL,
-
     id_grupo INT NOT NULL,
-    id_club INT NOT NULL,
-    cod_postal_club INT NOT NULL,
-
-    fecha_ini_grupo DATE NOT NULL,
-    fecha_ini_hlector DATE NOT NULL
+    id_club_grupo INT NOT NULL,
+    id_grupo_his_grupo INT NOT NULL,
+    id_club_his_grupo INT NOT NULL,
+    fecha_hlector DATE NOT NULL,
     doc_lector INT NOT NULL,
-
+    id_club_hist_lector INT NOT NULL,
     id_libro INT NOT NULL,
-
     fecha DATE NOT NULL,
     conclusiones VARCHAR(100),
     valoracion SMALLINT,
-    CONSTRAINT pk_reunion PRIMARY KEY (id,id_grupo,id_club,cod_postal_club),
-    CONSTRAINT fk_grupo_reunion FOREIGN KEY (id_grupo,id_club,cod_postal_club) REFERENCES grupo_lectura(id,fk_club,fk_cod_postal),
-    CONSTRAINT fk_libro_reunion FOREIGN KEY (id_libro),
-    CONSTRAINT fk_his_grupo_reunion FOREIGN KEY (fecha_ini_grupo,id_grupo,fecha_ini_hlector,doc_lector,id_club,cod_postal_club),
+    CONSTRAINT pk_reunion PRIMARY KEY (id,id_grupo,id_club_grupo),
+    CONSTRAINT fk_grupo_reunion FOREIGN KEY (id_grupo,id_club_grupo) REFERENCES grupo_lectura(id,fk_club),
+    CONSTRAINT fk_libro_reunion FOREIGN KEY (id_libro) REFERENCES libro(id),
+    CONSTRAINT fk_his_grupo_reunion FOREIGN KEY (id_grupo_his_grupo,id_club_his_grupo,fecha_hlector,doc_lector,id_club_hist_lector) REFERENCES his_grupo(fk_grupo,fk_club_grupo,fk_fecha_hlector,fk_lector,fk_club) ,
     CONSTRAINT valoracion_libro CHECK(valoracion IN ('1','2','3','4','5'))
 );
 
 CREATE TABLE inasistencia (
-    fecha_ini_grupo DATE NOT NULL,
-
-    id_grupo INT NOT NULL,
-    fecha_ini_hlector DATE NOT NULL,
-    doc_lector INT NOT NULL,
-    id_club INT NOT NULL,
-    id_cod_postal INT NOT NULL,
     id_reunion INT NOT NULL,
-    CONSTRAINT pk_inasistencia PRIMARY KEY (fecha_ini_grupo,id_grupo,fecha_ini_hlector,doc_lector,id_club,id_cod_postal,id_reunion),
-    CONSTRAINT fk_his_grupo_inasitencia FOREIGN KEY (fecha_ini_grupo,fecha_ini_hlector,doc_lector,id_club,id_cod_postal,id_grupo) REFERENCES his_grupo ()
+    id_grupo_reunion INT NOT NULL,
+    id_club_grupo_reunion INT NOT NULL,
+    id_grupo INT NOT NULL,
+    id_club_grupo INT NOT NULL,
+    id_grupo_his_grupo INT NOT NULL,
+    id_club_grupo_his_grupo INT NOT NULL,
+    fecha_hlector DATE NOT NULL,
+    doc_lector INT NOT NULL,
+    id_club_his_lector INT NOT NULL,
+    CONSTRAINT pk_inasistencia PRIMARY KEY (id_reunion, id_grupo_reunion,id_club_grupo_reunion,id_grupo_his_grupo,id_club_grupo_his_grupo,fecha_hlector,doc_lector,id_club_his_lector),
+    CONSTRAINT fk_his_grupo_inasistencia FOREIGN KEY (id_grupo_his_grupo,id_club_grupo_his_grupo,fecha_hlector,doc_lector,id_club_his_lector) REFERENCES his_grupo (fk_grupo,fk_club_grupo,fk_fecha_hlector,fk_lector,fk_club),
     CONSTRAINT fk_lector_inasistencia FOREIGN KEY (doc_lector) REFERENCES lector(docidentidad),
     CONSTRAINT fk_grupo_lectura_inasistencia FOREIGN KEY (id_grupo,id_club,) REFERENCES grupo_lectura (id,fk_club),
     CONSTRAINT fk_reunion_inasistencia FOREIGN KEY (id_reunion,id_grupo) REFERENCES reunion(id,fk_grupo)
