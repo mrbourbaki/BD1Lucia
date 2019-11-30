@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\LibroController;
+use App\Http\Requests;
+
+use App\Libro; // hago referencia al modelo 
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\LibroFormRequest;
 use DB;
@@ -21,7 +22,7 @@ class LibroController extends Controller
     public function index(Request $request)
     {   
       
-
+  
         $libros=DB::table('libro')->get() ;
         return view('Libro.index',["libros" =>$libros]); // aqui deberia de retornar todo sobre la tabla libro y mostrarla en la pantalla conrespondiente 
 
@@ -35,8 +36,13 @@ class LibroController extends Controller
         return view('Libro.create');
     }
 
-    public function store()
+    public function store(LibroFormRequest $request)
     {
+        $libro =new Libro; //hago referencia al modelo de libro 
+        $libro->nombre=$request->get('noombre'); // se valida en el archivo de request
+        $libro->descripcion=$request->get('descripcion');
+        $libro->save(); // se guarda la informacion 
+        return Redirect::to('Libro.index'); // redireccionamos la pag
         
     }
 

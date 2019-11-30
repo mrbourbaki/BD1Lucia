@@ -27,7 +27,7 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>Club</b>V</span>
+          <span class="logo-mini"><b>C</b>L</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Club de Lectura </b></span>
         </a>
@@ -132,9 +132,7 @@
                 <div class="box-header with-border">
                  
                   <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  
                   </div>
                 </div>
                 <!-- /.box-header -->
@@ -142,7 +140,7 @@
                   	<div class="row">
 	                  	<div class="col-md-12">
 		                          <!--Contenido-->
-                              @yield('contenido');
+                              @yield('contenido')
 		                          <!--Fin Contenido-->
                            </div>
                         </div>
