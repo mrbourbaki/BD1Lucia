@@ -20,11 +20,12 @@ class LibroController extends Controller
 
     public function index(Request $request)
     {   
-        
+      
 
-        $libros=DB::table('libro') ;
-
+        $libros=DB::table('libro')->get() ;
         return view('Libro.index',["libros" =>$libros]); // aqui deberia de retornar todo sobre la tabla libro y mostrarla en la pantalla conrespondiente 
+
+        
         
        
     }

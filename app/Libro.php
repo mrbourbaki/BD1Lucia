@@ -11,7 +11,7 @@ class Libro extends Model
     protected $primaryKey = 'id'; 
 
     protected $fillable =[  // aqui deberan ir los atributos de las tablas  lo que tengo entendido
-        
+    'id',    
     'nombre',
     'descripcion',
 
