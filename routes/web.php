@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('Libro', 'LibroController'); //esto permite llamar al controlador del libro para hacer las respectivas llamadas  localhost8000/libro
