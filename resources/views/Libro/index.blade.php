@@ -18,8 +18,8 @@
             <table class ="table table-striped table-bordered table-condensed table-hover">
 
                 <thead>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
+                    <th>Titulo</th>
+                    <th>tema</th>
                     <th>Opciones</th>     
                 </thead>
 
@@ -27,10 +27,11 @@
             @foreach($libros as $cat)
                 <tr>
                     <td>{{$cat->titulo_original}}</td>
-                    <td>{{$cat->sinopsis}}</td>
+                    <td>{{$cat->tema}}</td>
                     <td>
                         <a href=""><button class="btn btn-info">Editar</button></a>
-                        <a href=""><button class="btn btn-danger">Eliminar</button></a>
+                        <a href=""><button class="btn btn-danger"> Eliminar</button></a>
+                        <a href=""><button class="btn btn-dark"> Informacion</button></a>
                     </td>
                 </tr>
                @endforeach 

@@ -62,7 +62,7 @@ INSERT INTO editorial (nombre,fk_lugar) VALUES
 INSERT INTO clase (nombre, fk_clase, tipo) VALUES
 ('ODA', NULL, 'SUBGENERO'),
 ('ODA TRISTE', 1, 'OTRO'),
-('EPICA', NULL, 'SUBGENERO')
+('EPICA', NULL, 'SUBGENERO');
 
 INSERT INTO libro (titulo_original, sinopsis, nro_pags, ano, titulo_espanol, tema, fk_editorial, fk_clase, fk_libro_comp) VALUES
 ('ODYSSEY', 'Es un libro sobre la guerra y cosas tristes', 1000, 1312, 'LA ODISEA', 'GUERRA', 1, 1, NULL),
