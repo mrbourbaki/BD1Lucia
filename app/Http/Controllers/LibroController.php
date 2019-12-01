@@ -39,7 +39,7 @@ class LibroController extends Controller
     public function store(LibroFormRequest $request)
     {
         $libro =new Libro; //hago referencia al modelo de libro 
-        $libro->nombre=$request->get('noombre'); // se valida en el archivo de request
+        $libro->nombre=$request->get('nombre'); // se valida en el archivo de request
         $libro->descripcion=$request->get('descripcion');
         $libro->save(); // se guarda la informacion 
         return Redirect::to('Libro.index'); // redireccionamos la pag

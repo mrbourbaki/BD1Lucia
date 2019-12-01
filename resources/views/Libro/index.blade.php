@@ -26,10 +26,10 @@
             <!--  Aqui debera ir el foreach para mostrar el contenido de las tablas -->
             @foreach($libros as $cat)
                 <tr>
-                    <td>{{$cat->nombre}}</td>
-                    <td>{{$cat->descripcion}}</td>
+                    <td>{{$cat->titulo_original}}</td>
+                    <td>{{$cat->sinopsis}}</td>
                     <td>
-                        <a href=""><button class= "btn btn-info">Editar</button></a>
+                        <a href=""><button class="btn btn-info">Editar</button></a>
                         <a href=""><button class="btn btn-danger">Eliminar</button></a>
                     </td>
                 </tr>
