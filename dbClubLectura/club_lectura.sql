@@ -1,3 +1,8 @@
+/* 
+Para borrar todas las tablas
+select 'drop table "' || tablename || '" cascade;' from pg_tables;
+*/
+
 CREATE TABLE lugar (
     codigo SERIAL NOT NULL,
     nombre VARCHAR(30) NOT NULL,
