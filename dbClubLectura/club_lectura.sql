@@ -300,24 +300,9 @@ CREATE TABLE inasistencia (
     fecha_hlector DATE NOT NULL,
     doc_lector INT NOT NULL,
     id_club_hist_lector INT NOT NULL,
-    CONSTRAINT pk_inasistencia PRIMARY KEY (id_reunion, id_grupo_reunion,id_club_grupo_reunion,id_grupo_hist_grupo,id_club_grupo_hist_grupo,fecha_hlector,doc_lector,id_club_hist_lector),
-    CONSTRAINT fk_his_grupo_inasistencia FOREIGN KEY (id_grupo_hist_grupo,id_club_grupo_hist_grupo,fecha_hlector,doc_lector,id_club_hist_lector) REFERENCES hist_grupo (id_grupo,id_club_grupo,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector),
-    CONSTRAINT fk_lector_inasistencia FOREIGN KEY (doc_lector) REFERENCES lector (docidentidad),
-    CONSTRAINT fk_grupo_lectura_inasistencia FOREIGN KEY (id_grupo,id_club_grupo) REFERENCES grupo_lectura (cod,id_club),
-    CONSTRAINT fk_reunion_inasistencia FOREIGN KEY (id_reunion,id_grupo) REFERENCES reunion (cod,id_grupo)
-);
-
-CREATE TABLE mejor_actor(
-    fk_cal_fecha DATE NOT NULL,
-    fk_cal_obra INT NOT NULL,
-    id_personaje INT NOT NULL,
-    id_personaje_obra INT NOT NULL,
-    id_obra INT NOT NULL,
-    fecha_ini_hlector DATE NOT NULL,
-    doc_lector INT NOT NULL,
-    id_club INT NOT NULL,
-    cod_postal_club INT NOT NULL,
-    CONSTRAINT pk_mejor_actor PRIMARY KEY (fk_cal_fecha, fk_cal_obra, id_personaje,id_personaje_obra,id_obra, fecha_ini_hlector,doc_lector, id_club,cod_postal_club),
-    CONSTRAINT fk_mejor_act_elenco FOREIGN KEY (id_personaje,id_personaje_obra,id_obra, fecha_ini_hlector,doc_lector, id_club,cod_postal_club) REFERENCES elenco(id_personaje,id_personaje_obra,id_obra, fecha_ini_hlector,doc_lector, id_club,cod_postal_club),
-    CONSTRAINT fk_mejor_act_cal FOREIGN KEY (fk_cal_fecha, fk_cal_obra) REFERENCES calendario(fecha,id_obra)
+    CONSTRAINT pk_inasistencia PRIMARY KEY (id_reunion,id_grupo_reunion,id_club_grupo_reunion,id_grupo_hist_grupo,id_club_grupo_hist_grupo,fecha_hlector,doc_lector,id_club_hist_lector),
+    CONSTRAINT fk_hist_grupo_inasistencia FOREIGN KEY (id_grupo_hist_grupo,id_club_grupo_hist_grupo,fecha_hlector,doc_lector,id_club_hist_lector) REFERENCES hist_grupo(id_grupo,id_club_grupo,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector),
+    CONSTRAINT fk_lector_inasistencia FOREIGN KEY (doc_lector) REFERENCES lector(docidentidad),
+    CONSTRAINT fk_grupo_lectura_inasistencia FOREIGN KEY (id_grupo,id_club_grupo) REFERENCES grupo_lectura(cod,id_club),
+    CONSTRAINT fk_reunion_inasistencia FOREIGN KEY (id_reunion,id_grupo,id_club_grupo) REFERENCES reunion(cod,id_grupo,id_club_grupo)
 );
