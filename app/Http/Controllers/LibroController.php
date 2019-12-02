@@ -39,8 +39,15 @@ class LibroController extends Controller
 
     public function store(LibroFormRequest $request)
     {
-       
-        
+        $libro= new Libro;
+        $libro->titulo_original=$request->titulo_original;
+        $libro->sinopsis=$request->sinopsis;
+        $libro->nro_pags=$request->nro_pags;
+        $libro->ano=$request->ano;
+        $libro->titulo_espanol=$request->titulo_espanol;
+        $libro->tema=$request->tema;
+
+        echo $libro->titulo_original;
     }
 
     public function show($id)

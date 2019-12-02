@@ -19,14 +19,9 @@
                 <div class="form-group">
                     <div class="form-row">
                         <h4> Informacion del Libro </h4>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label>Titulo</label>
                             <input type="text" class="form-control" name="titulo_original" placeholder="Guerra de 1984">
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label>Año del Libro</label>
-                            <input type="text" class="form-control" name="ano" placeholder="1984">
                         </div>
 
                         <div class="form-group col-md-6">
@@ -37,6 +32,16 @@
                         <div class="form-group col-md-6">
                             <label>Tema del libro </label>
                             <input type="text" class="form-control" name="tema" placeholder="Guerra">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Año del Libro</label>
+                            <input type="text" class="form-control" name="ano" placeholder="1984">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Numero de paginas</label>
+                            <input type="text" class="form-control" name="nro_pags" placeholder="Guerra de 1984">
                         </div>
 
                         <div class="form-group col-md-12">
