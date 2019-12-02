@@ -21,7 +21,7 @@
                         <h4> Informacion del Libro </h4>
                             <div class="form-group col-md-6">
                                 <label > Titulo</label>
-                                <input type="text" class="form-control" name="titulo_original" placeholder=" harry poter">
+                                <input type="text" class="form-control" name="titulo_original" placeholder="Harry Potter">
                             </div>
 
 
@@ -32,7 +32,7 @@
 
                             <div class="form-group col-md-6">
                                 <label >Titulo en español</label>
-                                <input type="text" class="form-control" name="titulo_espanol" placeholder=" harry poter">
+                                <input type="text" class="form-control" name="titulo_espanol" placeholder="Harry Potter">
                             </div>
 
                             <div class="form-group col-md-6">
@@ -73,7 +73,6 @@
                                     <input type="text" class="form-control" name="nombre" placeholder="le gusta">
                             </div>
 
-
                     </div>
                 </div>
 
@@ -82,10 +81,7 @@
                     <button class="btn btn-dager" type="reset">Cancelar</button>
                 </div>    
             {!!Form::close() !!}
-
-         </div>  
-
-           
+         </div>
     </div>
     
 @endsection
