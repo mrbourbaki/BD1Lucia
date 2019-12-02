@@ -52,10 +52,10 @@
                         <h4> Editorial </h4>
                         <div class="form-group col-md-12">
                             <label>Nombre del editorial</label>
-                        {{--<select name="cod"class="form-control"> 
+                        {{--<select name="fk_editorial"class="form-control"> 
                                 @foreach($editorial as $edit)
-                                <option value="{{$cat->cod}}">{{$edit->nombre}}</option>
-                            @endforeach
+                                    <option value="{{$edit->cod}}">{{$edit->nombre}}</option>
+                                @endforeach
                             </select>--}}
 
                             <select id="inputState" class="form-control">
@@ -67,11 +67,12 @@
                         <h4> Clase </h4>
                         <div class="form-group col-md-12">
                         <label>Nombre de la clase</label>
-                        {{--<select name="cod"class="form-control"> 
+                            {{--<select name="fk_clase"class="form-control"> 
                                 @foreach($clase as $edit)
-                                <option value="{{$cat->cod}}">{{$edit->nombre}}</option>
-                            @endforeach
+                                    <option value="{{$edit->cod}}">{{$edit->nombre}}</option>
+                                @endforeach
                             </select>--}}
+
                             <select id="inputState" class="form-control">
                                 <option selected>Choose...</option>
                                 <option>...</option>
