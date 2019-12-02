@@ -19,60 +19,59 @@
                 <div class="form-group">
                     <div class="form-row">
                         <h4> Informacion del Libro </h4>
-                            <div class="form-group col-md-6">
-                                <label > Titulo</label>
-                                <input type="text" class="form-control" name="titulo_original" placeholder="Harry Potter">
-                            </div>
+                        <div class="form-group col-md-6">
+                            <label>Titulo</label>
+                            <input type="text" class="form-control" name="titulo_original" placeholder="Guerra de 1984">
+                        </div>
 
+                        <div class="form-group col-md-6">
+                            <label>Año del Libro</label>
+                            <input type="text" class="form-control" name="ano" placeholder="1984">
+                        </div>
 
-                            <div class="form-group col-md-6">
-                                    <label >Año del Libro</label>
-                                    <input type="text" class="form-control" name="ano" placeholder="le gusta">
-                            </div>
+                        <div class="form-group col-md-6">
+                            <label>Titulo en español</label>
+                            <input type="text" class="form-control" name="titulo_espanol" placeholder="Guerra de 1984">
+                        </div>
 
-                            <div class="form-group col-md-6">
-                                <label >Titulo en español</label>
-                                <input type="text" class="form-control" name="titulo_espanol" placeholder="Harry Potter">
-                            </div>
+                        <div class="form-group col-md-6">
+                            <label>Tema del libro </label>
+                            <input type="text" class="form-control" name="tema" placeholder="Guerra">
+                        </div>
 
-                            <div class="form-group col-md-6">
-                                    <label >Tema del libro </label>
-                                    <input type="text" class="form-control" name="tema" placeholder="le gusta">
-                            </div>
+                        <div class="form-group col-md-12">
+                            <label>Sinopsis</label>
+                            <input type="text" class="form-control" name="sinopsis" placeholder="El libro trata de la guerra de 1984...">
+                        </div>
 
-                            <div class="form-group col-md-12">
-                                    <label >Sinopsis</label>
-                                    <input type="text" class="form-control" name="sinopsis" placeholder="">
-                            </div>
+                        <h4> Editorial </h4>
+                        <div class="form-group col-md-12">
+                            <label>Nombre del editorial</label>
+                        {{--<select name="cod"class="form-control"> 
+                                @foreach($editorial as $edit)
+                                <option value="{{$cat->cod}}">{{$edit->nombre}}</option>
+                            @endforeach
+                            </select>--}}
 
+                            <select id="inputState" class="form-control">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+                        </div>
 
-                            <h4> Editorial </h4>
-                            <div class="form-group col-md-4">
-                                <label>Nombre del editorial</label>
-                           {{--       <select name="cod"class="form-control"> 
-                                       @foreach($editorial as $edit)
-                                       <option value="{{$cat->cod}}">{{$edit->nombre}}</option>
-                                    @endforeach
-                                   </select>--}}
-                                 
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose...</option>
-                                            <option>...</option>
-                                        </select>
-
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                    <label > Direccion</label>
-                                    <input type="text" class="form-control" name="sinopsis" placeholder="">
-                            </div>
-
-
-                            <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Ciudad/Pais</label>
-                                    <input type="text" class="form-control" name="nombre" placeholder="le gusta">
-                            </div>
-
+                        <h4> Clase </h4>
+                        <div class="form-group col-md-12">
+                        <label>Nombre de la clase</label>
+                        {{--<select name="cod"class="form-control"> 
+                                @foreach($clase as $edit)
+                                <option value="{{$cat->cod}}">{{$edit->nombre}}</option>
+                            @endforeach
+                            </select>--}}
+                            <select id="inputState" class="form-control">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 

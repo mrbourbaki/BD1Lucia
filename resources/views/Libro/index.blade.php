@@ -4,8 +4,8 @@
     
   <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <h3> Listado de libros <a href="Libro/create"> <button type="button" class="btn btn-success"> Nuevo libro</button> </a> </h3>
-                @include ('Libro.search')<!-- hago la llamdada a la plantilla del buscador que esta en esta carpeta y hara la funcion de buscar -->
+                <h3> Listado de libros <a href="/Libro/create"> <button type="button" class="btn btn-success"> Nuevo libro</button> </a> </h3>
+                @include ('Libro.search') <!-- hago la llamdada a la plantilla del buscador que esta en esta carpeta y hara la funcion de buscar -->
             </div>
              
   </div>
