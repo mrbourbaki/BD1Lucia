@@ -34,7 +34,9 @@ class LibroController extends Controller
 
     public function create()
     {
-        return view('Libro.create');
+        $editorial=DB::table('editorial')->distinct()->get();
+        $clase=DB::table('clase')->distinct()->get();
+        return view('Libro.create',["editorial"=>$editorial,"clase"=>$clase]);
     }
 
     public function store(LibroFormRequest $request)
