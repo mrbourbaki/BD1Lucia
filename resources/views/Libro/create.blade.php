@@ -69,7 +69,7 @@
 
 
                             <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Ciuedad/Pais</label>
+                                    <label for="inputPassword4">Ciudad/Pais</label>
                                     <input type="text" class="form-control" name="nombre" placeholder="le gusta">
                             </div>
 

@@ -13,7 +13,7 @@ use DB;
 class LibroController extends Controller
 {
 
-        //Aqui se desarrollaran las diferentes funciones para la peticiones a la base de datos 
+    //Aqui se desarrollaran las diferentes funciones para la peticiones a la base de datos 
 
     public function __constructor(){
 
