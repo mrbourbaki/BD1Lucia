@@ -3,11 +3,11 @@
 @section('contenido')       <!-- esta etiqueta permitira mostrar los diferentes contenidos de las diferentes pantallas en el layouts  -->
     
   <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <h3> Listado de libros <a href="Libro/create"> <button type="button" class="btn btn-success"> Nuevo libro</button> </a> </h3>
                 @include ('Libro.search')<!-- hago la llamdada a la plantilla del buscador que esta en esta carpeta y hara la funcion de buscar -->
             </div>
-             </div>
+             
   </div>
 
   <div class="row">
@@ -24,22 +24,22 @@
                 </thead>
 
             <!--  Aqui debera ir el foreach para mostrar el contenido de las tablas -->
-            @foreach($libros as $cat)
+             <!--  Libros as lib  significa etiqueta  lib sera una etiqueta que hace referencia a la tabla de libro  -->
+            @foreach($libros as $lib)
                 <tr>
-                    <td>{{$cat->titulo_original}}</td>
-                    <td>{{$cat->tema}}</td>
+                    <td>{{$lib->titulo_original}}</td>
+                    <td>{{$lib->tema}}</td>
                     <td>
                         <a href=""><button class="btn btn-info">Editar</button></a>
                         <a href=""><button class="btn btn-danger"> Eliminar</button></a>
-                        <a href=""><button class="btn btn-dark"> Informacion</button></a>
+                        <a href=""><button class="btn btn-warning"> Informacion</button></a>
                     </td>
                 </tr>
                @endforeach 
      
             </table>
-
         </div>
-
+    {{$libros->render()}} <!--Esto es la paginacion -->
       </div>
   </div> 
 @endsection <!-- fin de la etiqueta section-->

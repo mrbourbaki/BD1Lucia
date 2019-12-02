@@ -21,13 +21,14 @@ class LibroController extends Controller
 
     public function index(Request $request)
     {   
-      
-  
-        $libros=DB::table('libro')->get() ;
-        return view('Libro.index',["libros" =>$libros]); // aqui deberia de retornar todo sobre la tabla libro y mostrarla en la pantalla conrespondiente 
+        if($request)
+        {
+            $query=trim($request->get('searchText'));
+            $libros=DB::table('libro')->where('titulo_original','LIKE','%'.$query.'%')
+            ->paginate(2);
+            return view('Libro.index', ["libros" =>$libros , "searchText"=>$query]); // aqui deberia de retornar todo sobre la tabla libro y mostrarla en la pantalla conrespondiente 
 
-        
-        
+        }
        
     }
 
@@ -42,19 +43,19 @@ class LibroController extends Controller
         
     }
 
-    public function show()
+    public function show($id)
     {
-        
+        return view("Libro.show",["libro"=>Libro::findOrFail($id)]);
     }
 
-    public function edit()
+    public function edit($id)
     {
-        
+        return view("Libro.edit",["libro"=>Libro::findOrFail($id)]);
     }
 
-    public function update()
+    public function update(LibroFomRequest $request, $id)
     {
-        
+      
     }
 
     public function destroy()
