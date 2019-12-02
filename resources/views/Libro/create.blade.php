@@ -50,8 +50,8 @@
                             <div class="form-group col-md-4">
                                 <label>Nombre del editorial</label>
                            {{--       <select name="cod"class="form-control"> 
-                                       @foreach($editorial as $cat)
-                                       <option value="{{$cat->cod}}">{{$cat->nombre}}</option>
+                                       @foreach($editorial as $edit)
+                                       <option value="{{$cat->cod}}">{{$edit->nombre}}</option>
                                     @endforeach
                                    </select>--}}
                                  
