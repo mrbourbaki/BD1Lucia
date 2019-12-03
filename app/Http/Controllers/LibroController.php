@@ -26,10 +26,8 @@ class LibroController extends Controller
             $query=trim($request->get('searchText'));
             $libros=DB::table('libro')->where('titulo_original','LIKE','%'.$query.'%')
             ->paginate(2);
-            return view('Libro.index', ["libros" =>$libros , "searchText"=>$query]); // aqui deberia de retornar todo sobre la tabla libro y mostrarla en la pantalla conrespondiente 
-
+            return view('Libro.index', ["libros" =>$libros , "searchText"=>$query]); // Retornar todo sobre la tabla libro y la muestra en la pantalla conrespondiente 
         }
-       
     }
 
     public function create()
@@ -41,15 +39,17 @@ class LibroController extends Controller
 
     public function store(LibroFormRequest $request)
     {
-        $libro= new Libro;
-        $libro->titulo_original=$request->titulo_original;
+        $libro=new Libro;
+        $libro->titulo_original=strtoupper($request->titulo_original);
         $libro->sinopsis=$request->sinopsis;
         $libro->nro_pags=$request->nro_pags;
         $libro->ano=$request->ano;
-        $libro->titulo_espanol=$request->titulo_espanol;
-        $libro->tema=$request->tema;
-
-        echo $libro->titulo_original;
+        $libro->titulo_espanol=strtoupper($request->titulo_espanol);
+        $libro->tema=$request->strtoupper(tema);
+        $libro->fk_editorial = $request->fk_editorial;
+        $libro->fk_clase = $request->fk_clase;
+        $libro->save();
+        return redirect('/Libro/create');
     }
 
     public function show($id)
@@ -69,6 +69,7 @@ class LibroController extends Controller
 
     public function destroy()
     {
-        
+        $libro = Libro::find(1);
+        $libro->delete();
     }
 }

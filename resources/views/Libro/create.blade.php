@@ -54,7 +54,7 @@
                             <label>Nombre del editorial</label>
                         <select name="fk_editorial"class="form-control"> 
                                 @foreach($editorial as $edit)
-                                    <option value="{{$edit->cod}}">{{$edit->nombre}}</option>
+                                    <option value="{{$edit->cod}}">{{ucwords(strtolower($edit->nombre))}}</option>
                                 @endforeach
                             </select>
 
@@ -65,10 +65,9 @@
                             <label>Nombre de la clase</label>
                                 <select name="fk_clase"class="form-control"> 
                                     @foreach($clase as $clas)
-                                        <option value="{{$clas->cod}}">{{$clas->nombre}}</option>
+                                        <option value="{{$clas->cod}}">{{ucwords(strtolower($clas->nombre))}}</option>
                                     @endforeach
                                 </select>
-
                           </div>
                     </div>
                 </div>
