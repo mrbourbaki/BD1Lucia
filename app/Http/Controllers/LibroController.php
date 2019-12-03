@@ -49,7 +49,7 @@ class LibroController extends Controller
         $libro->fk_editorial = $request->fk_editorial;
         $libro->fk_clase = $request->fk_clase;
         $libro->save();
-        return Redirect::to('Libro');
+        return redirect('/Libro/create');
     }
 
     public function show($id)
