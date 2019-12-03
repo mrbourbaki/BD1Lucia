@@ -7,7 +7,6 @@
                 <h3> Listado de libros <a href="/Libro/create"> <button type="button" class="btn btn-success"> Nuevo libro</button> </a> </h3>
                 @include ('Libro.search') <!-- hago la llamdada a la plantilla del buscador que esta en esta carpeta y hara la funcion de buscar -->
             </div>
-             
   </div>
 
   <div class="row">
@@ -31,8 +30,8 @@
                     <td>{{$lib->tema}}</td>
                     <td>
                         <a href=""><button class="btn btn-info">Editar</button></a>
-                        <a href=""><button class="btn btn-danger"> Eliminar</button></a>
-                        <a href=""><button class="btn btn-warning"> Informacion</button></a>
+                        <a href=""><button class="btn btn-danger">Eliminar</button></a>
+                        <a href=""><button class="btn btn-warning">Informacion</button></a>
                     </td>
                 </tr>
                @endforeach 

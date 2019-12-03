@@ -67,9 +67,9 @@ class LibroController extends Controller
       
     }
 
-    public function destroy()
+    public function destroy($cod)
     {
-        $libro = Libro::find(1);
+        $libro = Libro::findOrFail($cod);
         $libro->delete();
     }
 }

@@ -15,7 +15,7 @@
 
 
             {!!Form::open(array('url'=>'Libro','method'=>'POST', 'autocomplete'=> 'off'))!!}
-             {{Form::token()}}
+            {{Form::token()}}
                 <div class="form-group">
                     <div class="form-row">
                         <h4> Informacion del Libro </h4>
