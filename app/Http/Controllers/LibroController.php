@@ -45,11 +45,11 @@ class LibroController extends Controller
         $libro->nro_pags=$request->nro_pags;
         $libro->ano=$request->ano;
         $libro->titulo_espanol=strtoupper($request->titulo_espanol);
-        $libro->tema=$request->strtoupper(tema);
+        $libro->tema=strtoupper($request->tema);
         $libro->fk_editorial = $request->fk_editorial;
         $libro->fk_clase = $request->fk_clase;
         $libro->save();
-        return redirect('/Libro/create');
+        return Redirect::to('Libro');
     }
 
     public function show($id)
