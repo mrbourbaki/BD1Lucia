@@ -72,7 +72,7 @@
                           </div>
                     </div>
                 </div>
-
+                
                 <div class="form-group col-md-8">
                     <button class="btn btn-primary" type="submit">Guardar</button>
                     <button class="btn btn-dager" type="reset">Cancelar</button>
