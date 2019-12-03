@@ -25,7 +25,7 @@ class LibroController extends Controller
         {
             $query=trim($request->get('searchText'));
             $libros=DB::table('libro')->where('titulo_original','LIKE','%'.$query.'%')
-            ->paginate(2);
+            ->paginate(5);
             return view('Libro.index', ["libros" =>$libros , "searchText"=>$query]); // Retornar todo sobre la tabla libro y la muestra en la pantalla conrespondiente 
         }
     }
@@ -49,7 +49,7 @@ class LibroController extends Controller
         $libro->fk_editorial = $request->fk_editorial;
         $libro->fk_clase = $request->fk_clase;
         $libro->save();
-        return Redirect::to('Libro.create');
+        return Redirect::to('Libro/create');
     }
 
     public function show($id)
@@ -71,6 +71,6 @@ class LibroController extends Controller
     {
         $libro = Libro::findOrFail($cod);
         $libro->delete();
-        return Redirect::to('Libro');
+        return Redirect::to('/Libro');
     }
 }

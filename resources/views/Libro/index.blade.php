@@ -24,15 +24,15 @@
                 </thead>
 
             <!--  Aqui debera ir el foreach para mostrar el contenido de las tablas -->
-             <!--  Libros as lib  significa etiqueta  lib sera una etiqueta que hace referencia a la tabla de libro  -->
+            <!--  Libros as lib  significa etiqueta lib sera una etiqueta que hace referencia a la tabla de libro  -->
             @foreach($libros as $lib)
                 <tr>
                     <td>{{$lib->titulo_original}}</td>
                     <td>{{$lib->tema}}</td>
                     <td>
-                        <a href="{{URL:action('LibroController@edit',$lib->cod)}}"><button class="btn btn-info">Editar</button></a>
-                       {{--<!-- <a href="/Libro/{{$lib->cod}}"><button class="btn btn-danger"> Eliminar</button></a>-->--}}
-                        <a href="" data-target="#modal-delete-{{$lib->cod}}" data-toggle="modal"><button class="btn btn-danger"> Eliminar</button
+                        <a href=""><button class="btn btn-info">Editar</button></a>
+                        <a href="/Libro/{{$lib->cod}}"><button class="btn btn-danger"> Eliminar</button></a>
+                        <!--<a href="" data-target="#modal-delete-{{$lib->cod}}" data-toggle="modal"><button class="btn btn-danger"> Eliminar</button-->
 
                         <a href=""><button class="btn btn-warning">Informacion</button></a>
                     </td>
