@@ -1,7 +1,10 @@
 /* 
-Para borrar todas las tablas
-select 'drop table "' || tablename || '" cascade;' from pg_tables;
-*/
+Para borrar todas las tablas*/
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
 
 CREATE TABLE lugar (
     codigo SERIAL NOT NULL,
@@ -46,9 +49,9 @@ CREATE TABLE libro (
     fk_clase INT NOT NULL,
     fk_libro_comp INT,
     CONSTRAINT pk_id_libro PRIMARY KEY (cod),
-    CONSTRAINT fk_editorial_libro FOREIGN KEY (fk_editorial) REFERENCES editorial (cod),
-    CONSTRAINT fk_clase_libro FOREIGN KEY (fk_clase) REFERENCES clase (cod),
-    CONSTRAINT fk_libro_complementario FOREIGN KEY (fk_libro_comp) REFERENCES libro (cod)
+    CONSTRAINT fk_editorial_libro FOREIGN KEY (fk_editorial) REFERENCES editorial (cod) ON DELETE SET DEFAULT,
+    CONSTRAINT fk_clase_libro FOREIGN KEY (fk_clase) REFERENCES clase (cod) ON DELETE SET DEFAULT,
+    CONSTRAINT fk_libro_complementario FOREIGN KEY (fk_libro_comp) REFERENCES libro (cod) ON DELETE SET DEFAULT
 );
 
 CREATE TABLE representante_externo ( 

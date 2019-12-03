@@ -52,15 +52,14 @@
                         <h4> Editorial </h4>
                         <div class="form-group col-md-12">
                             <label>Nombre del editorial</label>
-                        <select name="fk_editorial"class="form-control"> 
+                            <select name="fk_editorial"class="form-control"> 
                                 @foreach($editorial as $edit)
                                     <option value="{{$edit->cod}}">{{ucwords(strtolower($edit->nombre))}}</option>
                                 @endforeach
                             </select>
-
                         </div>
 
-                             <h4> Clase </h4>
+                        <h4> Clase </h4>
                         <div class="form-group col-md-12">
                             <label>Nombre de la clase</label>
                                 <select name="fk_clase"class="form-control"> 
