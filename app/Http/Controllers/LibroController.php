@@ -20,7 +20,7 @@ class LibroController extends Controller
     }
 
     public function index(Request $request)
-    {   
+    {
         if($request)
         {
             $query=trim($request->get('searchText'));
@@ -64,12 +64,13 @@ class LibroController extends Controller
 
     public function update(LibroFomRequest $request, $id)
     {
-      
+
     }
 
     public function destroy($cod)
     {
         $libro = Libro::findOrFail($cod);
         $libro->delete();
+        return redirect('/Libro');
     }
 }
