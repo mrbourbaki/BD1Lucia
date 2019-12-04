@@ -19,7 +19,7 @@
   {{--<!--
       PROBLEMA CON EL FORM ME DICE QUE LA RUTA NO EXISTE PERO SI ESTA DEFINIDA !!
 
-       {!!Form::model($libro,['method'=>'PATCH','route'=>['libro.update',$libro->cod ]])!!}
+       {!!Form::model($libro,['method'=>'PATCH','route'=>['libro.update',$libro->cod]])!!}
              {{Form::token()}}
                 <div class="form-group">
                     <div class="form-row">

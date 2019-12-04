@@ -10,7 +10,7 @@
                         <span aria-hidden="true">x</span>
                     </button>
 
-                <h4 class="modal-title"> Eliminar Categoria</h4>
+                <h4 class="modal-title"> Eliminar Libro : {{$lib->titulo_original}} </h4>
             </div>
 
             <div class="modal-body">
