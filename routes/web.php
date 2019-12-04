@@ -20,3 +20,5 @@ Route::get('/Libro','LibroController@index');
 Route::get('/Libro/create','LibroController@create');
 Route::post('/Libro','LibroController@store');
 Route::get('/Libro/{cod}','LibroController@destroy');
+
+

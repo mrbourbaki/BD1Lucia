@@ -31,18 +31,11 @@
                     <td>{{$lib->tema}}</td>
                     <td>
                         <a href=""><button class="btn btn-info">Editar</button></a>
-                        <a href="/Libro/{{$lib->cod}}"><button class="btn btn-danger"> Eliminar</button></a>
-
-                        <!--  La ventana  emergente de eliminar esta lanzando un problema de que no esta eliminando     -->
-
-                        {{--<!--   <a href="/Libro/{{$lib->cod}}"><button class="btn btn-danger"> Eliminar</button></a>--}}
-                        {{--<!-- <a href="{{URL::action('LibroController@edit',$lib->cod)}}"><button class="btn btn-info">Editar</button></a>-->
-                        <!--<a href="/Libro/{{$lib->cod}}" data-target="#modal-delete-{{$lib->cod}}" data-toggle="modal"><button class="btn btn-danger"> Eliminar</button></a>-->--}}
-
+                        <a data-target="#modal-delete" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
                         <a href=""><button class="btn btn-warning">Informacion</button></a>
                     </td>
                 </tr>
-               {{--<!-- @include('Libro.modal')-->--}} <!-- llama al modal que es la pantalla emergente -->
+               @include('Libro.modal') <!-- llama al modal que es la pantalla emergente -->
                @endforeach 
      
             </table>

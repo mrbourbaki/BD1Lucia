@@ -15,10 +15,6 @@
            </div>
         </div>  
 
-
-  {{--<!--
-      PROBLEMA CON EL FORM ME DICE QUE LA RUTA NO EXISTE PERO SI ESTA DEFINIDA !!
-
        {!!Form::model($libro,['method'=>'PATCH','route'=>['libro.update',$libro->cod]])!!}
              {{Form::token()}}
                 <div class="form-group">
@@ -82,6 +78,6 @@
                     <button class="btn btn-primary" type="submit">Guardar</button>
                     <button class="btn btn-dager" type="reset">Cancelar</button>
                 </div>    
-            {!!Form::close() !!}-->--}}
+            {!!Form::close() 
     
 @endsection

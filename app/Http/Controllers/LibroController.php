@@ -64,13 +64,13 @@ class LibroController extends Controller
 
     public function update(LibroFomRequest $request, $id)
     {
-
+        
     }
 
     public function destroy($cod)
     {
         $libro = Libro::findOrFail($cod);
         $libro->delete();
-        return Redirect::to('/Libro');
+        return Redirect::to('Libro');
     }
 }

@@ -1,6 +1,5 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$lib->cod}}">
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete">
 
-{{Form::Open(array('action'=>array('LibroController@destroy',$lib->cod),'method'=>'delete'))}}
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -20,10 +19,9 @@
 
             <div class="modal-footer">
                  <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar </button>
-                 <button type="submit" class="btn btn-primary" data-dismiss="modal"> Confirmar </button>
+                 <a href="/Libro/{{$lib->cod}}"><button class="btn btn-primary"> Eliminar</button></a>
             </div>
         
         </div>
     </div>
-{{Form::Close()}}
 </div>
