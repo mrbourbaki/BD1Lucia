@@ -11,7 +11,7 @@
   </div>
 
   <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 
         <div class="table-responsive">
 
@@ -30,9 +30,8 @@
                     <td>{{$lib->titulo_original}}</td>
                     <td>{{$lib->tema}}</td>
                     <td>
-                        <a href=""><button class="btn btn-info">Editar</button></a>
-                        <a data-target="#modal-delete" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
-                        <a href=""><button class="btn btn-warning">Informacion</button></a>
+                        <a href="/libro/editar"><button class="btn btn-info">Editar</button></a>
+                        <a data-target="#modal-delete-{{$lib->cod}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
                     </td>
                 </tr>
                @include('Libro.modal') <!-- llama al modal que es la pantalla emergente -->
