@@ -60,7 +60,7 @@
                                 <label>Nombre del editorial</label>
                                      <select name="fk_editorial"class="form-control"> 
                                         @foreach($editorial as $edit)
-                                            <option value=>{{$edit->nombre}}</option>
+                                            <option value="{{$libro->fk_editorial}}">{{$edit->nombre}}</option>
                                         @endforeach
                                      </select>
                              </div>
@@ -69,7 +69,7 @@
                                  <label>Nombre de la clase</label>
                                       <select name="fk_clase"class="form-control" > 
                                          @foreach($clase as $clas)
-                                             <option value=>{{$clas->nombre}}</option>
+                                             <option value= "{{$libro->fk_clase}}">{{$clas->nombre}}</option>
                                          @endforeach
                                       </select>
  
@@ -78,9 +78,9 @@
                             </table>
                                     <div class="form-group col-md-8">
                                          <button class="btn btn-primary" type="submit">Guardar</button>
-                                         <td><a href="/Libro/">Volver</td>
+                                         <button class="btn btn-primary" href="/Libro/" >Volver</button>
                                      </div>  
-                        </form> 
+                                     
                     </div>
                 </div>
             </div>

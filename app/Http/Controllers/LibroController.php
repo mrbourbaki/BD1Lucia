@@ -87,8 +87,9 @@ class LibroController extends Controller
         $libro->tema = $nuevoTema;
         $libro->fk_editorial = $nuevoEditorial;
         $libro->fk_clase = $nuevoClase;
-        $libro->save();
-        return redirect('/clientes');
+        $libro->save();    
+        
+        return redirect('/Libro');
     }
 
     public function destroy($cod)
