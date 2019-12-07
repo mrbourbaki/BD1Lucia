@@ -42,12 +42,12 @@ CREATE TABLE clase (
 
 CREATE TABLE libro (
     cod SERIAL NOT NULL,
-    titulo_original VARCHAR (30) NOT NULL,
-    sinopsis VARCHAR (200) NOT NULL,
+    titulo_original VARCHAR (80) NOT NULL,
+    sinopsis VARCHAR (300) NOT NULL,
     nro_pags DECIMAL (1000) NOT NULL,
     ano INT NOT NULL,
-    titulo_espanol VARCHAR (30),
-    tema VARCHAR (30),
+    titulo_espanol VARCHAR (80),
+    tema VARCHAR (80),
     fk_editorial INT NOT NULL,
     fk_clase INT NOT NULL,
     fk_libro_comp INT,
@@ -73,7 +73,7 @@ CREATE TABLE lector (
 	apellido1 VARCHAR (15) NOT NULL,
 	apellido2 VARCHAR (15) NOT NULL,
 	genero VARCHAR (1) NOT NULL,
-	telefono NUMERIC(13) NOT NULL,  /*  cambie a numerico para que no diera error cuando uno ingrese el numero ya que el int estabamos fuera del rango */
+	telefono NUMERIC(14) NOT NULL,  /*  cambie a numerico para que no diera error cuando uno ingrese el numero ya que el int estabamos fuera del rango */
     fk_nacionalidad INT NOT NULL,
 	fk_rep INT,
 	fk_rep_externo INT,
@@ -108,7 +108,7 @@ CREATE TABLE estructura (
 
 CREATE TABLE institucion (
 	cod SERIAL NOT NULL,
-	nombre VARCHAR(20) NOT NULL,
+	nombre VARCHAR(40) NOT NULL,
 	detalle VARCHAR(30),
     fk_lugar INT NOT NULL,
     CONSTRAINT pk_institucion PRIMARY KEY (cod),
@@ -118,7 +118,7 @@ CREATE TABLE institucion (
 CREATE TABLE club (
 	cod SERIAL NOT NULL,
 	codigo_postal VARCHAR(15) NOT NULL,
-	nombre VARCHAR(20) NOT NULL,	
+	nombre VARCHAR(30) NOT NULL,	
 	direccion VARCHAR(40) NOT NULL,
 	fk_lugar SERIAL NOT NULL,
 	fk_institucion SERIAL,
