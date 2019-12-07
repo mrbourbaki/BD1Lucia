@@ -28,11 +28,13 @@
                     <td>{{$lib->titulo_original}}</td>
                     <td>{{$lib->tema}}</td>
                     <td>
-                        <a href="/Libro/editar"><button class="btn btn-info">Editar</button></a>
+                        <a href="{{route('Libro.edit',$lib->cod)}}"><button class="btn btn-info">Editar</button></a>
                         <a data-target="#modal-delete-{{$lib->cod}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                        <a data-target="#modal-info{{$lib->cod}}" data-toggle="modal"><button class="btn btn-primary">Informacion</button></a>
                     </td>
-                </tr>
-               @include('Libro.modal') <!-- llama al modal que es la pantalla emergente -->
+                </tr>  
+                @include('Libro.infomodal') 
+                @include('Libro.modal') <!-- llama al modal que es la pantalla emergente -->          
                @endforeach
             </table>
         </div>

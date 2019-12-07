@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-
+use App\Editorial;
+use App\Clase;
 use App\Libro; // hago referencia al modelo 
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\LibroFormRequest;
@@ -54,17 +55,40 @@ class LibroController extends Controller
 
     public function show($id)
     {
-        return view("Libro.show",["libro"=>Libro::findOrFail($id)]);
+        $libro=Libro::findOrFail($id);
+        return view("Libro.infomodal", compact("libro"));
     }
 
-    public function edit($id)
+    public function edit($cod)
     {
-        return view("Libro.edit",["libro"=>Libro::findOrFail($id)]);
+        $libro= Libro::findOrFail($cod);
+        $editorial= Editorial::get();
+        $clase= Clase::get();
+        return view("Libro.edit",["libro"=>$libro,"editorial"=>$editorial,"clase"=>$clase]);
     }
 
-    public function update(LibroFomRequest $request, $id)
+    public function update(Request $request, $cod)
     {
-        
+        $nuevoNombre =$request->input('titulo_original');
+        $nuevoSinopsis = $request->input('sinopsis');
+        $nuevoNropags = $request->input('nro_pags');
+        $nuevoAno = $request->input('ano');
+        $nuevoTituloespanol= $request->input('titulo_espanol');
+        $nuevoTema = $request->input('tema');
+        $nuevoEditorial = $request->input('fk_editorial');
+        $nuevoClase = $request->input('fk_clase');
+        //----------------------------------------------
+        $libro= Libro::find($cod);
+        $libro->titulo_original = $nuevoNombre;
+        $libro->sinopsis = $nuevoSinopsis;
+        $libro->nro_pags = $nuevoNropags;
+        $libro->ano = $nuevoAno;
+        $libro->titulo_espanol = $nuevoTituloespanol;
+        $libro->tema = $nuevoTema;
+        $libro->fk_editorial = $nuevoEditorial;
+        $libro->fk_clase = $nuevoClase;
+        $libro->save();
+        return redirect('/clientes');
     }
 
     public function destroy($cod)

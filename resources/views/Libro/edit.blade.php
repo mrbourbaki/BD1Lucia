@@ -14,70 +14,76 @@
             @endif
            </div>
         </div>  
+             <!--   <div style="margin-left:16%; margin-top:30px">-->
+                    <div id="formulario">
+                        <form action="/Libro/{{$libro->cod}}" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT">
+                            <table>
+                                <tr>
+                                    <td>Titulo original :</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="titulo_original" value="{{$libro->titulo_original}}" placeholder="Guerra de 1984">
+                                    </td>
+                                </tr>
+                                <td>Fecha de publicación:</td>
+                                <td>
+                                    <input type="text" class="form-control" name="ano" value="{{$libro->ano}}" placeholder="1950">
+                                </td>
+                                <tr>
+                                    <td>Titulo en espanol:</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="titulo_espanol" value="{{$libro->titulo_espanol}}"placeholder="Guerra de 1984">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tema del libro : </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="tema"  value="{{$libro->tema}}"placeholder="Guerra">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Numero de paginas:</td>
+                                    <td>
+                                            <input type="text" class="form-control" name="nro_pags" value="{{$libro->nro_pags}}" placeholder="Guerra de 1984">
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <td>Sinopsis:</td>
+                                    <td>
+                                            <input type="text" class="form-control" name="sinopsis" value="{{$libro->sinopsis}}" placeholder="El libro trata de la guerra de 1984...">
+                                    </td>
+                                </tr>
+                            </div>
 
-       {!!Form::model($libro,['method'=>'PATCH','route'=>['libro.update',$libro->cod]])!!}
-             {{Form::token()}}
-                <div class="form-group">
-                    <div class="form-row">
-                        <h4> Informacion del Libro </h4>
-                        <div class="form-group col-md-12">
-                            <label>Titulo</label>
-                            <input type="text" class="form-control" name="titulo_original" value="{{$libro->titulo_original}}" placeholder="Guerra de 1984">
-                        </div>
+                            <div class="form-group col-md-12">
+                                <label>Nombre del editorial</label>
+                                     <select name="fk_editorial"class="form-control"> 
+                                        @foreach($editorial as $edit)
+                                            <option value=>{{$edit->nombre}}</option>
+                                        @endforeach
+                                     </select>
+                             </div>
 
-                        <div class="form-group col-md-6">
-                            <label>Titulo en español</label>
-                            <input type="text" class="form-control" name="titulo_espanol" value="{{$libro->titulo_espanol}}"placeholder="Guerra de 1984">
-                        </div>
+                             <div class="form-group col-md-12">
+                                 <label>Nombre de la clase</label>
+                                      <select name="fk_clase"class="form-control" > 
+                                         @foreach($clase as $clas)
+                                             <option value=>{{$clas->nombre}}</option>
+                                         @endforeach
+                                      </select>
+ 
+                              </div>
 
-                        <div class="form-group col-md-6">
-                            <label>Tema del libro </label>
-                            <input type="text" class="form-control" name="tema"  value="{{$libro->titulo_tema}}"placeholder="Guerra">
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label>Año del Libro</label>
-                            <input type="text" class="form-control" name="ano" value="{{$libro->ano}}"placeholder="1984">
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label>Numero de paginas</label>
-                            <input type="text" class="form-control" name="nro_pags" value="{{$libro->nro_pags}}" placeholder="Guerra de 1984">
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label>Sinopsis</label>
-                            <input type="text" class="form-control" name="sinopsis" value="{{$libro->sinopsis}}" placeholder="El libro trata de la guerra de 1984...">
-                        </div>
-
-                        <h4> Editorial </h4>
-                        <div class="form-group col-md-12">
-                            <label>Nombre del editorial</label>
-                        <select name="fk_editorial"class="form-control"> 
-                                @foreach($editorial as $edit)
-                                    <option value="{{$edit->cod}}">{{$edit->nombre}}</option>
-                                @endforeach
-                            </select>
-
-                        </div>
-
-                             <h4> Clase </h4>
-                        <div class="form-group col-md-12">
-                            <label>Nombre de la clase</label>
-                                <select name="fk_clase"class="form-control"> 
-                                    @foreach($clase as $clas)
-                                        <option value="{{$clas->cod}}">{{$clas->nombre}}</option>
-                                    @endforeach
-                                </select>
-
-                          </div>
+                            </table>
+                                    <div class="form-group col-md-8">
+                                         <button class="btn btn-primary" type="submit">Guardar</button>
+                                         <td><a href="/Libro/">Volver</td>
+                                     </div>  
+                        </form> 
                     </div>
                 </div>
-                
-                <div class="form-group col-md-8">
-                    <button class="btn btn-primary" type="submit">Guardar</button>
-                    <button class="btn btn-dager" type="reset">Cancelar</button>
-                </div>    
-            {!!Form::close() 
-    
+            </div>
+        </div>
+    </form>
 @endsection
