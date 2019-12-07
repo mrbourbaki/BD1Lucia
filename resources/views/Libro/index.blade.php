@@ -17,7 +17,7 @@
 
                 <thead>
                     <th>Titulo</th>
-                    <th>tema</th>
+                    <th>Tema</th>
                     <th>Opciones</th>     
                 </thead>
 
@@ -28,7 +28,7 @@
                     <td>{{$lib->titulo_original}}</td>
                     <td>{{$lib->tema}}</td>
                     <td>
-                        <a href="/libro/editar"><button class="btn btn-info">Editar</button></a>
+                        <a href="/Libro/editar"><button class="btn btn-info">Editar</button></a>
                         <a data-target="#modal-delete-{{$lib->cod}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
                     </td>
                 </tr>
