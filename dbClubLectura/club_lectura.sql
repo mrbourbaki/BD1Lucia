@@ -30,8 +30,8 @@ CREATE TABLE editorial (
 CREATE TABLE clase (
     cod SERIAL NOT NULL,
     nombre VARCHAR (30),
+    tipo VARCHAR (10) NOT NULL,
     fk_clase INT,
-    tipo VARCHAR (10),
     CONSTRAINT pk_id_clase PRIMARY KEY (cod),
     CONSTRAINT fk_clase_clase FOREIGN KEY (fk_clase) REFERENCES clase (cod),
     CONSTRAINT tipo_clase CHECK (tipo IN ('SUBGENERO','OTRO'))
@@ -114,7 +114,7 @@ CREATE TABLE institucion (
 
 CREATE TABLE club (
 	cod SERIAL NOT NULL,
-	codigo_postal INT NOT NULL,
+	codigo_postal VARCHAR(15) NOT NULL,
 	nombre VARCHAR(20) NOT NULL,	
 	direccion VARCHAR(40) NOT NULL,
 	fk_lugar SERIAL NOT NULL,
