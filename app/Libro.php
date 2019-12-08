@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Libro extends Model
 {
-    protected $table ='libro';   // hago referencia a la tabla de libro supuestamente 
+    protected $table ='libro';   
     
     protected $primaryKey = 'cod'; 
     
@@ -15,7 +15,7 @@ class Libro extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [  // aqui deberan ir los atributos de las tablas  lo que tengo entendido  
+    protected $fillable = [  
     'titulo_original', 
     'sinopsis' ,
     'nro_pags' ,
