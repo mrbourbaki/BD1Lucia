@@ -1,4 +1,4 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-info{{$lib->cod}}">
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-info{{$lib->cod}}" >
 
     <div class="modal-dialog">
         <div class="modal-content">
@@ -15,6 +15,11 @@
             <div class="modal-body">
                 <p>Titulo en Español :  {{$lib->titulo_espanol}}</p>
             </div>
+
+            <div class="modal-body">
+                <p>Sinopsis :  {{$lib->sinopsis}}</p>
+            </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
             </div>

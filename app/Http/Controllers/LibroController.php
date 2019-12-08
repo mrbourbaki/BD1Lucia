@@ -79,12 +79,12 @@ class LibroController extends Controller
         $nuevoClase = $request->input('fk_clase');
         //----------------------------------------------
         $libro= Libro::find($cod);
-        $libro->titulo_original = $nuevoNombre;
-        $libro->sinopsis = $nuevoSinopsis;
+        $libro->titulo_original = strtoupper ($nuevoNombre);
+        $libro->sinopsis = strtoupper ($nuevoSinopsis);
         $libro->nro_pags = $nuevoNropags;
         $libro->ano = $nuevoAno;
-        $libro->titulo_espanol = $nuevoTituloespanol;
-        $libro->tema = $nuevoTema;
+        $libro->titulo_espanol =strtoupper ($nuevoTituloespanol);
+        $libro->tema = strtoupper ($nuevoTema);
         $libro->fk_editorial = $nuevoEditorial;
         $libro->fk_clase = $nuevoClase;
         $libro->save();    
