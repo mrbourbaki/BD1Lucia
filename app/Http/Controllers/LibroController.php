@@ -25,7 +25,7 @@ class LibroController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $libros=DB::table('libro')->where('titulo_original','LIKE','%'.$query.'%')
+            $libros=DB::table('libro')->where('titulo_original','LIKE','%'.strtoupper($query).'%')
             ->paginate(5);
             return view('Libro.index', ["libros" =>$libros , "searchText"=>$query]); // Retornar todo sobre la tabla libro y la muestra en la pantalla conrespondiente 
         }

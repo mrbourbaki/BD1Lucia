@@ -13,77 +13,79 @@
                 </div>
             @endif
            </div>
-        </div>  
-             <!--   <div style="margin-left:16%; margin-top:30px">-->
-                    <div id="formulario">
-                        <form action="/Libro/{{$libro->cod}}" method="post">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="PUT">
-                            <table>
-                                <tr>
-                                    <td>Titulo original :</td>
-                                    <td>
-                                        <input type="text" class="form-control" name="titulo_original" value="{{$libro->titulo_original}}" placeholder="Guerra de 1984">
-                                    </td>
-                                </tr>
-                                <td>Fecha de publicación:</td>
-                                <td>
-                                    <input type="text" class="form-control" name="ano" value="{{$libro->ano}}" placeholder="1950">
-                                </td>
-                                <tr>
-                                    <td>Titulo en espanol:</td>
-                                    <td>
-                                        <input type="text" class="form-control" name="titulo_espanol" value="{{$libro->titulo_espanol}}"placeholder="Guerra de 1984">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Tema del libro : </td>
-                                    <td>
-                                        <input type="text" class="form-control" name="tema"  value="{{$libro->tema}}"placeholder="Guerra">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Numero de paginas:</td>
-                                    <td>
-                                            <input type="text" class="form-control" name="nro_pags" value="{{$libro->nro_pags}}" placeholder="Guerra de 1984">
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <td>Sinopsis:</td>
-                                    <td>
-                                            <input type="text" class="form-control" name="sinopsis" value="{{$libro->sinopsis}}" placeholder="El libro trata de la guerra de 1984...">
-                                    </td>
-                                </tr>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label>Nombre del editorial</label>
-                                     <select name="fk_editorial"class="form-control"> 
-                                        @foreach($editorial as $edit)
-                                            <option value="{{$libro->fk_editorial}}">{{$edit->nombre}}</option>
-                                        @endforeach
-                                     </select>
-                             </div>
-
-                             <div class="form-group col-md-12">
-                                 <label>Nombre de la clase</label>
-                                      <select name="fk_clase"class="form-control" > 
-                                         @foreach($clase as $clas)
-                                             <option value= "{{$libro->fk_clase}}">{{$clas->nombre}}</option>
-                                         @endforeach
-                                      </select>
- 
-                              </div>
-
-                            </table>
-                                    <div class="form-group col-md-8">
-                                         <button class="btn btn-primary" type="submit">Guardar</button>
-                                         <button class="btn btn-primary" href="/Libro/" >Volver</button>
-                                     </div>  
-                                     
-                    </div>
-                </div>
-            </div>
         </div>
-    </form>
+        <!--<div style="margin-left:16%; margin-top:30px">-->
+        <div id="formulario">
+            <form action="/Libro/{{$libro->cod}}" method="post">{{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+
+                <div class="form-group col-md-12">
+                    <label>Nombre del editorial</label>
+                    <select name="fk_editorial"class="form-control"> 
+                        @foreach($editorial as $edit)
+                            <option value="{{$libro->fk_editorial}}">{{$edit->nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label>Nombre de la clase</label>
+                    <select name="fk_clase"class="form-control" > 
+                        @foreach($clase as $clas)
+                            <option value= "{{$libro->fk_clase}}">{{$clas->nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <table>
+                    <tr>
+                        <td>Titulo original:</td>
+                        <td>
+                            <input type="text" class="form-control" name="titulo_original" value="{{$libro->titulo_original}}" placeholder="Guerra de 1984">
+                        </td>
+                    </tr>
+
+                    <td>Fecha de publicación:</td>
+                    <td>
+                        <input type="text" class="form-control" name="ano" value="{{$libro->ano}}" placeholder="1950">
+                    </td>
+
+                    <tr>
+                        <td>Titulo en espanol:</td>
+                        <td>
+                            <input type="text" class="form-control" name="titulo_espanol" value="{{$libro->titulo_espanol}}"placeholder="Guerra de 1984">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Tema del libro: </td>
+                        <td>
+                            <input type="text" class="form-control" name="tema"  value="{{$libro->tema}}"placeholder="Guerra">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Numero de paginas:</td>
+                        <td>
+                            <input type="text" class="form-control" name="nro_pags" value="{{$libro->nro_pags}}" placeholder="Guerra de 1984">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Sinopsis:</td>
+                        <td>
+                            <input type="text" class="form-control" name="sinopsis" value="{{$libro->sinopsis}}" placeholder="El libro trata de la guerra de 1984...">
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
+
+                <div class="form-group col-md-8">
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                    <button class="btn btn-default" href="/Libro/" >Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection

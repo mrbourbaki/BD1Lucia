@@ -4,11 +4,9 @@
     <div class="form-group">
         <div class="input-group">
             <input type="text" class= "form-control" name="searchText" value ="{{$searchText}}">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-dark">Buscar</button>
-                </span>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-dark">Buscar</button>
+            </span>
         </div>
     </div>
-
-    {{Form::close()}}
-
+{{Form::close()}}
