@@ -32,7 +32,7 @@
                     <label>Nombre de la clase</label>
                     <select name="fk_clase"class="form-control" > 
                         @foreach($clase as $clas)
-                            <option value= "{{$libro->fk_clase}}">{{$clas->nombre}}</option>
+                            <option value="{{$libro->fk_clase}}">{{$clas->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
