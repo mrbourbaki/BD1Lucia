@@ -24,8 +24,6 @@ class LibroFormRequest extends FormRequest
     public function rules()
     {
         return [
-           // 'nombre'=>'required|max:50', //(estoy mostrando que es obligatorio)
-           // 'descripcion'=> 'max:100' //VARCHAR(100) NOT NULL,  (aqui estoy mostrando que es opcional )
             'titulo_original'=>'required|max:80', 
             'sinopsis'=>'required|max:300',
             'nro_pags'=>'required|max:1000',

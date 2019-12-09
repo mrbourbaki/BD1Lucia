@@ -36,7 +36,7 @@
 
             <div class="form-group col-md-8">
                 <button class="btn btn-primary" type="submit">Guardar</button>
-                <button class="btn btn-dager" type="reset">Cancelar</button>
+                <button class="btn btn-default" type="reset" >Cancelar</button>
             </div>    
             {!!Form::close() !!}
         </div>

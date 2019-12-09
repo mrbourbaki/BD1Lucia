@@ -34,12 +34,12 @@
 
                     <div class="form-group col-md-6">
                         <label>Año del Libro</label>
-                        <input type="text" class="form-control" name="ano" placeholder="1984">
+                        <input type="number" min=0 max=3000 class="form-control" name="ano" placeholder="1984">
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Numero de paginas</label>
-                        <input type="text" class="form-control" name="nro_pags" placeholder="Guerra de 1984">
+                        <input type="number" min=1 max=10000 class="form-control" name="nro_pags" placeholder="300">
                     </div>
 
                     <div class="form-group col-md-12">
@@ -71,7 +71,7 @@
 
             <div class="form-group col-md-8">
                 <button class="btn btn-primary" type="submit">Guardar</button>
-                <button class="btn btn-dager" type="reset">Cancelar</button>
+                <button class="btn btn-default" type="reset" >Cancelar</button>
             </div>    
             {!!Form::close() !!}
         </div>
