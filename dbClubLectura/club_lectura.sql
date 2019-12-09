@@ -43,7 +43,7 @@ CREATE TABLE clase (
 CREATE TABLE libro (
     cod SERIAL NOT NULL,
     titulo_original VARCHAR (80) NOT NULL,
-    sinopsis VARCHAR (300) NOT NULL,
+    sinopsis VARCHAR (400) NOT NULL,
     nro_pags DECIMAL (1000) NOT NULL,
     ano INT NOT NULL,
     titulo_espanol VARCHAR (80),
@@ -121,7 +121,7 @@ CREATE TABLE club (
 	nombre VARCHAR(30) NOT NULL,	
 	direccion VARCHAR(40) NOT NULL,
 	fk_lugar SERIAL NOT NULL,
-	fk_institucion SERIAL,
+	fk_institucion INT,
 	cuota INT,
 	CONSTRAINT pk_club PRIMARY KEY (cod),
 	CONSTRAINT fK_lugar_club FOREIGN KEY (fk_lugar) REFERENCES lugar (codigo),
@@ -135,7 +135,7 @@ CREATE TABLE sala (
     nombre VARCHAR(30) NOT NULL,
     direccion VARCHAR(50) NOT NULL,
     fk_lugar INT NOT NULL,
-    fk_club SERIAL,
+    fk_club INT,
     CONSTRAINT pk_id_sala PRIMARY KEY (cod),
     CONSTRAINT fk_lugar_sala FOREIGN KEY (fk_lugar) REFERENCES lugar (codigo),
     CONSTRAINT fk_club_sala FOREIGN KEY (fk_club) REFERENCES club (cod),
@@ -152,7 +152,7 @@ CREATE TABLE asoc_club (
 
 CREATE TABLE obra_actuada (
     cod SERIAL NOT NULL,
-    resumen VARCHAR(100) NOT NULL,
+    resumen VARCHAR(400) NOT NULL,
     precio INTEGER NOT NULL,
     titulo VARCHAR(30) NOT NULL,
     estatus_actividad BOOLEAN NOT NULL,
