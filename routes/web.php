@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::resource('Libro', 'LibroController'); // Esto permite llamar al controlador del libro para hacer las respectivas llamadas  localhost8000/libro
 Route::resource('Editorial', 'EditorialController');
+Route::resource('Clase', 'ClaseController');
 //Route::get('/Libro','LibroController@index');
 //Route::get('/Libro/create','LibroController@create');
 //Route::post('/Libro','LibroController@store');

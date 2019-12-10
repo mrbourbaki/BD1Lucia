@@ -40,7 +40,7 @@ class EditorialController extends Controller
         $editorial->nombre=strtoupper($request->nombre);
         $editorial->fk_lugar=$request->fk_lugar;
         $editorial->save();
-        return Redirect::to('Editorial');
+        return Redirect::to('/Editorial');
     }
 
     public function edit($cod)
@@ -60,13 +60,13 @@ class EditorialController extends Controller
         $editorial->fk_lugar = $nuevoLugar;
         $editorial->save();    
         
-        return redirect('/Editorial');
+        return Redirect::to('/Editorial');
     }
 
     public function destroy($cod)
     {
         $editorial = Editorial::findOrFail($cod);
         $editorial->delete();
-        return Redirect::to('Editorial');
+        return Redirect::to('/Editorial');
     }
 }

@@ -50,7 +50,7 @@ class LibroController extends Controller
         $libro->fk_editorial = $request->fk_editorial;
         $libro->fk_clase = $request->fk_clase;
         $libro->save();
-        return Redirect::to('Libro');
+        return Redirect::to('/Libro');
     }
 
     public function show($id)
@@ -69,7 +69,7 @@ class LibroController extends Controller
 
     public function update(Request $request, $cod)
     {
-        $nuevoNombre =$request->input('titulo_original');
+        $nuevoNombre = $request->input('titulo_original');
         $nuevoSinopsis = $request->input('sinopsis');
         $nuevoNropags = $request->input('nro_pags');
         $nuevoAno = $request->input('ano');
@@ -78,7 +78,7 @@ class LibroController extends Controller
         $nuevoEditorial = $request->input('fk_editorial');
         $nuevoClase = $request->input('fk_clase');
         //----------------------------------------------
-        $libro= Libro::find($cod);
+        $libro = Libro::find($cod);
         $libro->titulo_original = strtoupper ($nuevoNombre);
         $libro->sinopsis = strtoupper ($nuevoSinopsis);
         $libro->nro_pags = $nuevoNropags;
@@ -89,13 +89,13 @@ class LibroController extends Controller
         $libro->fk_clase = $nuevoClase;
         $libro->save();    
         
-        return redirect('/Libro');
+        return Redirect::to('/Libro');
     }
 
     public function destroy($cod)
     {
         $libro = Libro::findOrFail($cod);
         $libro->delete();
-        return Redirect::to('Libro');
+        return Redirect::to('/Libro');
     }
 }
