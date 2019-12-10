@@ -36,7 +36,7 @@ CREATE TABLE clase (
     tipo VARCHAR (10) NOT NULL,
     fk_clase INT,
     CONSTRAINT pk_id_clase PRIMARY KEY (cod),
-    CONSTRAINT fk_clase_clase FOREIGN KEY (fk_clase) REFERENCES clase (cod),
+    CONSTRAINT fk_clase_clase FOREIGN KEY (fk_clase) REFERENCES clase (cod) ON DELETE CASCADE,
     CONSTRAINT tipo_clase CHECK (tipo IN ('SUBGENERO','OTRO'))
 );
 

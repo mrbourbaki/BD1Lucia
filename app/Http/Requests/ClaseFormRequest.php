@@ -13,7 +13,7 @@ class ClaseFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class ClaseFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre'=>'required|max:80',
         ];
     }
 }

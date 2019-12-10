@@ -15,7 +15,9 @@ class Clase extends Model
 
     public $timestamps = false;
 
-
-
-
+    protected $fillable = [  // aqui deberan ir los atributos de las tablas lo que tengo entendido  
+        'nombre',
+        'fk_clase',
+        'tipo' 
+    ];
 }

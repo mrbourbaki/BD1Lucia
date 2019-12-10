@@ -1,4 +1,4 @@
-CREATE TABLE lugar (
+/*CREATE TABLE lugar (
     codigo SERIAL NOT NULL,
     nombre VARCHAR(30) NOT NULL,
     tipo VARCHAR(10) NOT NULL,
@@ -45,6 +45,7 @@ CREATE TABLE libro (
     CONSTRAINT fk_clase_libro FOREIGN KEY (fk_clase) REFERENCES clase (cod),
     CONSTRAINT fk_libro_complementario FOREIGN KEY (fk_libro_comp) REFERENCES libro (cod)
 );
+*/
 
 INSERT INTO lugar (nombre,tipo,moneda,nacionalidad,idioma,fk_lugar) VALUES
 ('VENEZUELA','PAIS','BOLIVAR','VENEZOLANO','ESPANOL',NULL),

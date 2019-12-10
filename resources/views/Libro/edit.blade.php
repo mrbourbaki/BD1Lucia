@@ -22,19 +22,37 @@
 
                 <div class="form-group col-md-12">
                     <label>Nombre del editorial</label>
+<<<<<<< HEAD
                     <select name="fk_editorial"class="form-control"> 
                         @foreach($editorial as $edit)
                             <option name="fk_editorial" value="{{$edit->cod}}">{{$edit->nombre}}</option>
 
+=======
+                    <select name="fk_editorial"class="form-control">
+                        @foreach($editorial as $edi)
+                            @if ($libro->fk_editorial == $edi->cod)
+                                <option value="{{$edi->cod}}" selected>{{ $edi->nombre }}</option>
+                            @else
+                                <option value="{{$edi->cod}}">{{ $edi->nombre }}</option>
+                            @endif
+>>>>>>> d39700445ceb4c797ab750379c5b4fbd395751fd
                         @endforeach
                     </select>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label>Nombre de la clase</label>
-                    <select name="fk_clase"class="form-control" > 
+                    <select name="fk_clase"class="form-control" >
                         @foreach($clase as $clas)
+<<<<<<< HEAD
                             <option value= "{{$clas->cod}}">{{$clas->nombre}}</option>
+=======
+                            @if ($libro->fk_clase == $clas->cod)
+                                <option value="{{$clas->cod}}" selected>{{ $clas->nombre }}</option>
+                            @else
+                                <option value="{{$clas->cod}}">{{ $clas->nombre }}</option>
+                            @endif
+>>>>>>> d39700445ceb4c797ab750379c5b4fbd395751fd
                         @endforeach
                     </select>
                 </div>
