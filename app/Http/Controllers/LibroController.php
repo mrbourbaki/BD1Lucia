@@ -69,18 +69,6 @@ class LibroController extends Controller
 
     public function update(LibroFormRequest $request, $cod)
     {
-<<<<<<< HEAD
-        $libro= Libro::findOrFail($cod);
-        $libro->titulo_original=strtoupper($request->titulo_original);
-        $libro->sinopsis=$request->sinopsis;
-        $libro->nro_pags=$request->nro_pags;
-        $libro->ano=$request->ano;
-        $libro->titulo_espanol=strtoupper($request->titulo_espanol);
-        $libro->tema=strtoupper($request->tema);
-        $libro->fk_editorial = $request->get('fk_editorial');
-        $libro->fk_clase = $request->get('fk_clase');
-        return redirect('/Libro');
-=======
         $nuevoNombre = $request->input('titulo_original');
         $nuevoSinopsis = $request->input('sinopsis');
         $nuevoNropags = $request->input('nro_pags');
@@ -102,7 +90,6 @@ class LibroController extends Controller
         $libro->save();    
         
         return Redirect::to('/Libro');
->>>>>>> d39700445ceb4c797ab750379c5b4fbd395751fd
     }
 
     public function destroy($cod)
