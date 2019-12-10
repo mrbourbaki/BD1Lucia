@@ -1,101 +1,101 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Editorial;
-use App\Clase;
-use App\Libro; // hago referencia al modelo 
+use App\Lector;
+use App\Lugar;
+use App\Representante_externo; 
+use App\Pago;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\LibroFormRequest;
+use App\Http\Requests\LectorFormRequest;
 use DB;
 
-class LibroController extends Controller
+class LectorController extends Controller
 {
-
-    //Aqui se desarrollaran las diferentes funciones para la peticiones a la base de datos 
-
-    public function __constructor(){
-
-    }
 
     public function index(Request $request)
     {
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $libros=DB::table('libro')->where('titulo_original','LIKE','%'.strtoupper($query).'%')
-            ->paginate(5);
-            return view('Libro.index', ["libros" =>$libros , "searchText"=>$query]); // Retornar todo sobre la tabla libro y la muestra en la pantalla conrespondiente 
+            $lectores=DB::table('lector')->where('nombre1','LIKE',strtoupper($query).'%')
+            ->paginate(10);
+            return view('Lector.index', ["lectores" =>$lectores , "searchText"=>$query]); // Retornar todo sobre la tabla lector y la muestra en la pantalla conrespondiente 
         }
+    
     }
 
     public function create()
-    {
-        $editorial=DB::table('editorial')->distinct()->get();
-        $clase=DB::table('clase')->distinct()->get();
-        return view('Libro.create',["editorial"=>$editorial,"clase"=>$clase]);
+    {   
+        $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['PAIS']);
+        return view('Lector.create',["lugar"=>$lugar]);
     }
 
-    public function store(LibroFormRequest $request)
+
+    public function store(Request $request)
     {
-        $libro=new Libro;
-        $libro->titulo_original=strtoupper($request->titulo_original);
-        $libro->sinopsis=$request->sinopsis;
-        $libro->nro_pags=$request->nro_pags;
-        $libro->ano=$request->ano;
-        $libro->titulo_espanol=strtoupper($request->titulo_espanol);
-        $libro->tema=strtoupper($request->tema);
-        $libro->fk_editorial = $request->fk_editorial;
-        $libro->fk_clase = $request->fk_clase;
-        $libro->save();
-        return Redirect::to('Libro');
+        $lector=new Lector;
+        $lector->nombre1=strtoupper($request->nombre1);
+        $lector->nombre2=strtoupper($request->nombre2);
+        $lector->apellido1=strtoupper($request->apellido1);
+        $lector->apellido2=strtoupper($request->apellido2);
+        $lector->docidentidad=$request->docidentidad;
+        $lector->fecha_nac=$request->fecha_nac;
+        $lector->telefono = $request->telefono;
+        $lector->genero = $request->genero;
+        $lector->fk_nacionalidad= $request->fk_nacionalidad;
+        $lector->save();
+        return Redirect::to('Lector');
+    }
+    public function show($docidentidad)
+    {
+        //
     }
 
-    public function show($id)
+
+    public function edit($docidentidad)
     {
-        $libro=Libro::findOrFail($id);
-        return view("Libro.infomodal", compact("libro"));
+        $lector= Lector::findOrFail($docidentidad);
+        $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['PAIS']);
+        return view("Lector.edit",["lector"=>$lector,"lugar"=>$lugar]);
     }
 
-    public function edit($cod)
+    public function update(LectorFormRequest $request, $docidentidad)
     {
-        $libro= Libro::findOrFail($cod);
-        $editorial= Editorial::get();
-        $clase= Clase::get();
-        return view("Libro.edit",["libro"=>$libro,"editorial"=>$editorial,"clase"=>$clase]);
+        $lector= Lector::findOrFail($docidentidad);
+        $lector->nombre1=strtoupper($request->nombre1);
+        $lector->nombre2=strtoupper($request->nombre2);
+        $lector->apellido1=strtoupper($request->apellido1);
+        $lector->apellido2=strtoupper($request->apellido2);
+        $lector->docidentidad=$request->docidentidad;
+        $lector->telefono = $request->telefono;
+        $lector->genero = $request->genero;
+        $lector->fk_nacionalidad= $request->fk_nacionalidad;
+        return redirect('Lector');
     }
 
-    public function update(Request $request, $cod)
+
+    public function destroy($docidentidad)
     {
-        $nuevoNombre =$request->input('titulo_original');
-        $nuevoSinopsis = $request->input('sinopsis');
-        $nuevoNropags = $request->input('nro_pags');
-        $nuevoAno = $request->input('ano');
-        $nuevoTituloespanol= $request->input('titulo_espanol');
-        $nuevoTema = $request->input('tema');
-        $nuevoEditorial = $request->input('fk_editorial');
-        $nuevoClase = $request->input('fk_clase');
-        //----------------------------------------------
-        $libro= Libro::find($cod);
-        $libro->titulo_original = strtoupper ($nuevoNombre);
-        $libro->sinopsis = strtoupper ($nuevoSinopsis);
-        $libro->nro_pags = $nuevoNropags;
-        $libro->ano = $nuevoAno;
-        $libro->titulo_espanol =strtoupper ($nuevoTituloespanol);
-        $libro->tema = strtoupper ($nuevoTema);
-        $libro->fk_editorial = $nuevoEditorial;
-        $libro->fk_clase = $nuevoClase;
-        $libro->save();    
-        
-        return redirect('/Libro');
+        $lector = Lector::findOrFail($docidentidad);
+        $lector->delete();
+        return Redirect::to('Lector');
     }
 
-    public function destroy($cod)
+    public function RepSearch(Request $request)
     {
-        $libro = Libro::findOrFail($cod);
-        $libro->delete();
-        return Redirect::to('Libro');
+ 
+            $query=trim($request->get('searchText'));
+            $rep_ext=DB::table('representante_externo')->where('nombre1','LIKE','%'.strtoupper($query).'%')
+            ->paginate(5);
+            return view ('Lector.create', ["rep_ext" =>$rep_ext]); // Retornar todo sobre la tabla lector y la muestra en la pantalla conrespondiente 
+
+
+    }
+
+    public function Pagos ($docidentidad){
+        $pagos=DB::select("SELECT * FROM pago WHERE doc_lector_hist_lector =?", [$docidentidad]);
+        return view('Lector.pago',["pagos"=>$pagos]);
     }
 }

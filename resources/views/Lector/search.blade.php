@@ -1,5 +1,5 @@
 <!--Falta que sea responsive el buscador -->
-{!! Form::open(array('url'=>'Libro','method'=>'GET','autocomplete'=>'off','role'=>'search')) !!}
+<form action="\Lector" method="GET">
     <div class="form-group">
         <div class="input-group">
             <input type="text" class= "form-control" name="searchText" value ="{{$searchText}}">
@@ -8,4 +8,6 @@
             </span>
         </div>
     </div>
-{{Form::close()}}
+
+
+</form>

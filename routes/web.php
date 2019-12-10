@@ -14,9 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('Libro', 'LibroController'); 
 
-Route::resource('Libro', 'LibroController'); // Esto permite llamar al controlador del libro para hacer las respectivas llamadas  localhost8000/libro
-//Route::get('/Libro','LibroController@index');
-//Route::get('/Libro/create','LibroController@create');
-//Route::post('/Libro','LibroController@store');
-//Route::get('/Libro/{cod}','LibroController@destroy');
+Route::get('Lector/Pago/{docidentidad}','LectorController@Pagos') ;
+Route::resource('Lector','LectorController');

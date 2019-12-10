@@ -16,14 +16,16 @@
         </div>
         <!--<div style="margin-left:16%; margin-top:30px">-->
         <div id="formulario">
-            <form action="/Libro/{{$libro->cod}}" method="post">{{ csrf_field() }}
+            <form action="/Libro/{{$libro->cod}}" method="post">
+            {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
 
                 <div class="form-group col-md-12">
                     <label>Nombre del editorial</label>
                     <select name="fk_editorial"class="form-control"> 
                         @foreach($editorial as $edit)
-                            <option value="{{$libro->fk_editorial}}">{{$edit->nombre}}</option>
+                            <option name="fk_editorial" value="{{$edit->cod}}">{{$edit->nombre}}</option>
+
                         @endforeach
                     </select>
                 </div>
@@ -32,12 +34,18 @@
                     <label>Nombre de la clase</label>
                     <select name="fk_clase"class="form-control" > 
                         @foreach($clase as $clas)
-                            <option value= "{{$libro->fk_clase}}">{{$clas->nombre}}</option>
+                            <option value= "{{$clas->cod}}">{{$clas->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <table>
+                     <tr>
+                        <td>Editorial:</td>
+                        <td>
+                            <input type="text" class="form-control" name="fk_editorial" value="{{$libro->fk_editorial}}" placeholder="Guerra de 1984">
+                        </td>
+                    </tr>
                     <tr>
                         <td>Titulo original:</td>
                         <td>

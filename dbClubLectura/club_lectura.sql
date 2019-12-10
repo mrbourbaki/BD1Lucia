@@ -72,7 +72,7 @@ CREATE TABLE lector (
 	nombre1 VARCHAR (15) NOT NULL,
 	apellido1 VARCHAR (15) NOT NULL,
 	apellido2 VARCHAR (15) NOT NULL,
-	genero VARCHAR (1) NOT NULL,
+	genero VARCHAR (4) NOT NULL,
 	telefono NUMERIC(14) NOT NULL,  /*  cambie a numerico para que no diera error cuando uno ingrese el numero ya que el int estabamos fuera del rango */
     fk_nacionalidad INT NOT NULL,
 	fk_rep INT,
@@ -178,7 +178,7 @@ CREATE TABLE personaje (
     cod SERIAL NOT NULL,
     id_obra INT NOT NULL,
     nombre VARCHAR(30) NOT NULL,
-    descripcion VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(300) NOT NULL,
     CONSTRAINT pk_id_personaje PRIMARY KEY (cod,id_obra),
     CONSTRAINT fk_obra_personaje FOREIGN KEY (id_obra) REFERENCES obra_actuada (cod)
 );
@@ -251,7 +251,7 @@ CREATE TABLE pago (
 	tipo_pago varchar(8) NOT NULL,
 	CONSTRAINT pk_pago PRIMARY KEY (cod,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector),
 	CONSTRAINT fk_hist_lector_pago FOREIGN KEY (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector) REFERENCES hist_lector (fecha_ini,doc_lector,id_club),
-    CONSTRAINT tipo_pago CHECK (tipo_pago IN('CREDITO','DEBITO'))
+    CONSTRAINT tipo_pago CHECK (tipo_pago IN('CRÉDITO','DÉBITO'))
 );
 
 CREATE TABLE grupo_lectura (

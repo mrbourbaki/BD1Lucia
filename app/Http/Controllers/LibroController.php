@@ -67,28 +67,17 @@ class LibroController extends Controller
         return view("Libro.edit",["libro"=>$libro,"editorial"=>$editorial,"clase"=>$clase]);
     }
 
-    public function update(Request $request, $cod)
+    public function update(LibroFormRequest $request, $cod)
     {
-        $nuevoNombre =$request->input('titulo_original');
-        $nuevoSinopsis = $request->input('sinopsis');
-        $nuevoNropags = $request->input('nro_pags');
-        $nuevoAno = $request->input('ano');
-        $nuevoTituloespanol= $request->input('titulo_espanol');
-        $nuevoTema = $request->input('tema');
-        $nuevoEditorial = $request->input('fk_editorial');
-        $nuevoClase = $request->input('fk_clase');
-        //----------------------------------------------
-        $libro= Libro::find($cod);
-        $libro->titulo_original = strtoupper ($nuevoNombre);
-        $libro->sinopsis = strtoupper ($nuevoSinopsis);
-        $libro->nro_pags = $nuevoNropags;
-        $libro->ano = $nuevoAno;
-        $libro->titulo_espanol =strtoupper ($nuevoTituloespanol);
-        $libro->tema = strtoupper ($nuevoTema);
-        $libro->fk_editorial = $nuevoEditorial;
-        $libro->fk_clase = $nuevoClase;
-        $libro->save();    
-        
+        $libro= Libro::findOrFail($cod);
+        $libro->titulo_original=strtoupper($request->titulo_original);
+        $libro->sinopsis=$request->sinopsis;
+        $libro->nro_pags=$request->nro_pags;
+        $libro->ano=$request->ano;
+        $libro->titulo_espanol=strtoupper($request->titulo_espanol);
+        $libro->tema=strtoupper($request->tema);
+        $libro->fk_editorial = $request->get('fk_editorial');
+        $libro->fk_clase = $request->get('fk_clase');
         return redirect('/Libro');
     }
 
