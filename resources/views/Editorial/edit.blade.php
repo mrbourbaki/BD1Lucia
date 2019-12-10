@@ -16,14 +16,18 @@
         </div>
         <!--<div style="margin-left:16%; margin-top:30px">-->
         <div id="formulario">
-            <form action="/Editorial/{{$editorial->cod}}" method="post">{{ csrf_field() }}
+            <form action="/Editorial/{{ $editorial->cod }}" method="post">{{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
 
                 <div class="form-group col-md-12">
                     <label>Nombre de la ciudad</label>
-                    <select name="fk_lugar"class="form-control" > 
+                    <select name="fk_lugar" class="form-control" > 
                         @foreach($lugar as $lug)
-                            <option value= "{{$editorial->fk_lugar}}">{{$lug->nombre}}</option>
+                            @if ($editorial->fk_lugar == $lug->codigo)
+                                <option value="{{$lug->codigo}}" selected>{{ $lug->nombre }}</option>
+                            @else
+                                <option value="{{$lug->codigo}}">{{ $lug->nombre }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>

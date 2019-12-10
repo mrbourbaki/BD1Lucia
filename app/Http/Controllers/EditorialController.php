@@ -43,11 +43,6 @@ class EditorialController extends Controller
         return Redirect::to('Editorial');
     }
 
-    public function show()
-    {
-        
-    }
-
     public function edit($cod)
     {
         $editorial=Editorial::findOrFail($cod);
@@ -55,9 +50,17 @@ class EditorialController extends Controller
         return view("Editorial.edit",["editorial"=>$editorial,"lugar"=>$lugares]);   
     }
 
-    public function update()
+    public function update(Request $request, $cod)
     {
+        $nuevoNombre =$request->input('nombre');
+        $nuevoLugar = $request->input('fk_lugar');
+        //----------------------------------------------
+        $editorial= Editorial::find($cod);
+        $editorial->nombre = $nuevoNombre;
+        $editorial->fk_lugar = $nuevoLugar;
+        $editorial->save();    
         
+        return redirect('/Editorial');
     }
 
     public function destroy($cod)
