@@ -87,11 +87,53 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i>Libros</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i>Lectores</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i>Clubs</a></li>
+                <li> 
+                        <li class="treeview">
+                            <a href="#">
+                              <i class="fa fa-laptop"></i>
+                              <span>Libro</span>
+                              <i class="fa fa-angle-left pull-right"></i>
+                          </a>
+                          <ul class="treeview-menu">
+                            <li><a href=""><i class="fa fa-circle-o"></i>Libros </a></li>
+                            <li><a href=""><i class="fa fa-circle-o"></i>Editoriales</a></li>
+                            <li><a href=""><i class="fa fa-circle-o"></i>Clases</a></li>
+                          </ul>
+                      </li>
+              </li>
+              <li>
+                          <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>Miembros</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                          <ul class="treeview-menu">
+                              <li><a href=""><i class="fa fa-circle-o"></i>Lectores </a></li>
+                              <li><a href=""><i class="fa fa-circle-o"></i>Representantes </a></li>
+                          </ul>
+                          
+                          </li>
+                
+                </li>
+                <li> 
+                         <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>Instituciones</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                          <ul class="treeview-menu">
+                              <li><a href=""><i class="fa fa-circle-o"></i>Clubes </a></li>
+                              <li><a href=""><i class="fa fa-circle-o"></i> Institucion </a></li>
+                          </ul>
+                          
+                          </li>
+                </li>
               </ul>
             </li>
+
+            
             
             <li class="treeview">
               <a href="#">
@@ -159,7 +201,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019 <a href="">XSingularity</a>.</strong> All rights reserved.
+
       </footer>
 
       

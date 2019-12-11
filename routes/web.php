@@ -20,3 +20,4 @@ Route::get('Lector/Pago/{docidentidad}','LectorController@Pagos') ;
 Route::resource('Lector','LectorController');
 Route::resource('Editorial', 'EditorialController');
 Route::resource('Clase', 'ClaseController');
+Route::resource('Institucion', 'InstitucionController');
