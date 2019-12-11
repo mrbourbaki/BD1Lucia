@@ -109,8 +109,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                           <ul class="treeview-menu">
-                              <li><a href=""><i class="fa fa-circle-o"></i>Lectores </a></li>
-                              <li><a href=""><i class="fa fa-circle-o"></i>Representantes </a></li>
+                              <li><a href="{{url('Lector')}}"><i class="fa fa-circle-o"></i>Lectores </a></li>
+                              <li><a href="{{url('Representante')}}"><i class="fa fa-circle-o"></i>Representantes </a></li>
                           </ul>
                           
                           </li>
@@ -124,8 +124,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                           <ul class="treeview-menu">
-                              <li><a href=""><i class="fa fa-circle-o"></i>Clubes </a></li>
-                              <li><a href=""><i class="fa fa-circle-o"></i> Institucion </a></li>
+                              <li><a href="{{url('Club')}}"><i class="fa fa-circle-o"></i>Clubes </a></li>
+                              <li><a href="{{url('Institucion')}}"><i class="fa fa-circle-o"></i> Institucion </a></li>
                           </ul>
                           
                           </li>
