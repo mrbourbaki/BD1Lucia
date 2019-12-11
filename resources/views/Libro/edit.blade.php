@@ -45,7 +45,6 @@
                         @endforeach
                     </select>
 
-
                 <table>
                      <tr>
                         <td>Editorial:</td>
@@ -53,6 +52,7 @@
                             <input type="text" class="form-control" name="fk_editorial" value="{{$libro->fk_editorial}}" placeholder="Guerra de 1984">
                         </td>
                     </tr>
+
                     <tr>
                         <td>Titulo original:</td>
                         <td>

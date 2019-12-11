@@ -10,7 +10,7 @@ use App\Pago;
 use App\Institucion;
 use App\Hist_lector;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\clubFormRequest;
+use App\Http\Requests\ClubFormRequest;
 use DB;
 
 class ClubController extends Controller
@@ -20,9 +20,11 @@ class ClubController extends Controller
     {
         if($request)
         {
-            $query=trim($request->get('searchText'));
-            $clubes=DB::table('club')->where('nombre','LIKE',strtoupper($query).'%')
-            ->paginate(5);
+            $query=strtoupper(trim($request->get('searchText')));
+            $clubes = DB::select(DB::raw("SELECT c.cod, c.codigo_postal, c.nombre, c.direccion, c.fk_lugar, c.fk_institucion, c.cuota
+                                        FROM lugar l, club c 
+                                        WHERE l.codigo = c.fk_lugar"))
+                                        ->paginate(5);
             $lectores=Lector::all();
             return view('Club.index', ["clubes" =>$clubes , "searchText"=>$query,"lectores"=>$lectores]); // Retornar todo sobre la tabla club y la muestra en la pantalla conrespondiente 
         }
