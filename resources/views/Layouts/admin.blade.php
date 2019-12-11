@@ -95,9 +95,9 @@
                               <i class="fa fa-angle-left pull-right"></i>
                           </a>
                           <ul class="treeview-menu">
-                            <li><a href=""><i class="fa fa-circle-o"></i>Libros </a></li>
-                            <li><a href=""><i class="fa fa-circle-o"></i>Editoriales</a></li>
-                            <li><a href=""><i class="fa fa-circle-o"></i>Clases</a></li>
+                            <li><a href="{{url('Libro')}}"><i class="fa fa-circle-o"></i>Libros </a></li>
+                            <li><a href="{{url('Editorial')}}"><i class="fa fa-circle-o"></i>Editoriales</a></li>
+                            <li><a href="{{url('Clase')}}"><i class="fa fa-circle-o"></i>Clases</a></li>
                           </ul>
                       </li>
               </li>
