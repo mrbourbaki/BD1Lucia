@@ -47,7 +47,7 @@ class EditorialController extends Controller
     {
         $editorial=Editorial::findOrFail($cod);
         $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD')->get();
-        return view("Editorial.edit",["editorial"=>$editorial,"lugar"=>$lugares]);   
+        return view("Editorial.edit",["editorial"=>$editorial,"lugar"=>$lugares]);
     }
 
     public function update(Request $request, $cod)
