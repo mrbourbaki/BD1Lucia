@@ -1,8 +1,8 @@
 /* 
 Para borrar todas las tablas*/
 DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
 
+CREATE SCHEMA public;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO public;
 
@@ -72,7 +72,7 @@ CREATE TABLE lector (
 	nombre1 VARCHAR (15) NOT NULL,
 	apellido1 VARCHAR (15) NOT NULL,
 	apellido2 VARCHAR (15) NOT NULL,
-	genero VARCHAR (4) NOT NULL,
+	genero VARCHAR (1) NOT NULL,
 	telefono NUMERIC(14) NOT NULL,  /*  cambie a numerico para que no diera error cuando uno ingrese el numero ya que el int estabamos fuera del rango */
     fk_nacionalidad INT NOT NULL,
 	fk_rep INT,
@@ -81,7 +81,9 @@ CREATE TABLE lector (
     CONSTRAINT pk_lector PRIMARY KEY (docidentidad),
     CONSTRAINT fk_nacionalidad_lector FOREIGN KEY (fk_nacionalidad) REFERENCES lugar (codigo),
 	CONSTRAINT fK_representante_lector FOREIGN KEY (fk_rep) REFERENCES lector(docidentidad),
-	CONSTRAINT fK_representante_externo_lector FOREIGN KEY (fk_rep_externo) REFERENCES representante_externo(docidentidad)
+	CONSTRAINT fK_representante_externo_lector FOREIGN KEY (fk_rep_externo) REFERENCES representante_externo(docidentidad),
+    CONSTRAINT Tipo_genero CHECK (genero IN ('F','M'))
+
 );
 
 CREATE TABLE lec_libro (

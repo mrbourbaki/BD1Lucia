@@ -47,8 +47,6 @@ INSERT INTO representante_externo (docidentidad,nombre1,apellido1,apellido2,nomb
  	(631652901, 'EDI', 'LOVEGROVE', 'HANINGTON', 'MARIN');
 
 INSERT INTO lector (docidentidad,fecha_nac,nombre1,apellido1,apellido2,genero,telefono,fk_nacionalidad,fk_rep_externo ,fk_rep,nombre2) VALUES
-/*	CAMBIEN EL ORDEN DEL INGRESO DE DATOS YA QUE TENIAS INVERTIDO FK_REP CON fK_REP_EXTERNO Y TE DABA ERROR PORQUE NO HACIA REFERENCIA CORRECTAMENTE*/
-/*	EL GENERO ESTA COMO MALE Y FEMALE */
 	(448012254, '07/08/2004', 'MILLICENT', 'HERRIEVEN', 'SHEPLEY', 'F',3404987, 1, NULL, NULL, NULL),
 	(617174421, '04/9/2002', 'DEVIN', 'LOVEITT', 'GRISLEY', 'M',670891, 1, NULL, NULL, NULL),
 	(496583972, '06/12/2004', 'DEVONNE', 'MCENENY', 'EVITTS', 'F',893906, 2, NULL, NULL, NULL),
@@ -199,7 +197,7 @@ INSERT INTO grupo_lectura (id_club,tipo_grupo,dia,hora_ini,hora_fin) VALUES
     (1,'JOVEN',4,'13:00:00','14:00:00'),
     (1,'ADULTO',5,'16:00:00','18:00:00');
 
-INSERT INTO hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo,fecha_ini,fecha_fin) VALUES
+INSERT INTO hist_grupo (fecha_hist_lector,doc_lector_hist_lector, id_club_hist_lector,id_grupo,id_club_grupo,fecha_ini,fecha_fin) VALUES
     ('05/05/2019',448012254,5,1,5,'05/05/2019',NULL),
     ('07/05/2018',617174421,5,1,5,'07/05/2018',NULL),
     ('07/01/2019',496583972,5,1,5,'07/01/2019',NULL),
@@ -211,5 +209,5 @@ INSERT INTO hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_le
     ('05/02/2018',337021440,1,5,1,'05/02/2018',NULL),
     ('01/10/2016',336109574,1,5,1,'01/10/2016',NULL),
     ('08/12/2018',335351470,1,5,1,'08/12/2018',NULL),
-    ('09/10/2016',331832514,1,5,1,'09/10/2016',NULL),
-    ('10/11/2016',334061189,1,5,1,'10/11/2016',NULL);
+    ('09/10/2016',331832514,1,5,1,'09/10/2016',NULL);
+
