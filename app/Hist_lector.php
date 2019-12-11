@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Institucion extends Model
 {
-    protected $table ='institucion';   
+    protected $table ='hist_lector';   
     
-    protected $primaryKey = 'cod'; 
+    protected $primaryKey = 'pk_hist_lector'; 
     
     protected $hidden = [
     ];
@@ -16,8 +16,11 @@ class Institucion extends Model
     public $timestamps = false;
 
     protected $fillable = [  
-    'nombre', 
-    'detalle' ,
-    'fk_lugar', 
+    'fecha_ini', 
+    'doc_lector' ,
+    'id_club', 
+    'estatus', 
+    'motivo_retiro' ,
+    'fecha_fin' 
     ];
 }

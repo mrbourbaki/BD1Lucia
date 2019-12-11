@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lugar extends Model
+class Club extends Model
 {
-    protected $table ='lugar';   
+    protected $table ='club';   
     
     protected $primaryKey = 'cod'; 
     
@@ -16,11 +16,11 @@ class Lugar extends Model
     public $timestamps = false;
 
     protected $fillable = [  
-    'nombre', 
-    'tipo' ,
-    'moneda' ,
-    'nacionalidad' ,
-    'idioma', 
-    'fk_lugar',
+    'codigo_postal', 
+    'nombre' ,
+    'direccion' ,
+    'fk_lugar' ,
+    'fk_institucion', 
+    'cuota',
     ];
 }

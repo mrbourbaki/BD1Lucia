@@ -44,7 +44,7 @@
                             @endif
                         @endforeach
                     </select>
-                </div>
+
 
                 <table>
                      <tr>

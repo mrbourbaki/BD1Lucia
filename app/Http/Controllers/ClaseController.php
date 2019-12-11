@@ -50,12 +50,22 @@ class ClaseController extends Controller
 
     public function edit($cod)
     {
-  
+        $clase=Clase::findOrFail($cod);
+        $clasesPadre=DB::table('clase')->where('cod', '!=', $cod)->get();
+        return view("Clase.edit",["clase"=>$clase, "clasesPadre"=> $clasesPadre]);
     }
 
     public function update(Request $request, $cod)
     {
-
+        $nuevoNombre =$request->input('nombre');
+        $nuevoPadre = $request->input('fk_clase');
+        //----------------------------------------------
+        $clase=Clase::find($cod);
+        $clase->nombre = $nuevoNombre;
+        $clase->fk_clase = $nuevoPadre;
+        $clase->save();    
+        
+        return Redirect::to('/Clase');
     }
 
     public function destroy($cod)

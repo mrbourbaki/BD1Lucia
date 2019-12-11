@@ -33,7 +33,7 @@ class LectorController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(LectorFormRequest $request)
     {
         $lector=new Lector;
         $lector->nombre1=strtoupper($request->nombre1);

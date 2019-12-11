@@ -33,9 +33,6 @@
                                 <a href="{{route('Lector.edit',$lec->docidentidad)}}"><button class="btn btn-info">Editar</button></a>
                                 <a data-target="#modal-delete-{{$lec->docidentidad}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
                                 <a data-target="#modal-info{{$lec->docidentidad}}" data-toggle="modal"><button class="btn btn-primary">Informacion</button></a>
-                                <form action="Lector/Pago/{{$lec->docidentidad}}" method="GET">
-                                <button class="btn btn-warning" type="submit">Control de pagos</button>
-                                </form>
                             </td>
                         </tr>
                         @include('Lector.infomodal') <!-- info delete --> 

@@ -2,7 +2,7 @@
 @section('contenido')
     <div class="row">
         <div class="col-lg6 col-md-6 col-sm-6 col-xs-12">
-        <h4>Editorial a editar : {{$editorial->nombre}} </h4>
+        <h4>Clase a editar : {{$clase->nombre}} </h4>
             @if(count($errors)>0)
                 <div class="alert alert-danger">
                     <ul>
@@ -16,36 +16,38 @@
         </div>
         <!--<div style="margin-left:16%; margin-top:30px">-->
         <div id="formulario">
-            <form action="/Editorial/{{ $editorial->cod }}" method="post">{{ csrf_field() }}
+            <form action="/Clase/{{ $clase->cod }}" method="post">{{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
 
                 <div class="form-group col-md-12">
-                    <label>Nombre de la ciudad</label>
-                    <select name="fk_lugar" class="form-control" > 
-                        @foreach($lugar as $lug)
-                            @if ($editorial->fk_lugar == $lug->codigo)
-                                <option value="{{$lug->codigo}}" selected>{{ $lug->nombre }}</option>
+                    <label>Clase Padre</label>
+                    <select name="fk_clase" class="form-control" >
+                        @foreach($clasesPadre as $clas)
+                            @if ($clas->cod == $clase->fk_clase)
+                                <option value="{{ $clas->cod }}" selected>{{ $clas->nombre }}</option>
                             @else
-                                <option value="{{$lug->codigo}}">{{ $lug->nombre }}</option>
+                                <option value="{{ $clas->cod }}">{{ $clas->nombre }}</option>
                             @endif
                         @endforeach
                     </select>
                 </div>
 
-                <table>
-                    <tr>
-                        <td>Nombre:</td>
-                        <td>
-                            <input type="text" class="form-control" name="nombre" value="{{$editorial->nombre}}" placeholder="Editorial Cool">
-                        </td>
-                    </tr>
-                </table>
+                <div class="form-group col-md-12">
+                    <table>
+                        <tr>
+                            <label>Nombre</label>
+                            <td>
+                                <input type="text" class="form-control" name="nombre" value="{{$clase->nombre}}" placeholder="Novela">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
                 <br>
 
                 <div class="form-group col-md-8">
                     <button class="btn btn-primary" type="submit">Guardar</button>
-                    <button class="btn btn-default" href="/Editorial/" >Volver</button>
+                    <button class="btn btn-default" href="/Clase/" >Volver</button>
                 </div>
             </form>
         </div>
