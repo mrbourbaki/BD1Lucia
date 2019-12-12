@@ -44,7 +44,6 @@
                                 <option value="{{$lug->codigo}}">{{ucwords(strtolower($lug->nombre))}}</option>
                             @endforeach
                         </select>
-
                 </div>
 
                     <div class="form-group col-md-12">
