@@ -35,17 +35,24 @@ class ClaseController extends Controller
 
     public function store(ClaseFormRequest $request)
     {
-        $clase=new Clase;
-        $clase->nombre=strtoupper($request->nombre);
-        if ($request->fk_clase == 'Null') {
-            $clase->fk_clase = NULL;
-            $clase->tipo = 'SUBGENERO';
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                                    FROM clase
+                                                    WHERE nombre = UPPER('$request->nombre'))"));
+        if ($yaExiste[0]->exists == FALSE){
+            $clase=new Clase;
+            $clase->nombre=strtoupper($request->nombre);
+            if ($request->fk_clase == 'Null') {
+                $clase->fk_clase = NULL;
+                $clase->tipo = 'SUBGENERO';
+            } else {
+                $clase->fk_clase=$request->fk_clase;
+                $clase->tipo = 'OTRO';
+            }
+            $clase->save();
+            return Redirect::to('/Clase');
         } else {
-            $clase->fk_clase=$request->fk_clase;
-            $clase->tipo = 'OTRO';
+            echo "no";
         }
-        $clase->save();
-        return Redirect::to('/Clase');
     }
 
     public function edit($cod)

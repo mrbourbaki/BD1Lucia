@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Editorial; // hago referencia al modelo
-use App\Lugar;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EditorialFormRequest;
 use DB;
@@ -36,11 +35,18 @@ class EditorialController extends Controller
 
     public function store(EditorialFormRequest $request)
     {
-        $editorial=new Editorial;
-        $editorial->nombre=strtoupper($request->nombre);
-        $editorial->fk_lugar=$request->fk_lugar;
-        $editorial->save();
-        return Redirect::to('/Editorial');
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                                    FROM editorial
+                                                    WHERE nombre = UPPER('$request->nombre'))"));
+        if ($yaExiste[0]->exists == FALSE) {
+            $editorial=new Editorial;
+            $editorial->nombre=strtoupper($request->nombre);
+            $editorial->fk_lugar=$request->fk_lugar;
+            $editorial->save();
+            return Redirect::to('/Editorial');
+        } else {
+            echo "no";
+        }
     }
 
     public function edit($cod)

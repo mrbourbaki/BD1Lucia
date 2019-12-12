@@ -38,22 +38,29 @@ class ObraController extends Controller
 
     public function store(ObraFormRequest $request)
     {
-        $obra=new Obra;
-        $obra->titulo=strtoupper($request->Titulo);
-        $obra->resumen=strtoupper($request->resumen);
-        $obra->precio=$request->precio;
-        $obra->estatus_actividad=1; // Siempre que se cree una nueva obra su estus es activo
-        $obra->duracion=$request->duracion;
-        $obra->fk_sala=$request->fk_sala;
-        $obra->save();
-        return Redirect::to('/Obra');
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                                    FROM obra
+                                                    WHERE titulo = UPPER('$request->titulo'))"));
+        if ($yaExiste[0]->exists == FALSE) {
+            $obra=new Obra;
+            $obra->titulo=strtoupper($request->titulo);
+            $obra->resumen=strtoupper($request->resumen);
+            $obra->precio=$request->precio;
+            $obra->estatus_actividad=1; // Siempre que se cree una nueva obra su estus es activo
+            $obra->duracion=$request->duracion;
+            $obra->fk_sala=$request->fk_sala;
+            $obra->save();
+            return Redirect::to('/Obra');
+        } else {
+            echo "no";
+        }
     }
 
     public function edit($cod)
     {
         $obra=Obra::findOrFail($cod);
 
-        return view("obra.edit",["obra"=>$obra]);
+        return view("Obra.edit",["obra"=>$obra]);
     }
 
     public function update(ObraFromRequest $request, $cod)

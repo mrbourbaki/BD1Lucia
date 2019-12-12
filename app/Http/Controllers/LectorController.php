@@ -32,27 +32,28 @@ class LectorController extends Controller
         return view('Lector.create',["lugar"=>$lugar]);
     }
 
-
     public function store(LectorFormRequest $request)
     {
-        $lector=new Lector;
-        $lector->nombre1=strtoupper($request->nombre1);
-        $lector->nombre2=strtoupper($request->nombre2);
-        $lector->apellido1=strtoupper($request->apellido1);
-        $lector->apellido2=strtoupper($request->apellido2);
-        $lector->docidentidad=$request->docidentidad;
-        $lector->fecha_nac=$request->fecha_nac;
-        $lector->telefono = $request->telefono;
-        $lector->genero = $request->genero;
-        $lector->fk_nacionalidad= $request->fk_nacionalidad;
-        $lector->save();
-        return Redirect::to('Lector');
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                                    FROM lector
+                                                    WHERE nombre1 = UPPER('$request->nombre1'))"));
+        if ($yaExiste[0]->exists == FALSE) {
+            $lector = new Lector;
+            $lector->nombre1=strtoupper($request->nombre1);
+            $lector->nombre2=strtoupper($request->nombre2);
+            $lector->apellido1=strtoupper($request->apellido1);
+            $lector->apellido2=strtoupper($request->apellido2);
+            $lector->docidentidad=$request->docidentidad;
+            $lector->fecha_nac=$request->fecha_nac;
+            $lector->telefono = $request->telefono;
+            $lector->genero = $request->genero;
+            $lector->fk_nacionalidad= $request->fk_nacionalidad;
+            $lector->save();
+            return Redirect::to('Lector');
+        } else {
+            echo "no";
+        }
     }
-    public function show($docidentidad)
-    {
-        //
-    }
-
 
     public function edit($docidentidad)
     {
@@ -75,7 +76,6 @@ class LectorController extends Controller
         return redirect('Lector');
     }
 
-
     public function destroy($docidentidad)
     {
         $lector = Lector::findOrFail($docidentidad);
@@ -84,14 +84,11 @@ class LectorController extends Controller
     }
 
     public function RepSearch(Request $request)
-    {
- 
-            $query=trim($request->get('searchText'));
-            $rep_ext=DB::table('representante_externo')->where('nombre1','LIKE','%'.strtoupper($query).'%')
-            ->paginate(5);
-            return view ('Lector.create', ["rep_ext" =>$rep_ext]); // Retornar todo sobre la tabla lector y la muestra en la pantalla conrespondiente 
-
-
+    { 
+        $query=trim($request->get('searchText'));
+        $rep_ext=DB::table('representante_externo')->where('nombre1','LIKE','%'.strtoupper($query).'%')
+        ->paginate(5);
+        return view ('Lector.create', ["rep_ext" =>$rep_ext]); // Retornar todo sobre la tabla lector y la muestra en la pantalla conrespondiente 
     }
 
     public function Pagos ($docidentidad){

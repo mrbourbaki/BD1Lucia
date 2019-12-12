@@ -107,7 +107,7 @@ class ClubController extends Controller
         $lectoresDocid=$request->docidentidad;
 
         //Lector::findOrFail($lec_id)->nombre1;
-        foreach ($lectoresDocid as $lec_id){
+/*        foreach ($lectoresDocid as $lec_id){
         
             $pago=DB::select(DB::raw("SELECT MAX(fecha_pago) 
                                     FROM pago
@@ -120,5 +120,6 @@ class ClubController extends Controller
 
             echo (($diff->format('%y') * 12) + $diff->format('%m')) . " meses de diferencia";
         }
+*/
     }
 }

@@ -37,12 +37,19 @@ class InstitucionController extends Controller
 
     public function store(InstitucionFormRequest $request)
     {
-        $institucion=new Institucion;
-        $institucion->nombre=strtoupper($request->nombre);
-        $institucion->detalle=strtoupper($request->detalle);
-        $institucion->fk_lugar=$request->fk_lugar;
-        $institucion->save();
-        return Redirect::to('/Institucion');
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                                    FROM institucion
+                                                    WHERE nombre = UPPER('$request->nombre'))"));
+        if ($yaExiste[0]->exists == FALSE){
+            $institucion=new Institucion;
+            $institucion->nombre=strtoupper($request->nombre);
+            $institucion->detalle=strtoupper($request->detalle);
+            $institucion->fk_lugar=$request->fk_lugar;
+            $institucion->save();
+            return Redirect::to('/Institucion');
+        } else {
+            echo "no";
+        }
     }
 
     public function show($cod)
