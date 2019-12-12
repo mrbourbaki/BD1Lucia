@@ -1,3 +1,5 @@
+SET DATESTYLE TO 'European';
+
 INSERT INTO lugar (nombre,tipo,moneda,nacionalidad,idioma,fk_lugar) VALUES
 	('CHILE','PAIS','PESO CHILENO','CHILENO','ESPAÑOL',NULL),
 	('INGLATERRA','PAIS','EURO','INGLÉS','INGLÉS',NULL),
@@ -133,7 +135,7 @@ INSERT INTO hist_lector (fecha_ini,doc_lector,id_club,estatus,motivo_retiro,fech
 	('05/2/2018',337021440,1,'ACTIVO',NULL,NULL),
 	('01/10/2016',336109574,1,'ACTIVO',NULL,NULL),
 	('08/12/2018',335351470,1,'ACTIVO',NULL,NULL),	
-	('09/10/2016',331832514,1,'ACTIVO',NULL,NULL),
+	('09/10/2016',331832514,1,'ACTIVO',NULL,'10/11/2016'),
 	('10/11/2016',331832514,1,'RETIRADO','VOLUNTARIO',NULL);
 
 INSERT INTO calendario (fecha,id_obra,hora_i,estatus_realizada,valoracion,cantidad_asistencia) VALUES
