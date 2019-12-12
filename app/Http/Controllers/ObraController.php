@@ -90,11 +90,11 @@ class ObraController extends Controller
         $calendario=DB::table('calendario')->where('id_obra','=', $obra->cod);
 
         if($obra->cod == $calendario->id_obra){
-        $calendario->delete();
-        $obra->delete();
-        return Redirect::to('/Obra');
+            $calendario->delete();
+            $obra->delete();
+            return Redirect::to('/Obra');
         }
         else
-        return Redirect::to('/Obra');
+            return Redirect::to('/Obra');
     }
 }

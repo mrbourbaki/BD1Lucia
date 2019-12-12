@@ -38,15 +38,22 @@ class SalaController extends Controller
 
     public function store(SalaFormRequest $request)
     {
-        $sala=new Sala;
-        $sala->nombre=strtoupper($request->nombre);
-        $sala->tipo=$request->tipo;
-        $sala->capacidad=$request->capacidad;
-        $sala->direccion=strtoupper($request->direccion);
-        $sala->fk_club = $request->fk_club;
-        $sala->fk_lugar = $request->fk_lugar;
-        $sala->save();
-        return Redirect::to('/Sala');
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                                    FROM sala
+                                                    WHERE nombre = UPPER('$request->nombre'))"));
+        if ($yaExiste[0]->exists == FALSE) {
+            $sala=new Sala;
+            $sala->nombre=strtoupper($request->nombre);
+            $sala->tipo=$request->tipo;
+            $sala->capacidad=$request->capacidad;
+            $sala->direccion=strtoupper($request->direccion);
+            $sala->fk_club = $request->fk_club;
+            $sala->fk_lugar = $request->fk_lugar;
+            $sala->save();
+            return Redirect::to('/Sala');
+        } else {
+            echo "no";
+        }
     }
 
     public function show($id)
