@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ObraFormRequest extends FormRequest
+class CalendarioFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,10 @@ class ObraFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'resumen'=>'required|max:400', 
-            'precio'=>'required',
-            'titulo'=>'required|max:30',
-            'estatus_actividad'=>'required',
-            'duracion'=>'required', 
-            'fk_sala'=>'required'
+            'hora_i'=>'required' ,
+            'estatus_realizada'=>'required' ,
+            'valoracion', 
+            'cantidad_asistencia'
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ObraFormRequest extends FormRequest
+class SalaFromRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,12 @@ class ObraFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'resumen'=>'required|max:400', 
-            'precio'=>'required',
-            'titulo'=>'required|max:30',
-            'estatus_actividad'=>'required',
-            'duracion'=>'required', 
-            'fk_sala'=>'required'
+            'tipo'=>'required|max:10', 
+            'capacidad'=>'required',
+            'nombre'=>'required|max:30',
+            'direccion'=>'required|max:50' ,
+            'fk_lugar'=>'required', 
+            'fk_club',
         ];
     }
 }

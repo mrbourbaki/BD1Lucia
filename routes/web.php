@@ -23,5 +23,5 @@ Route::resource('Clase','ClaseController');
 Route::resource('Institucion','InstitucionController');
 Route::resource('Club','ClubController');
 Route::resource('Obra','ObraController');
-Route::get('filtraMiembro/{cod}','ClubController@filtraMiembro');
-Route::post('agregaMiembro/{cod}','ClubController@agregaMiembro');
+Route::resource('Sala','SalaController');
+Route::get('Club/agregaMiembro/{cod}','ClubController@agregaMiembro');
