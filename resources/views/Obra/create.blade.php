@@ -37,8 +37,10 @@
                     <h4>Sala</h4>
                     <div class="form-group col-md-12">
                         <label>Nombre de la Sala </label>
-                        <select name="fk_lugar"class="form-control" > 
-
+                        <select name="fk_sala"class="form-control" > 
+                            @foreach($sala as $sala )
+                                <option value="{{$sala->codigo}}">{{ucwords(strtolower($sala->nombre))}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

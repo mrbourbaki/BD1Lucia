@@ -13,7 +13,7 @@ class ObraFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class ObraFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'resumen'=>'required|max:400', 
+            'precio'=>'required',
+            'titulo'=>'required|max:30',
+            'estatus_actividad'=>'required' ,
+            'duracion'=>'required', 
+            'fk_sala'=>'required'
         ];
     }
 }

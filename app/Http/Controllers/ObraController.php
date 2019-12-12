@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Club;
+use App\Calendario;
 use App\Sala; // hago referencia al modelo
 use App\Obra;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\EditorialFormRequest;
+use App\Http\Requests\ObraFormRequest;
 use DB;
 
 class ObraController extends Controller
@@ -31,8 +32,8 @@ class ObraController extends Controller
 
     public function create()
     {
-        $obra=DB::table('obra_actuada')->get();
-        return view('Obra.create',["obra"=>$obra]);
+        $sala=DB::table('sala')->distinct()->get();
+        return view('Obra.create',["sala"=>$sala]);
     }
 
     public function store(ObraFormRequest $request)
@@ -55,7 +56,7 @@ class ObraController extends Controller
         return view("obra.edit",["obra"=>$obra]);
     }
 
-    public function update(Request $request, $cod)
+    public function update(ObraFromRequest $request, $cod)
     {
         $nuevoTitulo =$request->input('titulo');
         $nuevoResumen =$request->input('resumen');
@@ -64,7 +65,7 @@ class ObraController extends Controller
         $nuevoDuracion =$request->input('duracion');
         $nuevoSala = $request->input('fk_sala');
         //----------------------------------------------
-        $obra= Obra::find($cod);
+        $obra=Obra::findOrFail($cod);
         $obra->titulo = $nuevoTitulo;
         $obra->resumen = $nuevoResumen;
         $obra->precio = $nuevoPrecio;
@@ -78,7 +79,7 @@ class ObraController extends Controller
 
     public function destroy($cod)
     {
-        $obra = Obra::findOrFail($cod);
+        $obra=Obra::findOrFail($cod);
         $obra->delete();
         return Redirect::to('/Obra');
     }
