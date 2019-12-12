@@ -80,7 +80,14 @@ class ObraController extends Controller
     public function destroy($cod)
     {
         $obra=Obra::findOrFail($cod);
+        $calendario=DB::table('calendario')->where('id_obra','=', $obra->cod);
+
+        if($obra->cod == $calendario->id_obra){
+        $calendario->delete();
         $obra->delete();
+        return Redirect::to('/Obra');
+        }
+        else
         return Redirect::to('/Obra');
     }
 }

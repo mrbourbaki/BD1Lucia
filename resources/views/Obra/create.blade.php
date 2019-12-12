@@ -34,12 +34,17 @@
                         <input type="text" class="form-control" name="resumen" placeholder="">
                     </div>
 
+                    <div class="form-group col-md-12">
+                        <label>Estatus  Error Aqui auque en el controlador se lo seleccione directo 1 </label>
+                        <input type="number" class="form-control" name="estatus_actividad" placeholder="  Para cambiar estatus '1' o '0'">
+                    </div>
+
                     <h4>Sala</h4>
                     <div class="form-group col-md-12">
                         <label>Nombre de la Sala </label>
                         <select name="fk_sala"class="form-control" > 
                             @foreach($sala as $sala )
-                                <option value="{{$sala->codigo}}">{{ucwords(strtolower($sala->nombre))}}</option>
+                                <option value="{{$sala->cod}}">{{ucwords(strtolower($sala->nombre))}}</option>
                             @endforeach
                         </select>
                     </div>
