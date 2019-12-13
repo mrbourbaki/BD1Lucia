@@ -36,7 +36,7 @@ class LectorController extends Controller
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
                                                     FROM lector
-                                                    WHERE nombre1 = UPPER('$request->nombre1'))"));
+                                                    WHERE docidentidad = '$request->docidentidad')"));
         if ($yaExiste[0]->exists == FALSE) {
             $lector = new Lector;
             $lector->nombre1=strtoupper($request->nombre1);
