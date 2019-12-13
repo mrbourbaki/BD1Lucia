@@ -27,7 +27,7 @@
                     @foreach($editorial as $edi)
                         <tr>
                             <td>{{ $edi->nombre }}</td>
-                            <td>{{ DB::table('lugar')->where('codigo', '=', $edi->fk_lugar)->value('nombre') }}</td>
+                            <td>{{ DB::table('ofj_lugar')->where('codigo', '=', $edi->fk_lugar)->value('nombre') }}</td>
                             <td>
                                 <a href="{{route('Editorial.edit',$edi->cod)}}"><button class="btn btn-info">Editar</button></a>
                                 <a data-target="#modal-delete-{{$edi->cod}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
