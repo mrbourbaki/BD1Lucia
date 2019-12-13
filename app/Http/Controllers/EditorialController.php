@@ -20,8 +20,8 @@ class EditorialController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD');
-            $editoriales=DB::table('editorial')->where('nombre','LIKE','%'.strtoupper($query).'%')
+            $lugares=DB::table('ofj_lugar')->where('tipo', '=', 'CIUDAD');
+            $editoriales=DB::table('ofj_editorial')->where('nombre','LIKE','%'.strtoupper($query).'%')
             ->paginate(5);
             return view('Editorial.index', ["lugar"=>$lugares, "editorial"=>$editoriales, "searchText"=>$query]); // Retornar todo sobre la tabla editorial y la muestra en la pantalla conrespondiente 
         }
@@ -29,14 +29,14 @@ class EditorialController extends Controller
 
     public function create()
     {
-        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD')->get();
+        $lugares=DB::table('ofj_lugar')->where('tipo', '=', 'CIUDAD')->get();
         return view('Editorial.create',["lugar"=>$lugares]);
     }
 
     public function store(EditorialFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM editorial
+                                                    FROM ofj_editorial
                                                     WHERE nombre = UPPER('$request->nombre'))"));
         if ($yaExiste[0]->exists == FALSE) {
             $editorial=new Editorial;
@@ -52,7 +52,7 @@ class EditorialController extends Controller
     public function edit($cod)
     {
         $editorial=Editorial::findOrFail($cod);
-        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD')->get();
+        $lugares=DB::table('ofj_lugar')->where('tipo', '=', 'CIUDAD')->get();
         return view("Editorial.edit",["editorial"=>$editorial,"lugar"=>$lugares]);
     }
 

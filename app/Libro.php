@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Libro extends Model
 {
-    protected $table ='libro';   
+    protected $table ='ofj_libro';   
     
     protected $primaryKey = 'cod'; 
     

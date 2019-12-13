@@ -21,7 +21,7 @@ class ClaseController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $clases=DB::table('clase')->where('nombre','LIKE','%'.strtoupper($query).'%')
+            $clases=DB::table('ofj_clase')->where('nombre','LIKE','%'.strtoupper($query).'%')
             ->paginate(5);
             return view('Clase.index', ["clase"=>$clases, "searchText"=>$query]); // Retornar todo sobre la tabla clase y la muestra en la pantalla conrespondiente 
         }
@@ -36,7 +36,7 @@ class ClaseController extends Controller
     public function store(ClaseFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM clase
+                                                    FROM ofj_clase
                                                     WHERE nombre = UPPER('$request->nombre'))"));
         if ($yaExiste[0]->exists == FALSE){
             $clase=new Clase;
@@ -58,7 +58,7 @@ class ClaseController extends Controller
     public function edit($cod)
     {
         $clase=Clase::findOrFail($cod);
-        $clasesPadre=DB::table('clase')->where('cod', '!=', $cod)->get();
+        $clasesPadre=DB::table('ofj_clase')->where('cod', '!=', $cod)->get();
         return view("Clase.edit",["clase"=>$clase, "clasesPadre"=> $clasesPadre]);
     }
 

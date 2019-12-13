@@ -1,6 +1,6 @@
 SET DATESTYLE TO 'European';
 
-INSERT INTO lugar (nombre,tipo,moneda,nacionalidad,idioma,fk_lugar) VALUES
+INSERT INTO ofj_lugar (nombre,tipo,moneda,nacionalidad,idioma,fk_lugar) VALUES
 	('CHILE','PAIS','PESO CHILENO','CHILENO','ESPAÑOL',NULL),
 	('INGLATERRA','PAIS','EURO','INGLÉS','INGLÉS',NULL),
 	('SANTIAGO DE CHILE','CIUDAD',NULL,NULL,NULL,1),
@@ -8,7 +8,7 @@ INSERT INTO lugar (nombre,tipo,moneda,nacionalidad,idioma,fk_lugar) VALUES
 	('LONDRES','CIUDAD',NULL,NULL,NULL,2),
 	('MANCHESTER','CIUDAD',NULL,NULL,NULL,2);
 
-INSERT INTO editorial (nombre,fk_lugar)  VALUES 
+INSERT INTO ofj_editorial (nombre,fk_lugar)  VALUES 
 	('EDICIONES UDP',3),
 	('MYTHICA EDICIONES',3),
 	('ZIG ZAG',4),
@@ -18,7 +18,7 @@ INSERT INTO editorial (nombre,fk_lugar)  VALUES
 	('NEWSCO INSIDER',6),
 	('COMMA PRESS',6);
 
-INSERT INTO clase (nombre,tipo,fk_clase) VALUES
+INSERT INTO ofj_clase (nombre,tipo,fk_clase) VALUES
 	('FANTASÍA','SUBGENERO',NULL),
 	('CIENCIA FICCIÓN','SUBGENERO',NULL),
 	('CIENCIA FICCIÓN POLÍTICA','OTRO',2),
@@ -28,7 +28,7 @@ INSERT INTO clase (nombre,tipo,fk_clase) VALUES
 	('CIENCIA FICCIÓN ESPACIAL','OTRO',2),
 	('ENSAYO','SUBGENERO',NULL);
 
-INSERT INTO libro (titulo_original,sinopsis,nro_pags,ano,titulo_espanol,tema,fk_editorial,fk_clase,fk_libro_comp) VALUES
+INSERT INTO ofj_libro (titulo_original,sinopsis,nro_pags,ano,titulo_espanol,tema,fk_editorial,fk_clase,fk_libro_comp) VALUES
 	('1984','INQUIETANTE INTERPRETACIÓN FUTURISTA BASADA EN LA CRÍTICA A LOS TOTALITARISMOS Y A LA OPRESIÓN DEL PODER, SITUADA EN 1984 EN UNA SOCIEDAD INGLESA',326,1948,'1984','SOCIEDAD',5,3,NULL),
 	('THE CHRONICLES OF NARNIA THE LION THE WITCH AND THE WARDROBE','CUATRO NIÑOS VIAJAN A TRAVES DE UN ROPERO A LA TIERRA DE NARNIA, DONDE VIVIRÁN INCREÍBLES AVENTURAS CON LA AYUDA DEL LEÓN ASLAN',208,1950,'LAS CRONICAS DE NARNIA EL LEON LA BRUJA Y EL ROPERO','FANTASIA',4,1,NULL),
 	('THE CHRONICLES OF NARNIA PRINCE CASPIAN','LOS CUATRO HERMANOS  REGRESAN A NARNIA Y AUNQUE PARA ELLOS HA PASADO UN AÑO ALLÁ HAN TRANSCURRIDO 1300 AÑOS. NARNIA ESTÁ AHORA SOMETIDA A LOS TELMARINOS A QUIENES DIRIGE EL MALVADO REY MIRAZ',195,1951,'LAS CRONICAS DE NARNIA EL PRINCIPE CASPIAN','FANTASIA',5,1,2),
@@ -38,7 +38,7 @@ INSERT INTO libro (titulo_original,sinopsis,nro_pags,ano,titulo_espanol,tema,fk_
 	('HOMBRES Y ENGRANAJES','HOMBRES Y ENGRANAJES EXAMINA EL LARGO CAMINO RECORRIDO POR LA CULTURA OCCIDENTAL DESDE EL RENACIMIENTO A IMPULSOS DE LA DOBLE INFLUENCIA DEL DINERO Y DE LA RAZÓN',144,1951,'HOMBRES Y ENGRANAJES','SOCIEDAD',3,8,NULL),
 	('2001: A SPACE ODYSSEY','LA SUPERCOMPUTADORA HAL 9000 GUÍA A UN EQUIPO DE TRES ASTRONAUTAS EN UN VIAJE EN EL QUE BUSCAN DESCUBRIR LOS ORÍGENES DE LA HUMANIDAD',240,1968,'2001:ODISEA EN EL ESPACIO','FANTASIA',7,7,NULL);
 
-INSERT INTO representante_externo (docidentidad,nombre1,apellido1,apellido2,nombre2)  VALUES
+INSERT INTO ofj_representante_externo (docidentidad,nombre1,apellido1,apellido2,nombre2)  VALUES
 	(711793712, 'DION', 'DITTS', 'HUTT', 'QUINCEY'),
  	(987892256, 'JUSTEN', 'AHRENDSEN', 'CAMBER', 'NERTY'),
  	(533519477, 'RAYMUND', 'EAKLY', 'CAHANI', 'CHRISTY'),
@@ -48,7 +48,7 @@ INSERT INTO representante_externo (docidentidad,nombre1,apellido1,apellido2,nomb
  	(548219921, 'NANNI', 'ROMAIN', 'DARRIGRAND', 'JUDON'),
  	(631652901, 'EDI', 'LOVEGROVE', 'HANINGTON', 'MARIN');
 
-INSERT INTO lector (docidentidad,fecha_nac,nombre1,apellido1,apellido2,genero,telefono,fk_nacionalidad,fk_rep_externo ,fk_rep,nombre2) VALUES
+INSERT INTO ofj_lector (docidentidad,fecha_nac,nombre1,apellido1,apellido2,genero,telefono,fk_nacionalidad,fk_rep_externo ,fk_rep,nombre2) VALUES
 	(448012254, '07/08/2004', 'MILLICENT', 'HERRIEVEN', 'SHEPLEY', 'F',3404987, 1, NULL, NULL, NULL),
 	(617174421, '04/9/2002', 'DEVIN', 'LOVEITT', 'GRISLEY', 'M',670891, 1, NULL, NULL, NULL),
 	(496583972, '06/12/2004', 'DEVONNE', 'MCENENY', 'EVITTS', 'F',893906, 2, NULL, NULL, NULL),
@@ -63,7 +63,7 @@ INSERT INTO lector (docidentidad,fecha_nac,nombre1,apellido1,apellido2,genero,te
 	(331832514, '01/1/2009', 'BRYNN', 'BURCHESS', 'HIXLEY', 'F',624404,1,548219921, NULL, NULL),
 	(334061189, '05/5/2010', 'JADA', 'SOFFE', 'PIRES', 'F',404323,2,631652901, NULL, NULL);
 
-INSERT INTO lec_libro (posicion,doc_lector,id_libro) VALUES
+INSERT INTO ofj_lec_libro (posicion,doc_lector,id_libro) VALUES
 	(1,448012254,3), (2,448012254,7), (3,448012254,8),
 	(1,617174421,4), (2,617174421,5), (3,617174421,6),
 	(1,496583972,1), (2,496583972,2), (3,496583972,3),
@@ -78,7 +78,7 @@ INSERT INTO lec_libro (posicion,doc_lector,id_libro) VALUES
 	(1,331832514,2), (2,331832514,5), (3,331832514,8),
 	(1,334061189,5), (2,334061189,6), (3,334061189,7);
 
-INSERT INTO institucion (nombre,detalle,fk_lugar) VALUES
+INSERT INTO ofj_institucion (nombre,detalle,fk_lugar) VALUES
 	('BIBLIOTECA NACIONAL DE CHILE',NULL,3),
 	('BIBLIOTECA MUNICIPAL DE PROVIDENCIA',NULL,4),
 	('COLEGIO SAN IGNACIO',NULL,3),
@@ -88,7 +88,7 @@ INSERT INTO institucion (nombre,detalle,fk_lugar) VALUES
 	('ARDEN UNIVERSITY',NULL,6),
 	('THE MANCHESTER COLLEGE',NULL,6);
 
-INSERT INTO club (codigo_postal,nombre,direccion,fk_lugar,fk_institucion,cuota) VALUES
+INSERT INTO ofj_club (codigo_postal,nombre,direccion,fk_lugar,fk_institucion,cuota) VALUES
 	('8320000','TARDES DE LECTURA','AVENIDA APOQUINDO 6282 LAS CONDES',3,NULL,100),
 	('8320000','UN LIBRO Y UN CAFÉ','AVENIDA BUZETA 4534 CERRILLOS',3,1,NULL),
 	('7500000','LECTORES POR DIVERSIÓN','AVENIDA HERNANDO DE AGUIRRE 3645',4,2,NULL),
@@ -98,7 +98,7 @@ INSERT INTO club (codigo_postal,nombre,direccion,fk_lugar,fk_institucion,cuota) 
 	('BL1','MANCHESTER READING FANS','1620 TURNER STREET NORTHERN QUARTER',6,6,NULL),
 	('M15','LIBERAL CLUB BOOK ','47 BARLOW MORE ROAD DIDSBURY VILLAGE',6,5,NULL);
 
-INSERT INTO sala (tipo,capacidad,nombre,direccion,fk_lugar,fk_club) VALUES 
+INSERT INTO ofj_sala (tipo,capacidad,nombre,direccion,fk_lugar,fk_club) VALUES 
 	('PROPIA',30,'ANDRÉS BELLO','AVENIDA APOQUINDO 6282 LAS CONDES',3,1),
 	('ALQUILADA',40,'LOS ENCUENTROS','AVENIDA BUZETA 4534 CERRILLOS',3,2),
 	('PROPIA',20,'PABLO NERUDA','AVENIDA HERNANDO DE AGUIRRE 3645',4,3),
@@ -108,12 +108,12 @@ INSERT INTO sala (tipo,capacidad,nombre,direccion,fk_lugar,fk_club) VALUES
 	('ALQUILADA',30,'CHARLES DICKENS','1620 TURNER STREET NORTHERN QUARTER',6,7),
 	('PROPIA',20,'JANE AUSTEN','47 BARLOW MORE ROAD DIDSBURY VILLAGE',6,8);
 
-INSERT INTO asoc_club (id_club,id_club_asoc) VALUES
+INSERT INTO ofj_asoc_club (id_club,id_club_asoc) VALUES
 	(1,2), (1,3), (1,4),
 	(2,3), (2,4), (5,6),
 	(5,7), (5,8);
 
-INSERT INTO obra_actuada (resumen,precio,titulo,estatus_actividad,duracion,fk_sala) VALUES
+INSERT INTO ofj_obra_actuada (resumen,precio,titulo,estatus_actividad,duracion,fk_sala) VALUES
 	('BASADA EN LA NOVELA DE ORWELL ESTA CINTA NARRA LAS VIDAS DE WINSTON SMITH Y SU AMANTE EN MEDIO DE UNA SOCIEDAD TOTALITARIA',10,'1984','1',113,1),
 	('AVENTURAS DE 4 HERMANOS EN UN MUNDO FANTASIOSO LLAMADO NARNIA',12,'NARNIA 1 Y 2','1',200,2),
 	('LA OBRA ES UNA CONTINUA METÁFORA QUE ALUDE AL HECHO DE QUE INCLUSO ANTES DE CONVERTIRSE EN UN INSECTO, GREGOR YA ESTABA SIENDO TRATADO COMO TAL',15,'LA METAMORFOSIS','1',80,3),
@@ -123,7 +123,7 @@ INSERT INTO obra_actuada (resumen,precio,titulo,estatus_actividad,duracion,fk_sa
 	('UNA SUPERCOMPUTADORA TRATARA DE TOMAR EL CONTROL DE LA NAVE Y SE EMBARCARA EN LA BUSQUEDA DE LA VERDAD', 40, '2001', '1', 90, 6),
 	('EL DR FLOYD HA VIAJADO PARA INVESTIGAR UN EXTRANO MONOLITO EN LA LUNA QUE PODRIA DEVELAR LA VERDAD DE LA CREACION HUMANA', 33, '2001: LA OBRA', '0', 80, 8);
 
-INSERT INTO hist_lector (fecha_ini,doc_lector,id_club,estatus,motivo_retiro,fecha_fin) VALUES
+INSERT INTO ofj_hist_lector (fecha_ini,doc_lector,id_club,estatus,motivo_retiro,fecha_fin) VALUES
 	('05/5/2019',448012254,5,'ACTIVO',NULL,NULL),
 	('07/5/2018',617174421,5,'ACTIVO',NULL,NULL), 
 	('07/1/2019',496583972,5,'ACTIVO',NULL,NULL),
@@ -138,7 +138,7 @@ INSERT INTO hist_lector (fecha_ini,doc_lector,id_club,estatus,motivo_retiro,fech
 	('09/10/2016',331832514,1,'ACTIVO',NULL,'10/11/2016'),
 	('10/11/2016',331832514,1,'RETIRADO','VOLUNTARIO',NULL);
 
-INSERT INTO calendario (fecha,id_obra,hora_i,estatus_realizada,valoracion,cantidad_asistencia) VALUES
+INSERT INTO ofj_calendario (fecha,id_obra,hora_i,estatus_realizada,valoracion,cantidad_asistencia) VALUES
 	('29/10/2019',1,'13:00:00','1',5,20),
 	('22/10/2019',2,'15:00:00','0',NULL,NULL),
 	('22/09/2019',3,'14:00:00','1',4,20),
@@ -148,7 +148,7 @@ INSERT INTO calendario (fecha,id_obra,hora_i,estatus_realizada,valoracion,cantid
 	('22/11/2019',7,'13:30:00','0',NULL,NULL),
 	('08/10/2019',8,'17:30:00','0',NULL,NULL);
 
-INSERT INTO personaje (id_obra,nombre,descripcion) VALUES 
+INSERT INTO ofj_personaje (id_obra,nombre,descripcion) VALUES 
 	(1,'WINSTON SMITH','ES DE MENTALIDAD CEREBRAL Y MELANCÓLICA, QUE RECUERDA DE FORMA INSISTENTE EL PASADO, COMO REACCIÓN CONTRA LA DICTADURA TOTALITARIA'),
 	(1,'JULIA','JULIA TRABAJA EN LA PRODUCCIÓN DE NOVELAS DEL MINISTERIO DE LA VERDAD, DONDE, TRAS UN ACCIDENTE, CONOCE A WINSTON SMITH'),
 	(1,'OBRIEN','OBRIEN, UN HOMBRE PODEROSO Y ASTUTO, HACE CREER A WINSTON QUE PERTENECE A LA HERMANDAD, UN GRUPO CONTRARIO AL PARTIDO'),
@@ -158,7 +158,7 @@ INSERT INTO personaje (id_obra,nombre,descripcion) VALUES
 	(2,'LUCY PEVENSIE','FUE LA PRIMERA DE LOS CUATRO HERMANOS EN IR A NARNIA; ALLÍ CONOCIÓ A UN FAUNO LLAMADO TUMNUS, QUE LE HABLÓ DE NARNIA Y LA INVITÓ A CENAR EN SU CASA'),
 	(2,'SUSAN PEVENSIE ','EN SU ESTANCIA EN NARNIA ES CONOCIDA COMO LA REINA SUSAN, LA BENÉVOLA');
 
-INSERT INTO elenco (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,principal) VALUES
+INSERT INTO ofj_elenco (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,principal) VALUES
 	(1,1,1,'05/05/2019',448012254,5,'1'),
 	(2,1,1,'07/05/2018',617174421,5,'0'),
 	(3,1,1,'07/01/2019',496583972,5,'0'),
@@ -168,18 +168,18 @@ INSERT INTO elenco (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lec
 	(7,2,2,'09/03/2018',335676685,1,'1'),
     (8,2,2,'10/04/2019',337599324,1,'1');
 	
-INSERT INTO mejor_actor (fecha_cal,id_obra_cal,id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector_elenco,doc_lector_hist_elenco,id_club_hist_elenco) VALUES
+INSERT INTO ofj_mejor_actor (fecha_cal,id_obra_cal,id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector_elenco,doc_lector_hist_elenco,id_club_hist_elenco) VALUES
     ('29/10/2019',1,1,1,1,'05/05/2019',448012254,5);
 
-INSERT INTO cal_club (id_club,fecha_cal,id_obra) VALUES 
+INSERT INTO ofj_cal_club (id_club,fecha_cal,id_obra) VALUES 
     (1,'29/10/2019',1);
 
-INSERT INTO obra_libro (id_obra,id_libro) VALUES 
+INSERT INTO ofj_obra_libro (id_obra,id_libro) VALUES 
     (1,1), (2,2), (2,3),
     (3,4), (4,5), (5,6),
     (6,7), (7,8);
 
-INSERT INTO pago (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,fecha_pago,tipo_pago) VALUES
+INSERT INTO ofj_pago (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,fecha_pago,tipo_pago) VALUES
     ('05/05/2019',448012254,5,'05/06/2019','DÉBITO'),
     ('07/05/2018',617174421,5,'07/06/2018','CRÉDITO'),
     ('07/01/2019',496583972,5,'07/02/2019','DÉBITO'),
@@ -189,7 +189,7 @@ INSERT INTO pago (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,f
     ('09/03/2018',335676685,1,'09/04/2018','DÉBITO'),
     ('10/04/2019',337599324,1,'10/05/2019','DÉBITO');
 
-INSERT INTO grupo_lectura (id_club,tipo_grupo,dia,hora_ini,hora_fin) VALUES
+INSERT INTO ofj_grupo_lectura (id_club,tipo_grupo,dia,hora_ini,hora_fin) VALUES
     (5,'JOVEN',2,'13:00:00','14:00:00'),
     (5,'ADULTO',3,'15:00:00','17:00:00'),
     (5,'NINO',4,'13:00:00','14:00:00'),
@@ -199,7 +199,7 @@ INSERT INTO grupo_lectura (id_club,tipo_grupo,dia,hora_ini,hora_fin) VALUES
     (1,'JOVEN',4,'13:00:00','14:00:00'),
     (1,'ADULTO',5,'16:00:00','18:00:00');
 
-INSERT INTO hist_grupo (fecha_hist_lector,doc_lector_hist_lector, id_club_hist_lector,id_grupo,id_club_grupo,fecha_ini,fecha_fin) VALUES
+INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector, id_club_hist_lector,id_grupo,id_club_grupo,fecha_ini,fecha_fin) VALUES
     ('05/05/2019',448012254,5,1,5,'05/05/2019',NULL),
     ('07/05/2018',617174421,5,1,5,'07/05/2018',NULL),
     ('07/01/2019',496583972,5,1,5,'07/01/2019',NULL),

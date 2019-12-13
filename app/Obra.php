@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Obra extends Model
 {
-    protected $table ='obra_actuada';   
+    protected $table ='ofj_obra_actuada';   
     
     protected $primaryKey = 'cod'; 
     

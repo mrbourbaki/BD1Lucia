@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Representante_externo extends Model
 {
-    protected $table ='representante_externo';   
+    protected $table ='ofj_representante_externo';   
     
     protected $primaryKey = 'docidentidad'; 
     

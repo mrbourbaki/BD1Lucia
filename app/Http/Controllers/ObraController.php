@@ -24,7 +24,7 @@ class ObraController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $obra=DB::table('obra_actuada')->where('titulo','LIKE','%'.strtoupper($query).'%')
+            $obra=DB::table('ofj_obra_actuada')->where('titulo','LIKE','%'.strtoupper($query).'%')
             ->paginate(5);
             return view('Obra.index', ["obra"=>$obra, "searchText"=>$query]); // Retornar todo sobre la tabla editorial y la muestra en la pantalla conrespondiente 
         }
@@ -32,14 +32,14 @@ class ObraController extends Controller
 
     public function create()
     {
-        $sala=DB::table('sala')->distinct()->get();
+        $sala=DB::table('ofj_sala')->distinct()->get();
         return view('Obra.create',["sala"=>$sala]);
     }
 
     public function store(ObraFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM obra
+                                                    FROM ofj_obra
                                                     WHERE titulo = UPPER('$request->titulo'))"));
         if ($yaExiste[0]->exists == FALSE) {
             $obra=new Obra;
@@ -87,7 +87,7 @@ class ObraController extends Controller
     public function destroy($cod)
     {
         $obra=Obra::findOrFail($cod);
-        $calendario=DB::table('calendario')->where('id_obra','=', $obra->cod);
+        $calendario=DB::table('ofj_calendario')->where('id_obra','=', $obra->cod);
 
         if($obra->cod == $calendario->id_obra){
             $calendario->delete();

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calendario extends Model
 {
-    protected $table ='calendario';   
+    protected $table ='ofj_calendario';   
     
     protected $primaryKey = array('fecha', 'id_obra');
 

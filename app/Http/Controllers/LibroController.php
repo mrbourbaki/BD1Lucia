@@ -25,7 +25,7 @@ class LibroController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $libros=DB::table('libro')->where('titulo_original','LIKE','%'.strtoupper($query).'%')
+            $libros=DB::table('ofj_libro')->where('titulo_original','LIKE','%'.strtoupper($query).'%')
             ->paginate(5);
             return view('Libro.index', ["libros" =>$libros , "searchText"=>$query]); // Retornar todo sobre la tabla libro y la muestra en la pantalla conrespondiente 
         }
@@ -33,15 +33,15 @@ class LibroController extends Controller
 
     public function create()
     {
-        $editorial=DB::table('editorial')->distinct()->get();
-        $clase=DB::table('clase')->distinct()->get();
+        $editorial=DB::table('ofj_editorial')->distinct()->get();
+        $clase=DB::table('ofj_clase')->distinct()->get();
         return view('Libro.create',["editorial"=>$editorial,"clase"=>$clase]);
     }
 
     public function store(LibroFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM libro
+                                                    FROM ofj_libro
                                                     WHERE titulo_original = UPPER('$request->titulo_original'))"));
 
         if ($yaExiste[0]->exists == FALSE){

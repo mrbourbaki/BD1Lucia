@@ -23,7 +23,7 @@ class SalaController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $salas=DB::table('sala')->where('nombre','LIKE','%'.strtoupper($query).'%')
+            $salas=DB::table('ofj_sala')->where('nombre','LIKE','%'.strtoupper($query).'%')
             ->paginate(5);
             return view('Sala.index', ["salas" =>$salas , "searchText"=>$query]); // Retornar todo sobre la tabla libro y la muestra en la pantalla conrespondiente 
         }
@@ -31,15 +31,15 @@ class SalaController extends Controller
 
     public function create()
     {
-        $clubes=DB::table('club')->distinct()->get();
-        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD')->get();
+        $clubes=DB::table('ofj_club')->distinct()->get();
+        $lugares=DB::table('ofj_lugar')->where('tipo', '=', 'CIUDAD')->get();
         return view('Sala.create',["club"=>$clubes,"lugar"=>$lugares]);
     }
 
     public function store(SalaFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM sala
+                                                    FROM ofj_sala
                                                     WHERE nombre = UPPER('$request->nombre'))"));
         if ($yaExiste[0]->exists == FALSE) {
             $sala=new Sala;
@@ -67,7 +67,7 @@ class SalaController extends Controller
         $salaEdit=Sala::findOrFail($cod);
         $clubes=Club::get();
         $salas=Sala::get();
-        $lugares=DB::select("SELECT * FROM lugar WHERE tipo =?", ['CIUDAD']);
+        $lugares=DB::select("SELECT * FROM ofj_lugar WHERE tipo =?", ['CIUDAD']);
         return view("Sala.edit",["salaEdit"=>$salaEdit, "salas"=>$salas, "club"=>$clubes,"lugar"=>$lugares]);
     }
 
@@ -97,7 +97,7 @@ class SalaController extends Controller
     {
         $sala=Sala::findOrFail($cod);
         $obras=DB::select(DB::raw("SELECT * 
-                                            FROM obra_actuada
+                                            FROM ofj_obra_actuada
                                                 WHERE fk_sala = '$cod'"));
            foreach($obras as $obra){ 
             if($obra->fk_sala == $cod){
