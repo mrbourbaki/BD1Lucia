@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
+use App\Obra;
 use App\Club;
 use App\Sala; // hago referencia al modelo 
 use Illuminate\Support\Facades\Redirect;
@@ -95,8 +95,16 @@ class SalaController extends Controller
 
     public function destroy($cod)
     {
-        $sala = Sala::findOrFail($cod);
+        $sala=Sala::findOrFail($cod);
+        $obras=DB::table('obra_actuada')->where('fk_sala','=', $sala->cod)->get();
+
+           foreach($obras as $obra){ 
+            if($obra->fk_sala == $sala->cod){
+                $obra->fk_sala->default(0);
+            }
+        }
+      
         $sala->delete();
         return Redirect::to('/Sala');
-    }
+    } 
 }
