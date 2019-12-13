@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SalaFromRequest extends FormRequest
+class SalaFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class SalaFromRequest extends FormRequest
             'nombre'=>'required|max:30',
             'direccion'=>'required|max:50' ,
             'fk_lugar'=>'required', 
-            'fk_club',
+            'fk_club'=>'required'
         ];
     }
 }

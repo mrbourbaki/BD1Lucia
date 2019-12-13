@@ -32,7 +32,7 @@ class SalaController extends Controller
     public function create()
     {
         $clubes=DB::table('club')->distinct()->get();
-        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD');
+        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD')->get();
         return view('Sala.create',["club"=>$clubes,"lugar"=>$lugares]);
     }
 
@@ -47,8 +47,8 @@ class SalaController extends Controller
             $sala->tipo=$request->tipo;
             $sala->capacidad=$request->capacidad;
             $sala->direccion=strtoupper($request->direccion);
-            $sala->fk_club = $request->fk_club;
-            $sala->fk_lugar = $request->fk_lugar;
+            $sala->fk_club=$request->fk_club;
+            $sala->fk_lugar=$request->fk_lugar;
             $sala->save();
             return Redirect::to('/Sala');
         } else {
@@ -59,15 +59,16 @@ class SalaController extends Controller
     public function show($id)
     {
         $sala=Sala::findOrFail($id);
-        return view("sala.infomodal", compact("sala"));
+        return view("Sala.infomodal", compact("sala"));
     }
 
     public function edit($cod)
     {
-        $salas= Sala::findOrFail($cod);
-        $clubes= Club::get();
-        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD');
-        return view("sala.edit",["sala"=>$salas,"club"=>$clubes,"lugar"=>$lugares]);
+        $salaEdit=Sala::findOrFail($cod);
+        $clubes=Club::get();
+        $salas=Sala::get();
+        $lugares=DB::select("SELECT * FROM lugar WHERE tipo =?", ['CIUDAD']);
+        return view("Sala.edit",["salaEdit"=>$salaEdit, "salas"=>$salas, "club"=>$clubes,"lugar"=>$lugares]);
     }
 
     public function update(SalaFormRequest $request, $cod)

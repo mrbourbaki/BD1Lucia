@@ -70,7 +70,6 @@ class ClubController extends Controller
         return redirect('Club');
     }
 
-
     public function destroy($docidentidad)
     {
         $club = Club::findOrFail($docidentidad);
@@ -78,7 +77,7 @@ class ClubController extends Controller
         return Redirect::to('Club');
     }
 
-    public function filtraMiembro ($cod)
+    public function filtraMiembro ($cod) 
     {
         $club=Club::findOrFail($cod);
 
@@ -94,6 +93,7 @@ class ClubController extends Controller
                                             WHERE doc_lector = '$lec->docidentidad' AND fecha_fin IS NULL;"));
 
             // LUEGO DE ARREGLAR LOS ID DE DOCID DE LAS PERSONAS VERIFICAR QUE ESTO FUNCIONE CORRECTAMENTE
+            echo $estatus_hist;
             if ($estatus_hist != 'ACTIVO'){
                 unset($lectores[$key]);
             }
@@ -101,7 +101,8 @@ class ClubController extends Controller
         return view("Club.miembro",["lectores"=>$lectores, "club"=>$club]);
     }
 
-    public function agregaMiembro (Request $request, $cod){
+    public function agregaMiembro (Request $request, $cod)
+    {
         date_default_timezone_set('America/Caracas');
 
         $lectoresDocid=$request->docidentidad;
