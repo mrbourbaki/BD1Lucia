@@ -23,11 +23,11 @@
                 <div class="form-group col-md-12">
                     <label> Lugar de la sala </label>
                     <select name="fk_lugar"class="form-control">
-                        @foreach($lugar as $lugar)
-                            @if ($sala->fk_lugar == $lugar->lugar)
-                                <option value="{{$lugar->cod}}" selected>{{ $lugar->nombre }}</option>
+                        @foreach($lugar as $lug)
+                            @if ($sala->fk_lugar == $lug->codigo)
+                                <option value="{{$lug->codigo}}" selected>{{ $lugar->nombre }}</option>
                             @else
-                                <option value="{{$lugar->cod}}">{{ $lugar->nombre }}</option>
+                                <option value="{{$lug->codigo}}">{{ $lugar->nombre }}</option>
                             @endif
                         @endforeach
                     </select>
