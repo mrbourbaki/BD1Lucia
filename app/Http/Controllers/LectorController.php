@@ -81,6 +81,7 @@ class LectorController extends Controller
         $lector->fk_nacionalidad= $request->fk_nacionalidad;
         $lector->fk_rep=$request->fk_rep;
         $lector->fk_rep_externo=$request->fk_rep_externo;
+        $lector->save();
         return redirect('Lector');
     }
 
