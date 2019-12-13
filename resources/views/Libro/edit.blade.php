@@ -16,8 +16,7 @@
         </div>
         <!--<div style="margin-left:16%; margin-top:30px">-->
         <div id="formulario">
-            <form action="/Libro/{{$libro->cod}}" method="post">
-            {{ csrf_field() }}
+            <form action="/Libro/{{$libro->cod}}" method="post">{{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
 
                 <div class="form-group col-md-12">

@@ -33,26 +33,33 @@ class ClubController extends Controller
     public function create()
     {   
         $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['CIUDAD']);
-        $institucion=Institucion::all()->get();
+        $institucion=Institucion::all();
         return view('Club.create',["lugar"=>$lugar,"institucion"=>$institucion]);
     }
 
     public function store(ClubFormRequest $request)
     {
-        $club=new Club;
-        $club->nombre=strtoupper($request->nombre);
-        $club->codigo_postal=$request->codigo_postal;
-        $club->direccion=strtoupper($request->direccion);
-        $club->fk_lugar= $request->fk_lugar;
-        $club->fk_institucion= $request->fk_institucion;
-        $club->cuota=$request->cuota;
-        $club->save();
-        return Redirect::to('Club');
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                                    FROM editorial
+                                                    WHERE nombre = UPPER('$request->nombre'))"));
+        if ($yaExiste[0]->exists == FALSE) {
+            $club=new Club;
+            $club->nombre=strtoupper($request->nombre);
+            $club->codigo_postal=$request->codigo_postal;
+            $club->direccion=strtoupper($request->direccion);
+            $club->fk_lugar= $request->fk_lugar;
+            $club->fk_institucion= $request->fk_institucion;
+            $club->cuota=$request->cuota;
+            $club->save();
+            return Redirect::to('Club');
+        } else {
+            echo "no";
+        }
     }
 
     public function edit($cod)
     {
-        $club= club::findOrFail($cod);
+        $club=Club::findOrFail($cod);
         $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['CIUDAD']);
         $institucion=Institucion::all();
         return view("Club.edit",["club"=>$club,"lugar"=>$lugar,"institucion"=>$institucion]);
@@ -60,16 +67,23 @@ class ClubController extends Controller
 
     public function update(ClubFormRequest $request, $cod)
     {
+        $nuevoNombre=strtoupper($request->input('nombre'));
+        $nuevoCodPostal=$request->input('codigo_postal');
+        $nuevoDireccion=strtoupper($request->input('direccion'));
+        $nuevoLugar=$request->input('fk_lugar');
+        $nuevoInstitucion=$request->input('fk_institucion');
+        $nuevoCuota=$request->input('cuota');
+        //----------------------------------------
         $club=Club::findOrFail($cod);
-        $club->nombre=strtoupper($request->nombre);
-        $club->codigo_postal=$request->codigo_postal;
-        $club->direccion=strtoupper($request->direccion);
-        $club->fk_lugar= $request->fk_lugar;
-        $club->fk_institucion= $request->fk_institucion;
-        $club->cuota=$request->cuota;
-        return redirect('Club');
+        $club->nombre=$nuevoNombre;
+        $club->codigo_postal=$nuevoCodPostal;
+        $club->direccion=$nuevoDireccion;
+        $club->fk_lugar=$nuevoLugar;
+        $club->fk_institucion=$nuevoInstitucion;
+        $club->cuota=$nuevoCuota;
+        $club->save();
+        return Redirect::to('Club');
     }
-
 
     public function destroy($docidentidad)
     {
@@ -78,7 +92,7 @@ class ClubController extends Controller
         return Redirect::to('Club');
     }
 
-    public function filtraMiembro ($cod)
+    public function filtraMiembro ($cod) 
     {
         $club=Club::findOrFail($cod);
 
@@ -94,6 +108,7 @@ class ClubController extends Controller
                                             WHERE doc_lector = '$lec->docidentidad' AND fecha_fin IS NULL;"));
 
             // LUEGO DE ARREGLAR LOS ID DE DOCID DE LAS PERSONAS VERIFICAR QUE ESTO FUNCIONE CORRECTAMENTE
+            echo $estatus_hist;
             if ($estatus_hist != 'ACTIVO'){
                 unset($lectores[$key]);
             }
@@ -101,7 +116,8 @@ class ClubController extends Controller
         return view("Club.miembro",["lectores"=>$lectores, "club"=>$club]);
     }
 
-    public function agregaMiembro (Request $request, $cod){
+    public function agregaMiembro (Request $request, $cod)
+    {
         date_default_timezone_set('America/Caracas');
 
         $lectoresDocid=$request->docidentidad;

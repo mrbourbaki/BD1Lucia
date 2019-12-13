@@ -3,12 +3,12 @@
 @section('contenido')       <!-- esta etiqueta permitira mostrar los diferentes contenidos de las diferentes pantallas en el layouts  -->
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-            <h3> Instituciones 
+            <h3>Instituciones 
                 <a style="padding-left: 1%;" href="/Institucion/create">
                     <button type="button" class="btn btn-success">Nueva institucion </button>
                 </a>
             </h3>
-            @include ('institucion.search') <!-- hago la llamdada a la plantilla del buscador que esta en esta carpeta y hara la funcion de buscar -->
+            @include ('Institucion.search') <!-- hago la llamdada a la plantilla del buscador que esta en esta carpeta y hara la funcion de buscar -->
         </div>
     </div>
 

@@ -25,7 +25,7 @@
                     <h4>Clase padre</h4>
                     <div class="form-group col-md-12">
                         <label>Nombre de la clase padre</label>
-                        <select name="fk_clase"class="form-control" >
+                        <select name="fk_clase"class="form-control">
                             <option value="Null">No tiene</option>
                             @foreach($clase as $clas)
                                 <option value="{{$clas->cod}}">{{ucwords(strtolower($clas->nombre))}}</option>

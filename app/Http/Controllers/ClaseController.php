@@ -65,7 +65,11 @@ class ClaseController extends Controller
     public function update(Request $request, $cod)
     {
         $nuevoNombre =$request->input('nombre');
-        $nuevoPadre = $request->input('fk_clase');
+        if ($request->fk_clase == 'Null') {
+            $nuevoPadre = NULL;
+        } else {
+            $nuevoPadre = $request->input('fk_clase');
+        }
         //----------------------------------------------
         $clase=Clase::find($cod);
         $clase->nombre = $nuevoNombre;
