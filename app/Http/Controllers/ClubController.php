@@ -96,8 +96,6 @@ class ClubController extends Controller
     {
         $club=Club::findOrFail($cod);
 
-
-
         $lectores=DB::select(DB::raw("SELECT * 
                             FROM lector
                             WHERE fk_nacionalidad = (SELECT fk_lugar 
@@ -109,7 +107,6 @@ class ClubController extends Controller
                                                 FROM hist_lector
                                                 WHERE doc_lector = '$lec->docidentidad' AND fecha_fin IS NULL;"));
 
-            // LUEGO DE ARREGLAR LOS ID DE DOCID DE LAS PERSONAS VERIFICAR QUE ESTO FUNCIONE CORRECTAMENTE
             if ($estatus_hist[0]->estatus != 'ACTIVO'){
                 unset($lectores[$key]);
             }
@@ -121,19 +118,20 @@ class ClubController extends Controller
     {
         date_default_timezone_set('America/Caracas');
 
-        
         $lectoresDocid=$request->docidentidad;
         $today = new DateTime(date("Y-m-d H:i:s"));
         foreach ($lectoresDocid as $lec_id){
+            // Verificando si el lector ya esxiste en el historial
             $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT * 
                                                             FROM hist_lector 
                                                             WHERE doc_lector = $lec_id)"));
-            if ($yaExiste[0]->exists == FALSE){
+            if ($yaExiste[0]->exists == TRUE){ // Si existe se actualiza el ultimo registro y se coloca una fecha fin
                 $update_hist_lector = DB::update('UPDATE hist_lector 
                                             SET fecha_fin = ? 
-                                            WHERE doc_lector = $lec_id AND fecha_ini = MAX(fecha_ini)', [$today]);
+                                            WHERE doc_lector = ? AND fecha_fin IS NULL', [$today, $lec_id]);
             }
 
+            // Se inserta el nuevo registro del lector (nuevo club)
             $hist_lector = DB::insert('INSERT INTO hist_lector (fecha_ini,doc_lector,id_club,estatus) values (?, ?, ?, ?)', [$today, $lec_id, $cod, 'ACTIVO']);
         }
 
