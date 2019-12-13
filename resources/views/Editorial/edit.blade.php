@@ -2,7 +2,7 @@
 @section('contenido')
     <div class="row">
         <div class="col-lg6 col-md-6 col-sm-6 col-xs-12">
-        <h4>Editorial a editar : {{$editorial->nombre}} </h4>
+        <h4>Editorial a editar: {{$editorial->nombre}} </h4>
             @if(count($errors)>0)
                 <div class="alert alert-danger">
                     <ul>
@@ -32,14 +32,10 @@
                     </select>
                 </div>
 
-                <table>
-                    <tr>
-                        <td>Nombre:</td>
-                        <td>
-                            <input type="text" class="form-control" name="nombre" value="{{$editorial->nombre}}" placeholder="Editorial Cool">
-                        </td>
-                    </tr>
-                </table>
+                <div class="form-group col-md-8">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" value="{{$editorial->nombre}}" placeholder="Editorial Cool">
+                </div>
 
                 <br>
 

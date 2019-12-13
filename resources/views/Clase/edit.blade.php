@@ -22,6 +22,11 @@
                 <div class="form-group col-md-12">
                     <label>Clase Padre</label>
                     <select name="fk_clase" class="form-control" >
+                        @if ($clase->fk_clase == NULL){
+                            <option value="Null" selected>No tiene</option>
+                        @else
+                            <option value="Null">No tiene</option>
+                        @endif
                         @foreach($clasesPadre as $clas)
                             @if ($clas->cod == $clase->fk_clase)
                                 <option value="{{ $clas->cod }}" selected>{{ $clas->nombre }}</option>

@@ -19,22 +19,15 @@
             <form action="/Institucion/{{ $institucion->cod }}" method="post">{{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
 
-                <table>
-                    <tr>
-                        <td>Nombre:</td>
-                        <td>
-                            <input type="text" class="form-control" name="nombre" value="{{$institucion->nombre}}" placeholder="">
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>Detalle:</td>
-                        <td>
-                            <input type="text" class="form-control" name="detalle" value="{{$institucion->detalle}}" placeholder="">
-                        </td>
-                    </tr>
-                </table>
+                <div class="form-group col-md-6">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" value="{{$institucion->nombre}}" placeholder="">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label>Detalle:</label>
+                    <input type="text" class="form-control" name="detalle" value="{{$institucion->detalle}}" placeholder="">
+                </div>
 
                 <div class="form-group col-md-12">
                     <label>Nombre de la ciudad</label>

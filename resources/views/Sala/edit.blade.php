@@ -56,27 +56,20 @@
                     </select>
                 </div>
 
-                <table>
-                    <td>Nombre de la sala:</td>
-                    <td>
-                        <input type="text" class="form-control" name="nombre" value="{{$salaEdit->nombre}}" placeholder="">
-                    </td>
+                <div class="form-group col-md-6">
+                    <label>Nombre de la sala:</label>
+                    <input type="text" class="form-control" name="nombre" value="{{$salaEdit->nombre}}" placeholder="">
+                </div>
 
-                    <tr>
-                        <td>Direccion:</td>
-                        <td>
-                            <input type="text" class="form-control" name="direccion" value="{{$salaEdit->direccion}}"placeholder="">
-                        </td>
-                    </tr>
+                <div class="form-group col-md-6">
+                    <label>Direccion:</label>
+                    <input type="text" class="form-control" name="direccion" value="{{$salaEdit->direccion}}"placeholder="">
+                </div>
 
-                    <tr>
-                        <td>Capacidad:</td>
-                        <td>
-                            <input type="text" class="form-control" name="capacidad" value="{{$salaEdit->capacidad}}"placeholder="">
-                        </td>
-                    </tr>
-
-                </table>
+                <div class="form-group col-md-6">
+                    <label>Capacidad:</label>
+                    <input type="text" class="form-control" name="capacidad" value="{{$salaEdit->capacidad}}"placeholder="">
+                </div>
 
                 <br>
 
