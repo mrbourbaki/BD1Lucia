@@ -13,7 +13,7 @@
             @endif
 
             <div id="formulario">
-                <form action="/Club/{{ $club->cod }}" method="post">{{ csrf_field() }}
+                <form action="/Club/{{ $club->cod }}" method="get">{{ csrf_field() }}
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <div class="form-row">

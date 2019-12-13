@@ -35,7 +35,7 @@
                                 <a href="{{route('Club.edit',$club->cod)}}"><button class="btn btn-info">Editar</button></a>
                                 <a data-target="#modal-delete-{{$club->cod}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
                                 <a data-target="#modal-info{{$club->cod}}" data-toggle="modal"><button class="btn btn-primary">Informacion</button></a>
-                                <a href="filtraMiembro/{{$club->cod}}"><button class="btn btn-info">Agregar miembro</button></a>
+                                <a href="Club/filtraMiembro/{{$club->cod}}"><button class="btn btn-info">Agregar miembro</button></a>
                             </td>
                         </tr>
                         @include('Club.infomodal') <!-- info delete --> 

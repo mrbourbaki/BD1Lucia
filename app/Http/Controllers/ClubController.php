@@ -96,6 +96,8 @@ class ClubController extends Controller
     {
         $club=Club::findOrFail($cod);
 
+
+
         $lectores=DB::select(DB::raw("SELECT * 
                             FROM lector
                             WHERE fk_nacionalidad = (SELECT fk_lugar 
@@ -104,12 +106,11 @@ class ClubController extends Controller
 
         foreach ($lectores as $key => $lec){
             $estatus_hist=DB::select(DB::raw("SELECT estatus 
-                                            FROM hist_lector
-                                            WHERE doc_lector = '$lec->docidentidad' AND fecha_fin IS NULL;"));
+                                                FROM hist_lector
+                                                WHERE doc_lector = '$lec->docidentidad' AND fecha_fin IS NULL;"));
 
             // LUEGO DE ARREGLAR LOS ID DE DOCID DE LAS PERSONAS VERIFICAR QUE ESTO FUNCIONE CORRECTAMENTE
-            echo $estatus_hist;
-            if ($estatus_hist != 'ACTIVO'){
+            if ($estatus_hist[0]->estatus != 'ACTIVO'){
                 unset($lectores[$key]);
             }
         }
@@ -120,8 +121,23 @@ class ClubController extends Controller
     {
         date_default_timezone_set('America/Caracas');
 
+        
         $lectoresDocid=$request->docidentidad;
+        $today = new DateTime(date("Y-m-d H:i:s"));
+        foreach ($lectoresDocid as $lec_id){
+            $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT * 
+                                                            FROM hist_lector 
+                                                            WHERE doc_lector = $lec_id)"));
+            if ($yaExiste[0]->exists == FALSE){
+                $update_hist_lector = DB::update('UPDATE hist_lector 
+                                            SET fecha_fin = ? 
+                                            WHERE doc_lector = $lec_id AND fecha_ini = MAX(fecha_ini)', [$today]);
+            }
 
+            $hist_lector = DB::insert('INSERT INTO hist_lector (fecha_ini,doc_lector,id_club,estatus) values (?, ?, ?, ?)', [$today, $lec_id, $cod, 'ACTIVO']);
+        }
+
+        return Redirect::to('Club');
         //Lector::findOrFail($lec_id)->nombre1;
 /*        foreach ($lectoresDocid as $lec_id){
         
