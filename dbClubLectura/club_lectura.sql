@@ -9,7 +9,7 @@ GRANT ALL ON SCHEMA public TO public;
 /* te permite cambiar la variable de entorno en el formato dd/mm/yyyy*/
 SET DATESTYLE TO 'European';
 
-CREATE TABLE lugar (
+CREATE TABLE ofj_lugar (
     codigo SERIAL NOT NULL,
     nombre VARCHAR(30) NOT NULL,
     tipo VARCHAR(10) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE lugar (
     CONSTRAINT tipo_lugar CHECK (tipo IN ('CIUDAD','PAIS'))
 );
 
-CREATE TABLE editorial (
+CREATE TABLE ofj_editorial (
     cod SERIAL NOT NULL,
     nombre VARCHAR (30) NOT NULL,
     fk_lugar INT NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE editorial (
     CONSTRAINT fk_lugar_editorial FOREIGN KEY (fk_lugar) REFERENCES lugar (codigo)
 );
 
-CREATE TABLE clase (
+CREATE TABLE ofj_clase (
     cod SERIAL NOT NULL,
     nombre VARCHAR (30),
     tipo VARCHAR (10) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE clase (
     CONSTRAINT tipo_clase CHECK (tipo IN ('SUBGENERO','OTRO'))
 );
 
-CREATE TABLE libro (
+CREATE TABLE ofj_libro (
     cod SERIAL NOT NULL,
     titulo_original VARCHAR (80) NOT NULL,
     sinopsis VARCHAR (400) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE libro (
     CONSTRAINT fk_libro_complementario FOREIGN KEY (fk_libro_comp) REFERENCES libro (cod) ON DELETE SET DEFAULT
 );
 
-CREATE TABLE representante_externo ( 
+CREATE TABLE ofj_representante_externo ( 
 	docidentidad INT NOT NULL,
 	nombre1 VARCHAR (15) NOT NULL,
 	apellido1 VARCHAR (15) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE representante_externo (
 	CONSTRAINT pk_representante_externo PRIMARY KEY (docidentidad)
 );
 
-CREATE TABLE lector (
+CREATE TABLE ofj_lector (
 	docidentidad INT NOT NULL,
     fecha_nac DATE NOT NULL,
 	nombre1 VARCHAR (15) NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE lector (
 
 );
 
-CREATE TABLE lec_libro (
+CREATE TABLE ofj_lec_libro (
     posicion SMALLINT NOT NULL,
     doc_lector INT NOT NULL,
     id_libro INT NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE lec_libro (
     CONSTRAINT posicion_libro CHECK (posicion IN (1,2,3))
 );
 
-CREATE TABLE estructura (
+CREATE TABLE ofj_estructura (
     cod SERIAL NOT NULL,
     id_libro INT NOT NULL,
     nombre VARCHAR(30) NOT NULL,    
@@ -108,7 +108,7 @@ CREATE TABLE estructura (
     CONSTRAINT Tipo_estructura CHECK (tipo IN ('CAPITULO','SECCION','OTRO'))
 );
 
-CREATE TABLE institucion (
+CREATE TABLE ofj_institucion (
 	cod SERIAL NOT NULL,
 	nombre VARCHAR(40) NOT NULL,
 	detalle VARCHAR(30),
@@ -117,7 +117,7 @@ CREATE TABLE institucion (
 	CONSTRAINT fk_lugar_ins FOREIGN KEY (fk_lugar) REFERENCES lugar (codigo)
 );
 
-CREATE TABLE club (
+CREATE TABLE ofj_club (
 	cod SERIAL NOT NULL,
 	codigo_postal VARCHAR(15) NOT NULL,
 	nombre VARCHAR(30) NOT NULL,	
@@ -130,7 +130,7 @@ CREATE TABLE club (
 	CONSTRAINT fK_institucion_club FOREIGN KEY (fk_institucion) REFERENCES institucion (cod) 
 );
 
-CREATE TABLE sala (
+CREATE TABLE ofj_sala (
     cod SERIAL NOT NULL,
     tipo VARCHAR(10) NOT NULL,
     capacidad SMALLINT NOT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE sala (
     CONSTRAINT tipo_sala CHECK(tipo IN('ALQUILADA','PROPIA'))  
 );
 
-CREATE TABLE asoc_club (
+CREATE TABLE ofj_asoc_club (
     id_club INT NOT NULL,
     id_club_asoc INT NOT NULL,
     CONSTRAINT pk_asoc_club PRIMARY KEY (id_club,id_club_asoc),
@@ -152,7 +152,7 @@ CREATE TABLE asoc_club (
     CONSTRAINT fk_id_club_asoc FOREIGN KEY (id_club_asoc) REFERENCES club (cod)
 );
 
-CREATE TABLE obra_actuada (
+CREATE TABLE ofj_obra_actuada (
     cod SERIAL NOT NULL,
     resumen VARCHAR(400) NOT NULL,
     precio INTEGER NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE obra_actuada (
     CONSTRAINT fk_sala_obra FOREIGN KEY (fk_sala) REFERENCES sala(cod) ON DELETE SET DEFAULT
 );
 
-CREATE TABLE calendario (
+CREATE TABLE ofj_calendario (
     fecha DATE NOT NULL,
     id_obra INT NOT NULL,
     hora_i TIME NOT NULL,
@@ -176,7 +176,7 @@ CREATE TABLE calendario (
     CONSTRAINT valoracion_obra CHECK (valoracion IN (1,2,3,4,5))
 );
 
-CREATE TABLE personaje (
+CREATE TABLE ofj_personaje (
     cod SERIAL NOT NULL,
     id_obra INT NOT NULL,
     nombre VARCHAR(30) NOT NULL,
@@ -185,7 +185,7 @@ CREATE TABLE personaje (
     CONSTRAINT fk_obra_personaje FOREIGN KEY (id_obra) REFERENCES obra_actuada (cod)
 );
 
-CREATE TABLE hist_lector(
+CREATE TABLE ofj_hist_lector(
 	fecha_ini DATE NOT NULL,
     doc_lector INT NOT NULL,
 	id_club INT NOT NULL,
@@ -199,7 +199,7 @@ CREATE TABLE hist_lector(
     CONSTRAINT motivo_retiro CHECK (motivo_retiro IN ('INASISTENCIA','PAGO','VOLUNTARIO'))
 );
 
-CREATE TABLE elenco (
+CREATE TABLE ofj_elenco (
     id_personaje INT NOT NULL,
     id_obra_personaje INT NOT NULL,
     id_obra_elenco INT NOT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE elenco (
     CONSTRAINT fk_hist_lector_elenco FOREIGN KEY (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector) REFERENCES hist_lector(fecha_ini,doc_lector,id_club)
 );
 
-CREATE TABLE mejor_actor (
+CREATE TABLE ofj_mejor_actor (
     fecha_cal DATE NOT NULL,
     id_obra_cal INT NOT NULL,
     id_personaje INT NOT NULL,
@@ -227,7 +227,7 @@ CREATE TABLE mejor_actor (
     CONSTRAINT fk_elenco_mejor_actor FOREIGN KEY (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector_elenco,doc_lector_hist_elenco,id_club_hist_elenco) REFERENCES elenco (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector)
 );
 
-CREATE TABLE cal_club (
+CREATE TABLE ofj_cal_club (
     id_club INT NOT NULL,
     fecha_cal DATE NOT NULL,
     id_obra INT NOT NULL,
@@ -236,7 +236,7 @@ CREATE TABLE cal_club (
     CONSTRAINT fk_cal_club_cal FOREIGN KEY (fecha_cal,id_obra) REFERENCES calendario (fecha,id_obra)
 );
 
-CREATE TABLE obra_libro (
+CREATE TABLE ofj_obra_libro (
     id_obra INT NOT NULL,
     id_libro INT NOT NULL,
     CONSTRAINT pk_obra_libro PRIMARY KEY (id_obra,id_libro),
@@ -244,7 +244,7 @@ CREATE TABLE obra_libro (
     CONSTRAINT fk_id_libro FOREIGN KEY (id_libro) REFERENCES libro (cod)
 );
 
-CREATE TABLE pago (
+CREATE TABLE ofj_pago (
 	cod SERIAL NOT NULL,
     fecha_hist_lector DATE NOT NULL,
     doc_lector_hist_lector INT NOT NULL, 
@@ -256,7 +256,7 @@ CREATE TABLE pago (
     CONSTRAINT tipo_pago CHECK (tipo_pago IN('CRÉDITO','DÉBITO'))
 );
 
-CREATE TABLE grupo_lectura (
+CREATE TABLE ofj_grupo_lectura (
 	cod SERIAL NOT NULL,
 	id_club INT NOT NULL,
 	tipo_grupo VARCHAR(7) NOT NULL,
@@ -269,7 +269,7 @@ CREATE TABLE grupo_lectura (
     CONSTRAINT tipo_grupo CHECK (tipo_grupo IN ('NINO','ADULTO','JOVEN'))
 );
 
-CREATE TABLE hist_grupo (
+CREATE TABLE ofj_hist_grupo (
 	fecha_hist_lector DATE NOT NULL,
 	doc_lector_hist_lector INT NOT NULL,
 	id_club_hist_lector INT NOT NULL,
@@ -282,7 +282,7 @@ CREATE TABLE hist_grupo (
 	CONSTRAINT fk_hist_lector_grupo FOREIGN KEY (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector) REFERENCES hist_lector (fecha_ini,doc_lector,id_club)
 );
 
-CREATE TABLE reunion (
+CREATE TABLE ofj_reunion (
     cod SERIAL NOT NULL,
     id_grupo INT NOT NULL,
     id_club_grupo INT NOT NULL,
@@ -302,7 +302,7 @@ CREATE TABLE reunion (
     CONSTRAINT valoracion_libro CHECK(valoracion IN (1,2,3,4,5))
 );
 
-CREATE TABLE inasistencia (
+CREATE TABLE ofj_inasistencia (
     id_reunion INT NOT NULL,
     id_grupo_reunion INT NOT NULL,
     id_club_grupo_reunion INT NOT NULL,

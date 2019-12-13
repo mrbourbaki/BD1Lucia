@@ -81,18 +81,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Club
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="Club">Clubes</a>
+                    <a href="Institucion">Instituciones</a>
+                    <a href="Editorial">Editoriales</a>
+                    <a href="Libro">Libros</a>
+                    <a href="Clase">Clases de libros</a>
+                    <a href="Lector">Lectores</a>
+                    <a href="Obra">Obras</a>
+                    <a href="Sala">Salas</a>
                 </div>
             </div>
         </div>
