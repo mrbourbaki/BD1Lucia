@@ -159,9 +159,9 @@ CREATE TABLE obra_actuada (
     titulo VARCHAR(30) NOT NULL,
     estatus_actividad BOOLEAN NOT NULL,
     duracion SMALLINT NOT NULL,
-    fk_sala INT NOT NULL,
+    fk_sala INT NOT NULL  DEFAULT 1 ,
     CONSTRAINT pk_id_obra PRIMARY KEY (cod),
-    CONSTRAINT fk_sala_obra FOREIGN KEY (fk_sala) REFERENCES sala(cod) 
+    CONSTRAINT fk_sala_obra FOREIGN KEY (fk_sala) REFERENCES sala(cod) ON DELETE SET DEFAULT
 );
 
 CREATE TABLE calendario (

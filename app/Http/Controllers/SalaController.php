@@ -96,11 +96,12 @@ class SalaController extends Controller
     public function destroy($cod)
     {
         $sala=Sala::findOrFail($cod);
-        $obras=DB::table('obra_actuada')->where('fk_sala','=', $sala->cod)->get();
-
+        $obras=DB::select(DB::raw("SELECT * 
+                                            FROM obra_actuada
+                                                WHERE fk_sala = '$cod'"));
            foreach($obras as $obra){ 
-            if($obra->fk_sala == $sala->cod){
-                $obra->fk_sala->default(0);
+            if($obra->fk_sala == $cod){
+                $obra->fk_sala->default();
             }
         }
       
