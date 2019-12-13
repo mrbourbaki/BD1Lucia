@@ -29,7 +29,9 @@ class LectorFormRequest extends FormRequest
             'apellido1'=>'required|max:15',
             'apellido2'=>'required|max:15',
             'telefono'=>'required|max:12',
-            'nombre2'=>'max:15'
+            'nombre2'=>'max:15',
+            'fk_rep',
+            'fk_rep_externo'
     
         ];
     }

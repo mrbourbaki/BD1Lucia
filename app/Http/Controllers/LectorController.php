@@ -29,7 +29,9 @@ class LectorController extends Controller
     public function create()
     {   
         $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['PAIS']);
-        return view('Lector.create',["lugar"=>$lugar]);
+        $rep_externo=DB::select("SELECT * FROM representante_externo");
+        $lectores=DB::select("SELECT * FROM lector");
+        return view('Lector.create',["lugar"=>$lugar,"rep_externo"=>$rep_externo,"lectores"=>$lectores]);
     }
 
     public function store(LectorFormRequest $request)
@@ -48,6 +50,8 @@ class LectorController extends Controller
             $lector->telefono = $request->telefono;
             $lector->genero = $request->genero;
             $lector->fk_nacionalidad= $request->fk_nacionalidad;
+            $lector->fk_rep=$request->fk_rep;
+            $lector->fk_rep_externo=$request->fk_rep_externo;
             $lector->save();
             return Redirect::to('Lector');
         } else {
@@ -57,9 +61,11 @@ class LectorController extends Controller
 
     public function edit($docidentidad)
     {
+        $rep_externo=DB::select("SELECT * FROM representante_externo");
+        $representante=DB::select("SELECT * FROM lector");
         $lector= Lector::findOrFail($docidentidad);
         $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['PAIS']);
-        return view("Lector.edit",["lector"=>$lector,"lugar"=>$lugar]);
+        return view("Lector.edit",["lector"=>$lector,"lugar"=>$lugar, "rep_externo"=>$rep_externo,"representante"=>$representante]);
     }
 
     public function update(LectorFormRequest $request, $docidentidad)
@@ -73,6 +79,8 @@ class LectorController extends Controller
         $lector->telefono = $request->telefono;
         $lector->genero = $request->genero;
         $lector->fk_nacionalidad= $request->fk_nacionalidad;
+        $lector->fk_rep=$request->fk_rep;
+        $lector->fk_rep_externo=$request->fk_rep_externo;
         return redirect('Lector');
     }
 

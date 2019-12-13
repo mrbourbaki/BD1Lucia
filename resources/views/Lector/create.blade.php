@@ -39,17 +39,17 @@
 
                     <div class="form-group col-md-6">
                         <label>Documento de identidad</label>
-                        <input type="number" min="0" maxlength="10" class="form-control" name="docidentidad" placeholder = "Campo opcional">
+                        <input type="number" min="0" maxlength="12" class="form-control" name="docidentidad" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Fecha de nacimiento</label>
-                        <input type="data" class="form-control" name="fecha_nac" placeholder = "Campo obligatorio">
+                        <input type="date" data-date-format="DD MMMM YYYY" min="01/01/1930" max= "31/12/2011" class="form-control" name="fecha_nac" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-12">
                         <label>Número de teléfono </label>
-                        <input type="number" min="0" maxlength="12" class="form-control" name="telefono" placeholder = "Campo opcional">
+                        <input type="number" min="0" maxlength="12" class="form-control" name="telefono" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-12">
@@ -67,8 +67,34 @@
                                 <option value="{{$lug->codigo}}">{{ucwords(strtolower($lug->nombre))}}</option>
                             @endforeach
                         </select>
+                    
+                     </div>
 
+                  <div class="form-group col-md-12">
+                    <label>En caso de que el miembro sea un niño, seleccione un representante </label>
+                  </div>
+
+                <div class="form-group col-md-12">
+                        <label>Seleccione si el representante es un miembro interno : </label>
+                        <select name="fk_rep" class="form-control"> 
+                                <option disabled selected value> -- SELECCIONE REPRESENTANTE -- </option>
+                            @foreach($lectores as $lec)
+                                <option value="{{$lec->docidentidad}}">{{$lec->docidentidad}}  {{ucwords(strtolower($lec->nombre1))}}  {{ucwords(strtolower($lec->apellido1))}}</option>
+                            @endforeach
+                        </select>
                 </div>
+
+                <div class="form-group col-md-12">
+                        <label>Seleccione si el representante es un miembro externo : </label>
+                        <select name="fk_rep_externo"class="form-control"> 
+                                <option disabled selected value> -- SELECCIONE REPRESENTANTE  -- </option>
+                            @foreach($rep_externo as $rep)
+                                <option value="{{$rep->docidentidad}}">{{$rep->docidentidad}}.{{ucwords(strtolower($rep->nombre1))}}  {{ucwords(strtolower($lec->apellido1))}}</option>
+                            @endforeach
+                        </select>
+                </div>
+
+
             </div>
                 <div class="form-group col-md-8">
                 <button class="btn btn-primary" type="submit">Guardar</button>

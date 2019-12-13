@@ -40,17 +40,17 @@
 
                     <div class="form-group col-md-6">
                         <label>Documento de identidad</label>
-                        <input type="number" maxlength="10" class="form-control" name="docidentidad" value = "{{$lector->docidentidad}}" placeholder = "Campo opcional">
+                        <input type="number" maxlength="10" class="form-control" name="docidentidad" value = "{{$lector->docidentidad}}" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Fecha de nacimiento</label>
-                        <input type="date" min="01/01/1930" max= "31/12/2011" class="form-control" value = "{{$lector->fecha_nac}}" name="docidentidad" placeholder = "Campo opcional">
+                        <input type="date" data-date-format="DD MMMM YYYY" min="01/01/1930" max= "31/12/2011" class="form-control" value = "{{$lector->fecha_nac}}" name="docidentidad" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-12">
                         <label>Número de teléfono </label>
-                        <input type="number" maxlength="12" class="form-control" name="telefono" value = "{{$lector->telefono}}" placeholder = "Campo opcional">
+                        <input type="number" maxlength="12" class="form-control" name="telefono" value = "{{$lector->telefono}}" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-12">
@@ -69,10 +69,38 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="form-group col-md-12">
-                        <label>Representante </label>
-                        @include('Lector.searchRep')
+                        <label>En caso de que el miembro sea un niño, seleccione un representante </label>
                     </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Seleccione si el representante es un miembro interno : </label>
+                        <select name="fk_rep"class="form-control"> 
+                            @foreach($representante as $rep)
+                                @if ($lector->fk_rep == $rep->docidentidad) 
+                                    <option value="{{$rep->docidentidad}}" selected>{{$rep->docidentidad}}  {{ucwords(strtolower($rep->nombre1))}}  {{ucwords(strtolower($rep->apellido1))}}</option>
+                                @else
+                                    <option value="{{$rep->docidentidad}}">{{$rep->docidentidad}}  {{ucwords(strtolower($rep->nombre1))}}  {{ucwords(strtolower($rep->apellido1))}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Seleccione si el representante es un miembro externo : </label>
+                        <select name="fk_rep_externo"class="form-control"> 
+                            @foreach($rep_externo as $rep_ext)
+                                @if ($lector->fk_rep_externo == $rep_ext->docidentidad) 
+                                    <option value="{{$rep_ext->docidentidad}}" selected>{{$rep_ext->docidentidad}}  {{ucwords(strtolower($rep_ext->nombre1))}}  {{ucwords(strtolower($rep_ext->apellido1))}}</option>
+                                @else
+                                    <option value="{{$rep_ext->docidentidad}}">{{$rep_ext->docidentidad}}   {{ucwords(strtolower($rep_ext->nombre1))}}  {{ucwords(strtolower($rep_ext->apellido1))}}</option>
+                                @endif
+                            @endforeach
+
+                        </select>
+                    </div>
+
                 </div>
             </div>
 
