@@ -19,7 +19,7 @@ class LectorController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $lectores=DB::table('lector')->where('nombre1','LIKE',strtoupper($query).'%')
+            $lectores=DB::table('ofj_lector')->where('nombre1','LIKE',strtoupper($query).'%')
             ->paginate(10);
             return view('Lector.index', ["lectores" =>$lectores , "searchText"=>$query]); // Retornar todo sobre la tabla lector y la muestra en la pantalla conrespondiente 
         }
@@ -28,16 +28,16 @@ class LectorController extends Controller
 
     public function create()
     {   
-        $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['PAIS']);
-        $rep_externo=DB::select("SELECT * FROM representante_externo");
-        $lectores=DB::select("SELECT * FROM lector");
+        $lugar=DB::select("SELECT * FROM ofj_lugar WHERE tipo =?", ['PAIS']);
+        $rep_externo=DB::select("SELECT * FROM ofj_representante_externo");
+        $lectores=DB::select("SELECT * FROM ofj_lector");
         return view('Lector.create',["lugar"=>$lugar,"rep_externo"=>$rep_externo,"lectores"=>$lectores]);
     }
 
     public function store(LectorFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM lector
+                                                    FROM ofj_lector
                                                     WHERE docidentidad = '$request->docidentidad')"));
         if ($yaExiste[0]->exists == FALSE) {
             $lector = new Lector;
@@ -61,10 +61,10 @@ class LectorController extends Controller
 
     public function edit($docidentidad)
     {
-        $rep_externo=DB::select("SELECT * FROM representante_externo");
-        $representante=DB::select("SELECT * FROM lector");
+        $rep_externo=DB::select("SELECT * FROM ofj_representante_externo");
+        $representante=DB::select("SELECT * FROM ofj_lector");
         $lector= Lector::findOrFail($docidentidad);
-        $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['PAIS']);
+        $lugar=DB::select("SELECT * FROM ofj_lugar WHERE tipo =?", ['PAIS']);
         return view("Lector.edit",["lector"=>$lector,"lugar"=>$lugar, "rep_externo"=>$rep_externo,"representante"=>$representante]);
     }
 
@@ -95,13 +95,13 @@ class LectorController extends Controller
     public function RepSearch(Request $request)
     { 
         $query=trim($request->get('searchText'));
-        $rep_ext=DB::table('representante_externo')->where('nombre1','LIKE','%'.strtoupper($query).'%')
+        $rep_ext=DB::table('ofj_representante_externo')->where('nombre1','LIKE','%'.strtoupper($query).'%')
         ->paginate(5);
         return view ('Lector.create', ["rep_ext" =>$rep_ext]); // Retornar todo sobre la tabla lector y la muestra en la pantalla conrespondiente 
     }
 
     public function Pagos ($docidentidad){
-        $pagos=DB::select("SELECT * FROM pago WHERE doc_lector_hist_lector =?", [$docidentidad]);
+        $pagos=DB::select("SELECT * FROM ofj_pago WHERE doc_lector_hist_lector =?", [$docidentidad]);
         return view('Lector.pago',["pagos"=>$pagos]);
     }
 }

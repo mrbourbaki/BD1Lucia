@@ -22,8 +22,8 @@ class InstitucionController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $lugares=DB::table('lugar');
-            $institucion=DB::table('institucion')->where('nombre','LIKE','%'.strtoupper($query).'%')
+            $lugares=DB::table('ofj_lugar');
+            $institucion=DB::table('ofj_institucion')->where('nombre','LIKE','%'.strtoupper($query).'%')
             ->paginate(5);
             return view('Institucion.index', ["lugar"=>$lugares, "institucion"=>$institucion, "searchText"=>$query]); // Retornar todo sobre la tabla editorial y la muestra en la pantalla conrespondiente 
         }
@@ -31,14 +31,14 @@ class InstitucionController extends Controller
 
     public function create()
     {
-        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD')->get();
+        $lugares=DB::table('ofj_lugar')->where('tipo', '=', 'CIUDAD')->get();
         return view('Institucion.create',["lugar"=>$lugares]);
     }
 
     public function store(InstitucionFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM institucion
+                                                    FROM ofj_institucion
                                                     WHERE nombre = UPPER('$request->nombre'))"));
         if ($yaExiste[0]->exists == FALSE){
             $institucion=new Institucion;
@@ -61,7 +61,7 @@ class InstitucionController extends Controller
     public function edit($cod)
     {
         $institucion=Institucion::findOrFail($cod);
-        $lugares=DB::table('lugar')->where('tipo', '=', 'CIUDAD')->get();
+        $lugares=DB::table('ofj_lugar')->where('tipo', '=', 'CIUDAD')->get();
         return view("Institucion.edit",["institucion"=>$institucion,"lugar"=>$lugares]);  
     }
 

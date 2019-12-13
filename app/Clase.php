@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clase extends Model
 {
-    protected $table ='clase';   
+    protected $table ='ofj_clase';   
     
     protected $primaryKey = 'cod'; 
     

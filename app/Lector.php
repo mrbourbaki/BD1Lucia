@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lector extends Model
 {
-    protected $table ='lector';   
+    protected $table ='ofj_lector';   
     
     protected $primaryKey = 'docidentidad'; 
     

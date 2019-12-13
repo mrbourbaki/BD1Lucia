@@ -22,7 +22,7 @@ class ClubController extends Controller
         if($request)
         {
             $query=trim($request->get('searchText'));
-            $clubes=DB::table('club')->where('nombre','LIKE',strtoupper($query).'%')
+            $clubes=DB::table('ofj_club')->where('nombre','LIKE',strtoupper($query).'%')
             ->paginate(5);
             $lectores=Lector::all();
             return view('Club.index', ["clubes" =>$clubes , "searchText"=>$query,"lectores"=>$lectores]); // Retornar todo sobre la tabla club y la muestra en la pantalla conrespondiente 
@@ -32,7 +32,7 @@ class ClubController extends Controller
 
     public function create()
     {   
-        $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['CIUDAD']);
+        $lugar=DB::select("SELECT * FROM ofj_lugar WHERE tipo =?", ['CIUDAD']);
         $institucion=Institucion::all();
         return view('Club.create',["lugar"=>$lugar,"institucion"=>$institucion]);
     }
@@ -40,7 +40,7 @@ class ClubController extends Controller
     public function store(ClubFormRequest $request)
     {
         $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
-                                                    FROM editorial
+                                                    FROM ofj_editorial
                                                     WHERE nombre = UPPER('$request->nombre'))"));
         if ($yaExiste[0]->exists == FALSE) {
             $club=new Club;
@@ -60,7 +60,7 @@ class ClubController extends Controller
     public function edit($cod)
     {
         $club=Club::findOrFail($cod);
-        $lugar=DB::select("SELECT * FROM lugar WHERE tipo =?", ['CIUDAD']);
+        $lugar=DB::select("SELECT * FROM ofj_lugar WHERE tipo =?", ['CIUDAD']);
         $institucion=Institucion::all();
         return view("Club.edit",["club"=>$club,"lugar"=>$lugar,"institucion"=>$institucion]);
     }
@@ -97,14 +97,14 @@ class ClubController extends Controller
         $club=Club::findOrFail($cod);
 
         $lectores=DB::select(DB::raw("SELECT * 
-                            FROM lector
+                            FROM ofj_lector
                             WHERE fk_nacionalidad = (SELECT fk_lugar 
-                                                    FROM lugar
+                                                    FROM ofj_lugar
                                                     WHERE codigo = '$club->fk_lugar')"));
 
         foreach ($lectores as $key => $lec){
             $estatus_hist=DB::select(DB::raw("SELECT estatus 
-                                                FROM hist_lector
+                                                FROM ofj_hist_lector
                                                 WHERE doc_lector = '$lec->docidentidad' AND fecha_fin IS NULL;"));
 
             if ($estatus_hist[0]->estatus != 'ACTIVO'){
@@ -123,16 +123,16 @@ class ClubController extends Controller
         foreach ($lectoresDocid as $lec_id){
             // Verificando si el lector ya esxiste en el historial
             $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT * 
-                                                            FROM hist_lector 
+                                                            FROM ofj_hist_lector 
                                                             WHERE doc_lector = $lec_id)"));
-            if ($yaExiste[0]->exists == TRUE){ // Si existe se actualiza el ultimo registro y se coloca una fecha fin
-                $update_hist_lector = DB::update('UPDATE hist_lector 
+            if ($yaExiste[0]->exists == FALSE){
+                $update_hist_lector = DB::update('UPDATE ofj_hist_lector 
                                             SET fecha_fin = ? 
                                             WHERE doc_lector = ? AND fecha_fin IS NULL', [$today, $lec_id]);
             }
 
             // Se inserta el nuevo registro del lector (nuevo club)
-            $hist_lector = DB::insert('INSERT INTO hist_lector (fecha_ini,doc_lector,id_club,estatus) values (?, ?, ?, ?)', [$today, $lec_id, $cod, 'ACTIVO']);
+            $hist_lector = DB::insert('INSERT INTO ofj_hist_lector (fecha_ini,doc_lector,id_club,estatus) values (?, ?, ?, ?)', [$today, $lec_id, $cod, 'ACTIVO']);
         }
 
         return Redirect::to('Club');
@@ -140,7 +140,7 @@ class ClubController extends Controller
 /*        foreach ($lectoresDocid as $lec_id){
         
             $pago=DB::select(DB::raw("SELECT MAX(fecha_pago) 
-                                    FROM pago
+                                    FROM ofj_pago
                                     WHERE doc_lector_hist_lector = '$lec_id'"));
 
             $date = new DateTime($pago[0]->max);
