@@ -12,8 +12,8 @@
                 </div>
             @endif
 
-            {!!Form::open(array('url'=>'Lector/{{$lector->docidentidad}}','method'=>'POST', 'autocomplete'=> 'off'))!!}
-            {{Form::token()}}
+            <div id="formulario">
+             <form action="/Lector/{{$lector->docidentidad}}" method="post">{{ csrf_field() }}
             <input type="hidden" name="_method" value="PUT">
             <div class="form-group">
                 <div class="form-row">
@@ -45,7 +45,7 @@
 
                     <div class="form-group col-md-6">
                         <label>Fecha de nacimiento</label>
-                        <input type="date" data-date-format="DD MMMM YYYY" min="01/01/1930" max= "31/12/2011" class="form-control" value = "{{$lector->fecha_nac}}" name="docidentidad" placeholder = "Campo obligatorio">
+                        <input type="date" data-date-format="DD MMMM YYYY" min="01/01/1930" max= "31/12/2011" name="fecha_nac" class="form-control" value = "{{$lector->fecha_nac}}" name="docidentidad" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-12">
@@ -56,8 +56,8 @@
                     <div class="form-group col-md-12">
                         <label>Género </label>
                         <select name="genero"class="form-control" > 
-                                <option value="'M'">Hombre</option>
-                                <option value="'F'">Mujer</option>
+                                <option value="M">Hombre</option>
+                                <option value="F">Mujer</option>
                         </select>
                     </div>
 
@@ -77,6 +77,11 @@
                     <div class="form-group col-md-12">
                         <label>Seleccione si el representante es un miembro interno : </label>
                         <select name="fk_rep"class="form-control"> 
+                                @if ($lector->fk_rep == NULL){
+                                    <option disabled selected value> -- SELECCIONE REPRESENTANTE -- </option>
+                                @else
+                                    <option disabled value> -- SELECCIONE REPRESENTANTE -- </option>
+                                @endif
                             @foreach($representante as $rep)
                                 @if ($lector->fk_rep == $rep->docidentidad) 
                                     <option value="{{$rep->docidentidad}}" selected>{{$rep->docidentidad}}  {{ucwords(strtolower($rep->nombre1))}}  {{ucwords(strtolower($rep->apellido1))}}</option>
@@ -90,6 +95,11 @@
                     <div class="form-group col-md-12">
                         <label>Seleccione si el representante es un miembro externo : </label>
                         <select name="fk_rep_externo"class="form-control"> 
+                                @if ($lector->fk_rep_externo == NULL){
+                                    <option disabled selected value> -- SELECCIONE REPRESENTANTE -- </option>
+                                @else
+                                    <option disabled value> -- SELECCIONE REPRESENTANTE -- </option>
+                                @endif
                             @foreach($rep_externo as $rep_ext)
                                 @if ($lector->fk_rep_externo == $rep_ext->docidentidad) 
                                     <option value="{{$rep_ext->docidentidad}}" selected>{{$rep_ext->docidentidad}}  {{ucwords(strtolower($rep_ext->nombre1))}}  {{ucwords(strtolower($rep_ext->apellido1))}}</option>
@@ -108,7 +118,8 @@
                 <button class="btn btn-primary" type="submit">Guardar</button>
                 <button class="btn btn-dager" type="reset">Cancelar</button>
             </div>    
-            {!!Form::close() !!}
+        </form>
+        </div>
         </div>
     </div>
 @endsection
