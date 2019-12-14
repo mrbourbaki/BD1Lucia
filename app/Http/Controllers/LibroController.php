@@ -55,7 +55,7 @@ class LibroController extends Controller
             $libro->fk_editorial = $request->fk_editorial;
             $libro->fk_clase = $request->fk_clase;
             $libro->save();
-            return Redirect::to('/Libro');
+            return Redirect::to('/Libro')->with('success','Se agregado exitosamente el libro');
         } else{
             echo "no";
         }
@@ -97,13 +97,13 @@ class LibroController extends Controller
         $libro->fk_clase = $nuevoClase;
         $libro->save();    
         
-        return Redirect::to('/Libro');
+        return Redirect::to('/Libro')->with('success','su cambio a sido exitoso ');
     }
 
     public function destroy($cod)
     {
         $libro = Libro::findOrFail($cod);
         $libro->delete();
-        return Redirect::to('/Libro');
+        return Redirect::to('/Libro')->with('success','Se elimino sastifactoriamente el libro ');
     }
 }
