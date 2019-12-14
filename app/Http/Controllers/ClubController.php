@@ -51,9 +51,10 @@ class ClubController extends Controller
             $club->fk_institucion= $request->fk_institucion;
             $club->cuota=$request->cuota;
             $club->save();
-            return Redirect::to('Club');
+            return Redirect::to('Club')->with('success','Se agregado exitosamente el Club');;
         } else {
-            echo "no";
+            return Redirect::to('Club')->with('warning',' Ya existe ');
+
         }
     }
 
@@ -82,7 +83,7 @@ class ClubController extends Controller
         $club->fk_institucion=$nuevoInstitucion;
         $club->cuota=$nuevoCuota;
         $club->save();
-        return Redirect::to('Club');
+        return Redirect::to('Club')->with('success','Se actualizo exitosamente el Club');;
     }
 
     public function destroy($docidentidad)
@@ -135,7 +136,7 @@ class ClubController extends Controller
             $hist_lector = DB::insert('INSERT INTO ofj_hist_lector (fecha_ini,doc_lector,id_club,estatus) values (?, ?, ?, ?)', [$today, $lec_id, $cod, 'ACTIVO']);
         }
 
-        return Redirect::to('Club');
+        return Redirect::to('Club')->with('success','Se agregado exitosamente el miembro al club');;
         //Lector::findOrFail($lec_id)->nombre1;
 /*        foreach ($lectoresDocid as $lec_id){
         
