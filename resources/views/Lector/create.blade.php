@@ -94,7 +94,41 @@
                         </select>
                 </div>
 
+                <div class="form-group col-md-10">
+                    <h4>Libros favoritos </h4>
+                        <label>1er Libro</label>
+                        <select name="fk_libro"class="form-control"> 
+                        <option disabled selected value> -- SELECCIONE LIBRO FAVORITO   -- </option>
+                            @foreach($libro as $lib)
+                                <option value="{{$lib->cod}}">{{ucwords(strtolower($lib->titulo_original))}}</option>
+                            @endforeach
+                        </select>
+                   </div>     
 
+                    
+                    <div class="form-group col-md-10">
+                        <label>2do Libro</label>
+                        <select name="fk_libro"class="form-control">
+                        <option disabled selected value> -- SELECCIONE LIBRO FAVORITO   -- </option> 
+                            @foreach($libro as $lib)
+                                <option value="{{$lib->cod}}">{{ucwords(strtolower($lib->titulo_original))}}</option>
+                            @endforeach
+                        </select>
+                    
+                     </div>               
+                     
+                      <div class="form-group col-md-10">
+                        <label>3er Libro</label>
+                        <select name="fk_libro"class="form-control">
+                        <option disabled selected value> -- SELECCIONE LIBRO FAVORITO   -- </option> 
+                            @foreach($libro as $lib)
+                                <option value="{{$lib->cod}}">{{ucwords(strtolower($lib->titulo_original))}}</option>
+                            @endforeach
+                        </select>
+                    
+                     </div>
+                </div> 
+                     
             </div>
                 <div class="form-group col-md-8">
                 <button class="btn btn-primary" type="submit">Guardar</button>

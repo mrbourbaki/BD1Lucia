@@ -31,7 +31,8 @@ class LectorController extends Controller
         $lugar=DB::select("SELECT * FROM ofj_lugar WHERE tipo =?", ['PAIS']);
         $rep_externo=DB::select("SELECT * FROM ofj_representante_externo");
         $lectores=DB::select("SELECT * FROM ofj_lector");
-        return view('Lector.create',["lugar"=>$lugar,"rep_externo"=>$rep_externo,"lectores"=>$lectores]);
+        $libro=DB::table('ofj_libro')->distinct()->get();
+        return view('Lector.create',["lugar"=>$lugar,"rep_externo"=>$rep_externo,"lectores"=>$lectores,"libro"=>$libro]);
     }
 
     public function store(LectorFormRequest $request)
