@@ -195,6 +195,7 @@ class ClubController extends Controller
                     VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id , $cod, '13:00:00', '14:00:00']);;
                 } else {
                     // Se inserta en el primer grupo
+                    // Accede siempre al primero asi
                     $gruposNino[0];
                     
                 }
