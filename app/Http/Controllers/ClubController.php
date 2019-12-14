@@ -220,26 +220,7 @@ class ClubController extends Controller
                 }
             }
         }
-<<<<<<< HEAD
-        return Redirect::to('Club');
-=======
 
         return Redirect::to('Club')->with('success','Se agregado exitosamente el miembro al club');;
-        //Lector::findOrFail($lec_id)->nombre1;
-/*        foreach ($lectoresDocid as $lec_id){
-        
-            $pago=DB::select(DB::raw("SELECT MAX(fecha_pago) 
-                                    FROM ofj_pago
-                                    WHERE doc_lector_hist_lector = '$lec_id'"));
-
-            $date = new DateTime($pago[0]->max);
-            $today = new DateTime(date("Y-m-d H:i:s"));
-
-            $diff = $date->diff($today);
-
-            echo (($diff->format('%y') * 12) + $diff->format('%m')) . " meses de diferencia";
-        }
-*/
->>>>>>> 0c8c95d989546209467510f59422b2c5a26d4a32
     }
 }
