@@ -55,10 +55,17 @@ class LibroController extends Controller
             $libro->fk_editorial = $request->fk_editorial;
             $libro->fk_clase = $request->fk_clase;
             $libro->save();
-            return Redirect::to('/Libro')->with('success','Se agregado exitosamente el libro');
+
+
+                return Redirect::to('/Libro')->with('success','Se agregado exitosamente el libro'); 
+        
+
         } else{
-            echo "no";
+            return Redirect::to('/Libro')->with('error','No se puedo crear el libro por favor vuelva a intentarlo '); 
         }
+
+ 
+
     }
 
     public function show($id)
@@ -106,4 +113,6 @@ class LibroController extends Controller
         $libro->delete();
         return Redirect::to('/Libro')->with('success','Se elimino sastifactoriamente el libro ');
     }
+
+
 }

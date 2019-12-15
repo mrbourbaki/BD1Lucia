@@ -35,8 +35,11 @@
                     </div>
 
                     <div class="form-group col-md-12">
-                        <label>Estatus  Error Aqui auque en el controlador se lo seleccione directo 1 </label>
-                        <input type="number" class="form-control" name="estatus_actividad" placeholder="  Para cambiar estatus '1' o '0'">
+                        <label>Género </label>
+                        <select name="estatus_actividad"class="form-control" > 
+                                <option value="1">Activo</option>
+                                <option value="0">Desactivado</option>
+                        </select>
                     </div>
 
                     <h4>Sala</h4>
