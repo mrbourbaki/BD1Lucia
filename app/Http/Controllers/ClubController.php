@@ -9,6 +9,7 @@ use App\Lector;
 use App\Pago;
 use App\Institucion;
 use App\Hist_lector;
+use App\Grupo_lectura;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ClubFormRequest;
 use DB;
@@ -68,22 +69,31 @@ class ClubController extends Controller
 
     public function update(ClubFormRequest $request, $cod)
     {
-        $nuevoNombre=strtoupper($request->input('nombre'));
-        $nuevoCodPostal=$request->input('codigo_postal');
-        $nuevoDireccion=strtoupper($request->input('direccion'));
-        $nuevoLugar=$request->input('fk_lugar');
-        $nuevoInstitucion=$request->input('fk_institucion');
-        $nuevoCuota=$request->input('cuota');
-        //----------------------------------------
-        $club=Club::findOrFail($cod);
-        $club->nombre=$nuevoNombre;
-        $club->codigo_postal=$nuevoCodPostal;
-        $club->direccion=$nuevoDireccion;
-        $club->fk_lugar=$nuevoLugar;
-        $club->fk_institucion=$nuevoInstitucion;
-        $club->cuota=$nuevoCuota;
-        $club->save();
-        return Redirect::to('Club')->with('success','Se actualizo exitosamente el Club');;
+        $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT *
+                                      FROM ofj_club
+                                      WHERE nombre = UPPER('$request->nombre'))"));
+        if ($yaExiste[0]->exists == FALSE) {
+            $nuevoNombre=strtoupper($request->input('nombre'));
+            $nuevoCodPostal=$request->input('codigo_postal');
+            $nuevoDireccion=strtoupper($request->input('direccion'));
+            $nuevoLugar=$request->input('fk_lugar');
+            $nuevoInstitucion=$request->input('fk_institucion');
+            $nuevoCuota=$request->input('cuota');
+            //----------------------------------------
+            $club=Club::findOrFail($cod);
+            $club->nombre=$nuevoNombre;
+            $club->codigo_postal=$nuevoCodPostal;
+            $club->direccion=$nuevoDireccion;
+            $club->fk_lugar=$nuevoLugar;
+            $club->fk_institucion=$nuevoInstitucion;
+            $club->cuota=$nuevoCuota;
+            $club->save();
+            return Redirect::to('Club')->with('success','Se actualizo exitosamente el Club');
+        }
+        else{
+            return Redirect::to('Club')->with('warning',' Ya existe ');
+        }
+  
     }
 
     public function destroy($docidentidad)
@@ -117,20 +127,20 @@ class ClubController extends Controller
             $mesesDiferencia = ($diff->format('%y') * 12) + $diff->format('%m');
             // END
 
-            // Obteniendo en estatus de activo o no del historial
+            // Obteniendo el estatus de activo o no del historial
             $estatus_hist=DB::select(DB::raw("SELECT estatus 
                                                 FROM ofj_hist_lector
                                                 WHERE doc_lector = '$lec->docidentidad' AND fecha_fin IS NULL;"));
             // END
 
-            // Ya existe en el club actual y esta activo
+            // Ya existe en el club actual y esta activo en él
             $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT * 
                                                             FROM ofj_hist_lector 
                                                             WHERE doc_lector = '$lec->docidentidad' AND id_club = $cod AND fecha_fin IS NULL)"));
             // END
 
             // Filtrando a los lectores que tienen retraso en el pago y/o estan retirados o inactivos
-            if ($estatus_hist[0]->estatus != 'ACTIVO' || $mesesDiferencia > 0 || $yaExiste[0]->exists == TRUE){
+            if ($estatus_hist[0]->estatus != 'ACTIVO' || $mesesDiferencia < 0 || $yaExiste[0]->exists == TRUE){
                 unset($lectores[$key]);
             }
         }
@@ -148,24 +158,24 @@ class ClubController extends Controller
             // Consultando los grupos en donde se insertaran los nuevo miembros del club
             $gruposNino = DB::select(DB::raw("SELECT g.cod, COUNT(h.id_grupo), g.tipo_grupo
                                             FROM ofj_hist_grupo h, ofj_grupo_lectura g
-                                            WHERE g.cod = h.id_grupo AND g.tipo_grupo = 'NINO'
+                                            WHERE g.cod = h.id_grupo AND g.cod=$cod AND g.tipo_grupo = 'NINO' 
                                             GROUP BY g.cod, g.tipo_grupo
-                                            HAVING COUNT(h.id_grupo) < 10"));
+                                            HAVING COUNT(h.id_grupo) < 10")); 
 
             $gruposJoven = DB::select(DB::raw("SELECT g.cod, COUNT(h.id_grupo), g.tipo_grupo
                                             FROM ofj_hist_grupo h, ofj_grupo_lectura g
-                                            WHERE g.cod = h.id_grupo AND g.tipo_grupo = 'JOVEN'
+                                            WHERE g.cod = h.id_grupo AND g.cod=$cod AND g.tipo_grupo = 'JOVEN' 
                                             GROUP BY g.cod, g.tipo_grupo
                                             HAVING COUNT(h.id_grupo) < 10"));
 
             $gruposAdulto = DB::select(DB::raw("SELECT g.cod, COUNT(h.id_grupo), g.tipo_grupo
                                             FROM ofj_hist_grupo h, ofj_grupo_lectura g
-                                            WHERE g.cod = h.id_grupo AND g.tipo_grupo = 'ADULTO'
+                                            WHERE g.cod = h.id_grupo AND g.cod=$cod AND g.tipo_grupo = 'ADULTO'
                                             GROUP BY g.cod, g.tipo_grupo
                                             HAVING COUNT(h.id_grupo) < 15"));
             // END
 
-            // Verificando si el lector ya esxiste en el historial
+            // Verificando si el lector ya existe en el historial
             $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT * 
                                                             FROM ofj_hist_lector 
                                                             WHERE doc_lector = $lec_id)"));
@@ -185,42 +195,82 @@ class ClubController extends Controller
 
             $edadLector = $diff->format('%Y');
 
+            //Verificando si el lector ya existe en el historial grupo
+            $yaExisteGrupo=DB::select(DB::raw("SELECT EXISTS (SELECT * 
+                                                FROM ofj_hist_grupo 
+                                                WHERE doc_lector_hist_lector = $lec_id)"));
+            if ($yaExisteGrupo[0]->exists == TRUE){
+            $update_hist_grupo = DB::update('UPDATE ofj_hist_grupo
+                                              SET fecha_fin = ? 
+                                              WHERE doc_lector_hist_lector = ? AND fecha_fin IS NULL', [$today, $lec_id]);
+            }    
+            //Verificando si los grupos disponibles tienen el mismo codigo de club
+            $grupoMismoClub=DB::select(DB::raw("SELECT EXISTS (SELECT * 
+                                                FROM ofj_hist_grupo 
+                                                WHERE doc_lector_hist_lector = $lec_id)"));
+            echo  $edadLector = $diff->format('%Y');
             if ($edadLector < 13){
                 // Nino
-                if (empty($gruposNino)){
+            
+                if (empty($gruposNino)  ) {
                     // Se crea un grupo
-                    $insertGrupoLectura = DB::insert('INSERT INTO ofj_grupo_lectura (id_club,tipo_grupo,dia,hora_ini, hora_fin) 
-                                                VALUES (?, ?, ?, ?, ?)', [$cod, 'NINO', 2, '13:00:00', '14:00:00']);
-                    $insertHistorialGrupo = DB::insert('INSERT INTO ofj_hist_grupo (fecha_hist_lector,doclector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo, fecha_ini) 
-                    VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id , $cod, '13:00:00', '14:00:00']);;
+                    $grupo_lectura= New Grupo_lectura;
+                    $grupo_lectura->id_club=$cod;
+                    $grupo_lectura->tipo_grupo='NINO';
+                    $grupo_lectura->dia=2;
+                    $grupo_lectura->hora_ini='13:00:00';
+                    $grupo_lectura->hora_fin='14:00:00';
+                    $grupo_lectura->save();
+                    $insertHistorialGrupo = DB::insert('INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo, fecha_ini) 
+                    VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id , $cod,$grupo_lectura->cod,$cod,$today]);;
                 } else {
                     // Se inserta en el primer grupo
-                    // Accede siempre al primero asi
-                    $gruposNino[0];
-                    
+                    $insertHistorialGrupo = DB::insert('INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo, fecha_ini) 
+
+                    VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id , $cod,$gruposNino[0]->cod,$cod,$today]);
                 }
 
             } else if ($edadLector < 18) {
                 // Adolescente
                 if (empty($gruposJoven)){
                     // Se crea un grupo
-
+                    $grupo_lectura= New Grupo_lectura;
+                    $grupo_lectura->id_club=$cod;
+                    $grupo_lectura->tipo_grupo='JOVEN';
+                    $grupo_lectura->dia=3;
+                    $grupo_lectura->hora_ini='13:00:00';
+                    $grupo_lectura->hora_fin='14:00:00';
+                    $grupo_lectura->save();
+                    $insertHistorialGrupo = DB::insert('INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo, fecha_ini) 
+                    VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id,$cod,$grupo_lectura->cod,$cod,$today]);
                 } else {
                     // Se inserta en el primer grupo
+                    $insertHistorialGrupo = DB::insert('INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo, fecha_ini) 
+                    VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id , $cod,$gruposJoven[0]->cod,$cod,$today]);
 
                 }
             } else {
                 // Adulto
                 if (empty($gruposAdulto)){
                     // Se crea un grupo
-
+                    // Se crea un grupo
+                    $grupo_lectura= New Grupo_lectura;
+                    $grupo_lectura->id_club=$cod;
+                    $grupo_lectura->tipo_grupo='ADULTO';
+                    $grupo_lectura->dia=4;
+                    $grupo_lectura->hora_ini='13:00:00';
+                    $grupo_lectura->hora_fin='14:00:00';
+                    $grupo_lectura->save();
+                    $insertHistorialGrupo = DB::insert('INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo, fecha_ini) 
+                    VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id , $cod,$grupo_lectura->cod,$cod,$today]);;
                 } else {
                     // Se inserta en el primer grupo
-
+                    $insertHistorialGrupo = DB::insert('INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo, fecha_ini) 
+                    VALUES (?, ?, ?, ?, ?, ?)', [$today, $lec_id , $cod,$gruposAdulto[0]->cod,$cod,$today]);
                 }
             }
-        }
+        };
 
-        return Redirect::to('Club')->with('success','Se agregado exitosamente el miembro al club');;
+       return Redirect::to('Club')->with('success','Se agregado exitosamente el miembro al club');
     }
 }

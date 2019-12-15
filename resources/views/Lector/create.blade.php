@@ -12,8 +12,8 @@
                 </div>
             @endif
 
-            {!!Form::open(array('url'=>'Lector','method'=>'POST', 'autocomplete'=> 'off'))!!}
-            {{Form::token()}}
+            <form action="/Lector" method="post">
+             {{ csrf_field() }}
             <div class="form-group">
                 <div class="form-row">
                     <h4> Información del Lector</h4>
@@ -134,7 +134,7 @@
                 <button class="btn btn-primary" type="submit">Guardar</button>
                 <button class="btn btn-dager" type="reset">Cancelar</button>
             </div>    
-            {!!Form::close() !!}
+            </form>
         </div>
     </div>
 @endsection

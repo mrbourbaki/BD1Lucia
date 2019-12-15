@@ -30,12 +30,12 @@
                         <tr>
                             <td>{{$club->nombre}}</td>
                             <td>{{DB::table('ofj_lugar')->where('codigo','=', $club->fk_lugar)->value('nombre')}}</td>
-                            <td>{{DB::table('ofj_hist_lector')->where('id_club','=', $club->cod)->count()}} </td>
+                            <td>{{DB::table('ofj_hist_lector')->where('id_club','=', $club->cod,'AND','fecha_fin','=',  NULL)->count()}} </td>
                             <td>
                                 <a href="{{route('Club.edit',$club->cod)}}"><button class="btn btn-info">Editar</button></a>
                                 <a data-target="#modal-delete-{{$club->cod}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
                                 <a data-target="#modal-info{{$club->cod}}" data-toggle="modal"><button class="btn btn-primary">Informacion</button></a>
-                                <a href="Club/filtraMiembro/{{$club->cod}}"><button class="btn btn-info">Agregar miembro</button></a>
+                                <a href="/Club/filtraMiembro/{{$club->cod}}"><button class="btn btn-info">Agregar miembro</button></a>
                             </td>
                         </tr>
                         @include('Club.infomodal') <!-- info delete --> 
