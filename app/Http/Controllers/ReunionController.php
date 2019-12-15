@@ -67,7 +67,7 @@ class ReunionController extends Controller
         $reunion->
         $reunion->
         $->save();
-        return Redirect::to('Reunion')->with('success','Se ha creado la reunion satisfactoriamente');;
+        return Redirect::to('Reunion')->with('success','Se ha creado la reunion satisfactoriamente');
     }
 
     public function show($id)

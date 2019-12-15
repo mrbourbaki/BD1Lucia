@@ -49,9 +49,9 @@ class ClaseController extends Controller
                 $clase->tipo = 'OTRO';
             }
             $clase->save();
-            return Redirect::to('/Clase');
+            return Redirect::to('/Clase')->with('success','Se ha creado una nueva Clase');
         } else {
-            echo "no";
+            return Redirect::to('/Clase')->with('Error','Ya existe essa Clase');
         }
     }
 
@@ -76,13 +76,13 @@ class ClaseController extends Controller
         $clase->fk_clase = $nuevoPadre;
         $clase->save();    
         
-        return Redirect::to('/Clase');
+        return Redirect::to('/Clase')->with('success','Se ha editado exitosamente');
     }
 
     public function destroy($cod)
     {   
         $clase = Clase::findOrFail($cod);
         $clase->delete();
-        return Redirect::to('/Clase');
+        return Redirect::to('/Clase')->with('success','Se ha Eliminado la Clase');
     }
 }

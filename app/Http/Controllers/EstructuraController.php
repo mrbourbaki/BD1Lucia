@@ -48,7 +48,7 @@ class EstructuraController extends Controller
             $estructura->save();
             return Redirect::to('/Estructura')->with('success','Se agregado exitosamente la estructura del libro');
         } else{
-            return Redirect::to('/Estructura')->with('success','no se puedo agregar, el nombre de la estructura del libro ya existe ');
+            return Redirect::to('/Estructura')->with('error','no se puedo agregar, el nombre de la estructura del libro ya existe ');
         }
     }
 

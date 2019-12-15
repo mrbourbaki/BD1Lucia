@@ -46,9 +46,9 @@ class InstitucionController extends Controller
             $institucion->detalle=strtoupper($request->detalle);
             $institucion->fk_lugar=$request->fk_lugar;
             $institucion->save();
-            return Redirect::to('/Institucion');
+            return Redirect::to('/Institucion')->with('success','Se agrego exitosamente  '); 
         } else {
-            echo "no";
+            return Redirect::to('/Institucion')->with('error',' La institucion ya existe  '); 
         }
     }
 
@@ -78,13 +78,13 @@ class InstitucionController extends Controller
         $inst->fk_lugar = $nuevoLugar;
         $inst->save();    
         
-        return Redirect::to('/Institucion');
+        return Redirect::to('/Institucion')->with('success','Se actualizo exitosamente  ');
     }
 
     public function destroy($cod)
     {
         $inst = Institucion::findOrFail($cod);
         $inst->delete();
-        return Redirect::to('/Institucion');
+        return Redirect::to('/Institucion')->with('success','Se Elimino exitosamente  ');
     }
 }

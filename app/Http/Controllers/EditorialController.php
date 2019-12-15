@@ -43,9 +43,9 @@ class EditorialController extends Controller
             $editorial->nombre=strtoupper($request->nombre);
             $editorial->fk_lugar=$request->fk_lugar;
             $editorial->save();
-            return Redirect::to('/Editorial');
+            return Redirect::to('/Editorial')->with('success','Se ha creado una nueva Editorial');
         } else {
-            echo "no";
+            return Redirect::to('/Editorial')->with('success','ya existe esa Editorial');
         }
     }
 
@@ -66,13 +66,13 @@ class EditorialController extends Controller
         $editorial->fk_lugar = $nuevoLugar;
         $editorial->save();    
         
-        return Redirect::to('/Editorial');
+        return Redirect::to('/Editorial')->with('success','Se ha actualizado el Editorial');
     }
 
     public function destroy($cod)
     {
         $editorial = Editorial::findOrFail($cod);
         $editorial->delete();
-        return Redirect::to('/Editorial');
+        return Redirect::to('/Editorial')->with('success','Se ha Eliminado El Editorial');
     }
 }

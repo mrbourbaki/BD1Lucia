@@ -50,9 +50,9 @@ class ObraController extends Controller
             $obra->duracion=$request->duracion;
             $obra->fk_sala=$request->fk_sala;
             $obra->save();
-            return Redirect::to('/Obra');
+            return Redirect::to('/Obra')->with('success','Se ha creado una nueva Obra');
         } else {
-            echo "no";
+            return Redirect::to('/Obra')->with('error','Se no se pudo creado La Obra');
         }
     }
 
@@ -81,7 +81,7 @@ class ObraController extends Controller
         $obra->fk_sala = $nuevoSala;
         $obra->save();    
         
-        return Redirect::to('/Obra');
+        return Redirect::to('/Obra')->with('success','Se ha editado la Obra');
     }
 
     public function destroy($cod)
@@ -92,9 +92,9 @@ class ObraController extends Controller
         if($obra->cod == $calendario->id_obra){
             $calendario->delete();
             $obra->delete();
-            return Redirect::to('/Obra');
+            return Redirect::to('/Obra')->with('success','Se ha Eliminado la Obra');
         }
         else
-            return Redirect::to('/Obra');
+            return Redirect::to('/Obra')->with('error','Se no se pudo eliminar la Obra');
     }
 }

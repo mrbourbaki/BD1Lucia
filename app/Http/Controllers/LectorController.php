@@ -54,9 +54,9 @@ class LectorController extends Controller
             $lector->fk_rep=$request->fk_rep;
             $lector->fk_rep_externo=$request->fk_rep_externo;
             $lector->save();
-            return Redirect::to('Lector');
+            return Redirect::to('Lector')->with('success','El lector fue agregado exitosamente  ');
         } else {
-            echo "no";
+            return Redirect::to('Lector')->with('error','ya existe el lector');
         }
     }
 
@@ -83,14 +83,14 @@ class LectorController extends Controller
         $lector->fk_rep=$request->fk_rep;
         $lector->fk_rep_externo=$request->fk_rep_externo;
         $lector->save();
-        return redirect('Lector');
+        return redirect('Lector')->with('success','El lector fue Editado exitosamente  ');
     }
 
     public function destroy($docidentidad)
     {
         $lector = Lector::findOrFail($docidentidad);
         $lector->delete();
-        return Redirect::to('Lector');
+        return Redirect::to('Lector')->with('success','El lector fue eliminado exitosamente  ');
     }
 
     public function RepSearch(Request $request)

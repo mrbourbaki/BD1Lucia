@@ -50,9 +50,9 @@ class SalaController extends Controller
             $sala->fk_club=$request->fk_club;
             $sala->fk_lugar=$request->fk_lugar;
             $sala->save();
-            return Redirect::to('/Sala');
+            return Redirect::to('/Sala')->with('success','Se ha creado una nueva sala ');
         } else {
-            echo "no";
+            return Redirect::to('/Sala')->with('error','La sala ya existe');
         }
     }
 
@@ -90,7 +90,7 @@ class SalaController extends Controller
 
         $sala->save();    
         
-        return Redirect::to('/Sala');
+        return Redirect::to('/Sala')->with('success','Se Edito exitosamente la sala ');
     }
 
     public function destroy($cod)
@@ -106,6 +106,6 @@ class SalaController extends Controller
         }
       
         $sala->delete();
-        return Redirect::to('/Sala');
+        return Redirect::to('/Sala')->with('success','Se Elimino la sala ');
     } 
 }
