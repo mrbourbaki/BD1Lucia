@@ -13,7 +13,7 @@
             @endif
 
 
-             <form action="/Reunion" method="post">
+             <form action="/Reunion/postIndex" method="post">
              {{ csrf_field() }}
             <div class="form-group">
                 <div class="form-row">

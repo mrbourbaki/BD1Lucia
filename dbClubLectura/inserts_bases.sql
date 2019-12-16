@@ -28,7 +28,6 @@ INSERT INTO ofj_clase (nombre,tipo,fk_clase) VALUES
 	('CIENCIA FICCIÓN ESPACIAL','OTRO',2),
 	('ENSAYO','SUBGENERO',NULL);
 
-
 INSERT INTO ofj_libro (titulo_original,sinopsis,nro_pags,ano,titulo_espanol,tema,fk_editorial,fk_clase,fk_libro_comp) VALUES
 	('1984','INQUIETANTE INTERPRETACIÓN FUTURISTA BASADA EN LA CRÍTICA A LOS TOTALITARISMOS Y A LA OPRESIÓN DEL PODER, SITUADA EN 1984 EN UNA SOCIEDAD INGLESA',326,1948,'1984','SOCIEDAD',5,3,NULL),
 	('THE CHRONICLES OF NARNIA THE LION THE WITCH AND THE WARDROBE','CUATRO NIÑOS VIAJAN A TRAVES DE UN ROPERO A LA TIERRA DE NARNIA, DONDE VIVIRÁN INCREÍBLES AVENTURAS CON LA AYUDA DEL LEÓN ASLAN',208,1950,'LAS CRONICAS DE NARNIA EL LEON LA BRUJA Y EL ROPERO','FANTASIA',4,1,NULL),
@@ -79,13 +78,6 @@ INSERT INTO ofj_lec_libro (posicion,doc_lector,id_libro) VALUES
 	(1,331832514,2), (2,331832514,5), (3,331832514,8),
 	(1,334061189,5), (2,334061189,6), (3,334061189,7);
 
-INSERT INTO ofj_estructura(id_libro,titulo,tipo,nombre) VALUES
-	('2','NARNIA','CAPITULO','SECUELA NARNIA'),	
-	('3','NARNIA','CAPITULO','SECUELA NARNIA'),	
-	('5','EL TUNEL','CAPITULO','HISTORIAL DE CARCEL'),	
-	('1','1984','OTRO','TOTALITARISMOS'),	
-	('8','2001: A SPACE ODYSSEY','SECCION','TOTALITARISMOS');
-
 INSERT INTO ofj_institucion (nombre,detalle,fk_lugar) VALUES
 	('BIBLIOTECA NACIONAL DE CHILE',NULL,3),
 	('BIBLIOTECA MUNICIPAL DE PROVIDENCIA',NULL,4),
@@ -131,6 +123,20 @@ INSERT INTO ofj_obra_actuada (resumen,precio,titulo,estatus_actividad,duracion,f
 	('UNA SUPERCOMPUTADORA TRATARA DE TOMAR EL CONTROL DE LA NAVE Y SE EMBARCARA EN LA BUSQUEDA DE LA VERDAD', 40, '2001', '1', 90, 6),
 	('EL DR FLOYD HA VIAJADO PARA INVESTIGAR UN EXTRANO MONOLITO EN LA LUNA QUE PODRIA DEVELAR LA VERDAD DE LA CREACION HUMANA', 33, '2001: LA OBRA', '0', 80, 8);
 
+INSERT INTO ofj_hist_lector (fecha_ini,doc_lector,id_club,estatus,motivo_retiro,fecha_fin) VALUES
+	('05/5/2019',448012254,5,'ACTIVO',NULL,NULL),
+	('07/5/2018',617174421,5,'ACTIVO',NULL,NULL), 
+	('07/1/2019',496583972,5,'ACTIVO',NULL,NULL),
+	('07/5/2019',884614167,5,'ACTIVO',NULL,NULL),
+	('07/5/2019',570098273,5,'ACTIVO',NULL,NULL),
+	('06/1/2017',318218935,1,'ACTIVO',NULL,NULL),
+	('09/3/2018',335676685,1,'ACTIVO',NULL,NULL),
+	('10/4/2019',337599324,1,'ACTIVO',NULL,NULL),
+	('05/2/2018',337021440,1,'ACTIVO',NULL,NULL),
+	('01/10/2016',336109574,1,'ACTIVO',NULL,NULL),
+	('08/12/2018',335351470,1,'ACTIVO',NULL,NULL),	
+	('09/10/2016',331832514,1,'ACTIVO',NULL,'10/11/2016'),
+	('10/11/2016',331832514,1,'RETIRADO','VOLUNTARIO',NULL);
 
 INSERT INTO ofj_calendario (fecha,id_obra,hora_i,estatus_realizada,valoracion,cantidad_asistencia) VALUES
 	('29/10/2019',1,'13:00:00','1',5,20),
@@ -152,22 +158,8 @@ INSERT INTO ofj_personaje (id_obra,nombre,descripcion) VALUES
 	(2,'LUCY PEVENSIE','FUE LA PRIMERA DE LOS CUATRO HERMANOS EN IR A NARNIA; ALLÍ CONOCIÓ A UN FAUNO LLAMADO TUMNUS, QUE LE HABLÓ DE NARNIA Y LA INVITÓ A CENAR EN SU CASA'),
 	(2,'SUSAN PEVENSIE ','EN SU ESTANCIA EN NARNIA ES CONOCIDA COMO LA REINA SUSAN, LA BENÉVOLA');
 
-INSERT INTO ofj_hist_lector (fecha_ini,doc_lector,id_club,estatus,motivo_retiro,fecha_fin) VALUES
-	('05/5/2019',448012254,5,'ACTIVO',NULL,NULL),
-	('07/5/2018',617174421,5,'ACTIVO',NULL,NULL), 
-	('07/1/2019',496583972,5,'ACTIVO',NULL,NULL),
-	('07/5/2019',884614167,5,'ACTIVO',NULL,NULL),
-	('07/5/2019',570098273,5,'ACTIVO',NULL,NULL),
-	('06/1/2017',318218935,1,'ACTIVO',NULL,NULL),
-	('09/3/2018',335676685,1,'ACTIVO',NULL,NULL),
-	('10/4/2019',337599324,1,'ACTIVO',NULL,NULL),
-	('05/2/2018',337021440,1,'ACTIVO',NULL,NULL),
-	('01/10/2016',336109574,1,'ACTIVO',NULL,NULL),
-	('08/12/2018',335351470,1,'ACTIVO',NULL,NULL),	
-	('09/10/2016',331832514,1,'ACTIVO',NULL,'10/11/2016'),
-	('10/11/2016',331832514,1,'RETIRADO','VOLUNTARIO',NULL);
-
 INSERT INTO ofj_elenco (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,principal) VALUES
+	(1,1,1,'05/05/2019',448012254,5,'1'),
 	(2,1,1,'07/05/2018',617174421,5,'0'),
 	(3,1,1,'07/01/2019',496583972,5,'0'),
 	(4,1,1,'07/05/2019',884614167,5,'0'),
@@ -207,7 +199,6 @@ INSERT INTO ofj_grupo_lectura (id_club,tipo_grupo,dia,hora_ini,hora_fin) VALUES
     (1,'JOVEN',4,'13:00:00','14:00:00'),
     (1,'ADULTO',5,'16:00:00','18:00:00');
 
-
 INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector, id_club_hist_lector,id_grupo,id_club_grupo,fecha_ini,fecha_fin) VALUES
     ('05/05/2019',448012254,5,1,5,'05/05/2019',NULL),
     ('07/05/2018',617174421,5,1,5,'07/05/2018',NULL),
@@ -221,19 +212,3 @@ INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector, id_club_hi
     ('01/10/2016',336109574,1,5,1,'01/10/2016',NULL),
     ('08/12/2018',335351470,1,5,1,'08/12/2018',NULL),
     ('09/10/2016',331832514,1,5,1,'09/10/2016',NULL);
-
-INSERT INTO	ofj_reunion(id_grupo, id_club_grupo,id_grupo_hist_grupo,id_club_hist_grupo, fecha_hlector, doc_lector, id_club_hist_lector,id_libro, fecha,conclusiones,valoracion)VALUES
-	(1,5,1,5,'05/5/2019',448012254,5,1,'05/6/2019',null,null),
-	(1,5,1,5,'07/5/2018',617174421,5,1,'05/6/2019',null,null),
-	(1,5,1,5,'07/1/2019',496583972,5,1,'05/6/2019',null,null),
-	(1,5,1,5,'07/5/2019',884614167,5,1,'05/6/2019',null,null,
-	(1,5,1,5,'07/5/2019',570098273,5,1,'05/6/2019',null,null),
-	(5,1,5,1,'06/01/2017',318218935,1,2,'07/4/2019',null,null),
-	(5,1,5,1,'09/03/2018',335676685,1,2,'07/4/2019',null,null),
-	(5,1,5,1,'10/04/2019',337599324,1,2,'07/4/2019',null,null),
-	(5,1,5,1,'01/10/2016',336109574,1,2,'07/4/2019',null,null),
-	(5,1,5,1,'08/12/2018',335351470,1,2,'07/4/2019',null,null);
-
-INSERT INTO ofj_inasistencia(id_reunion ,id_grupo_reunion ,id_club_grupo_reunion ,id_grupo ,id_club_grupo ,id_grupo_hist_grupo ,id_club_grupo_hist_grupo ,fecha_hlector,doc_lector,id_club_hist_lector)VALUES 	
-			(6,5,1,5,1,5,1,'06/01/2017',318218935,1),
-			(9,5,1,5,1,5,1,'01/10/2016',336109574,1);

@@ -140,8 +140,10 @@ class ClubController extends Controller
             // END
 
             // Filtrando a los lectores que tienen retraso en el pago y/o estan retirados o inactivos
-            if ($estatus_hist[0]->estatus != 'ACTIVO' || $mesesDiferencia < 0 || $yaExiste[0]->exists == TRUE){
-                unset($lectores[$key]);
+            if (!empty($estatus_hist)){
+                if ($estatus_hist[0]->estatus != 'ACTIVO' || $mesesDiferencia < 0 || $yaExiste[0]->exists == TRUE){
+                    unset($lectores[$key]);
+                }
             }
         }
         return view("Club.miembro",["lectores"=>$lectores, "club"=>$club]);

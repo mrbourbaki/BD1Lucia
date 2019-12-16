@@ -13,7 +13,7 @@
             @endif
 
 
-             <form action="/Reunion" method="post">
+             <form action="/Reunion/postIndex" method="post">
              {{ csrf_field() }}
             <div class="form-group">
                 <div class="form-row">
@@ -42,7 +42,7 @@
                     <div class="form-group col-md-12">
                         <label> Moderador </label>
                         <select name="fk_hist_lector"class="form-control" > 
-                            @foreach($miembrosClub as $miembro)
+                            @foreach($moderadores as $miembro)
                                 <option value="{{$miembro->docidentidad}}">{{$miembro->docidentidad}}{{ucwords(strtolower($miembro->nombre1))}} {{ucwords(strtolower($miembro->apellido2))}}</option>
                             @endforeach
                         </select>

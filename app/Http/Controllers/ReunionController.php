@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use DateTime;
 use App\Hist_grupo;
+use App\Lector;
 
 class ReunionController extends Controller
 {
@@ -44,16 +45,20 @@ class ReunionController extends Controller
         if ($tipo == 'NINO'){
             $miembrosClub=DB::select("SELECT doc_lector_hist_lector FROM ofj_hist_grupo WHERE  id_club_hist_lector=?" , [$request->club]);
 
+                $moderadoresBien = [];
+
                 foreach ($miembrosClub as $key => $lec) {
-                    $fechaNacLector = new DateTime($lec->fecha_nac);
+                    $mayorEdad = Lector::findOrFail($lec->doc_lector_hist_lector);
+                    $fechaNacLector = new DateTime($mayorEdad->fecha_nac);
                     $diff = $fechaNacLector->diff($today);
                     $edadLector = $diff->format('%Y');
                     if ($edadLector < 19){
-                         unset($miembrosClub[$key]);                    
+                        array_push($moderadoresBien, $mayorEdad);
+                        unset($miembrosClub[$key]);                    
                     }
                 }
                 //Retorna vista para niños
-                return view ('Reunion.createNino',["moderadores"=>$miembrosClub,"gruposNino"=>$gruposNino,"libros"=>$libros]);
+                return view ('Reunion.createNino',["moderadores"=>$moderadoresBien,"gruposNino"=>$gruposNino,"libros"=>$libros]);
         }
         else {
                 //Retorna vista para jovenes y adultos
