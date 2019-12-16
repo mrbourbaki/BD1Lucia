@@ -142,8 +142,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Obras</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Reuniones</a></li>
+                <li><a href="{{url('Obra')}}"><i class="fa fa-circle-o"></i>Obras</a></li>
+                <li><a href="{{url('Reunion')}}"><i class="fa fa-circle-o"></i> Reuniones</a></li>
               </ul>
             </li>
 
