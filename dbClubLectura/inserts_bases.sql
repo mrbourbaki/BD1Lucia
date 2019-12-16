@@ -28,12 +28,6 @@ INSERT INTO ofj_clase (nombre,tipo,fk_clase) VALUES
 	('CIENCIA FICCIÓN ESPACIAL','OTRO',2),
 	('ENSAYO','SUBGENERO',NULL);
 
-INSERT INTO ofj_estructura(id_libro,titulo,tipo,nombre) VALUES
-	('2','NARNIA','CAPITULO','SECUELA NARNIA'),	
-	('3','NARNIA','CAPITULO','SECUELA NARNIA'),	
-	('5','EL TUNEL','CAPITULO','HISTORIAL DE CARCEL'),	
-	('1','1984','OTRO','TOTALITARISMOS'),	
-	('8','2001: A SPACE ODYSSEY','SECCION','TOTALITARISMOS'),	
 
 INSERT INTO ofj_libro (titulo_original,sinopsis,nro_pags,ano,titulo_espanol,tema,fk_editorial,fk_clase,fk_libro_comp) VALUES
 	('1984','INQUIETANTE INTERPRETACIÓN FUTURISTA BASADA EN LA CRÍTICA A LOS TOTALITARISMOS Y A LA OPRESIÓN DEL PODER, SITUADA EN 1984 EN UNA SOCIEDAD INGLESA',326,1948,'1984','SOCIEDAD',5,3,NULL),
@@ -44,6 +38,13 @@ INSERT INTO ofj_libro (titulo_original,sinopsis,nro_pags,ano,titulo_espanol,tema
 	('BRAVE NEW WORLD','LA NOVELA ES UNA DISTOPÍA QUE ANTICIPA EL DESARROLLO EN TECNOLOGÍA REPRODUCTIVA, CULTIVOS HUMANOS E HIPNOPEDIA, MANEJO DE LAS EMOCIONES POR MEDIO DE DROGAS QUE, COMBINADAS, CAMBIAN RADICALMENTE LA SOCIEDAD',178,1932,'UN MUNDO FELIZ','FUTURO',3,3,NULL),
 	('HOMBRES Y ENGRANAJES','HOMBRES Y ENGRANAJES EXAMINA EL LARGO CAMINO RECORRIDO POR LA CULTURA OCCIDENTAL DESDE EL RENACIMIENTO A IMPULSOS DE LA DOBLE INFLUENCIA DEL DINERO Y DE LA RAZÓN',144,1951,'HOMBRES Y ENGRANAJES','SOCIEDAD',3,8,NULL),
 	('2001: A SPACE ODYSSEY','LA SUPERCOMPUTADORA HAL 9000 GUÍA A UN EQUIPO DE TRES ASTRONAUTAS EN UN VIAJE EN EL QUE BUSCAN DESCUBRIR LOS ORÍGENES DE LA HUMANIDAD',240,1968,'2001:ODISEA EN EL ESPACIO','FANTASIA',7,7,NULL);
+
+INSERT INTO ofj_estructura(id_libro,titulo,tipo,nombre) VALUES
+	('2','NARNIA','CAPITULO','SECUELA NARNIA'),	
+	('3','NARNIA','CAPITULO','SECUELA NARNIA'),	
+	('5','EL TUNEL','CAPITULO','HISTORIAL DE CARCEL'),	
+	('1','1984','OTRO','TOTALITARISMOS'),	
+	('8','2001: A SPACE ODYSSEY','SECCION','TOTALITARISMOS');
 
 INSERT INTO ofj_representante_externo (docidentidad,nombre1,apellido1,apellido2,nombre2)  VALUES
 	(711793712, 'DION', 'DITTS', 'HUTT', 'QUINCEY'),
@@ -151,15 +152,7 @@ INSERT INTO ofj_personaje (id_obra,nombre,descripcion) VALUES
 	(2,'LUCY PEVENSIE','FUE LA PRIMERA DE LOS CUATRO HERMANOS EN IR A NARNIA; ALLÍ CONOCIÓ A UN FAUNO LLAMADO TUMNUS, QUE LE HABLÓ DE NARNIA Y LA INVITÓ A CENAR EN SU CASA'),
 	(2,'SUSAN PEVENSIE ','EN SU ESTANCIA EN NARNIA ES CONOCIDA COMO LA REINA SUSAN, LA BENÉVOLA');
 
-INSERT INTO ofj_elenco (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,principal) VALUES
-	(1,1,1,'05/05/2019',448012254,5,'1'),
-	(2,1,1,'07/05/2018',617174421,5,'0'),
-	(3,1,1,'07/01/2019',496583972,5,'0'),
-	(4,1,1,'07/05/2019',884614167,5,'0'),
-	(5,1,1,'07/05/2019',570098273,5,'1'),
-	(6,2,2,'06/01/2017',318218935,1,'1'),
-	(7,2,2,'09/03/2018',335676685,1,'1'),
-    (8,2,2,'10/04/2019',337599324,1,'1');
+
 	
 INSERT INTO ofj_mejor_actor (fecha_cal,id_obra_cal,id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector_elenco,doc_lector_hist_elenco,id_club_hist_elenco) VALUES
     ('29/10/2019',1,1,1,1,'05/05/2019',448012254,5);
@@ -221,6 +214,15 @@ INSERT INTO ofj_hist_grupo (fecha_hist_lector,doc_lector_hist_lector, id_club_hi
     ('08/12/2018',335351470,1,5,1,'08/12/2018',NULL),
     ('09/10/2016',331832514,1,5,1,'09/10/2016',NULL);
 
+INSERT INTO ofj_elenco (id_personaje,id_obra_personaje,id_obra_elenco,fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,principal) VALUES
+	(2,1,1,'07/05/2018',617174421,5,'0'),
+	(3,1,1,'07/01/2019',496583972,5,'0'),
+	(4,1,1,'07/05/2019',884614167,5,'0'),
+	(5,1,1,'07/05/2019',570098273,5,'1'),
+	(6,2,2,'06/01/2017',318218935,1,'1'),
+	(7,2,2,'09/03/2018',335676685,1,'1'),
+    (8,2,2,'10/04/2019',337599324,1,'1');	
+
 INSERT INTO	ofj_reunion(id_grupo, id_club_grupo,id_grupo_hist_grupo,id_club_hist_grupo, fecha_hlector, doc_lector, id_club_hist_lector,id_libro, fecha,conclusiones,valoracion)VALUES
 	(1,5,1,5,'05/5/2019',448012254,5,1,'05/6/2019',null,null),
 	(1,5,1,5,'07/5/2018',617174421,5,1,'05/6/2019',null,null),
@@ -228,15 +230,17 @@ INSERT INTO	ofj_reunion(id_grupo, id_club_grupo,id_grupo_hist_grupo,id_club_hist
 	(1,5,1,5,'07/5/2019',884614167,5,1,'05/6/2019',null,null,
 	(1,5,1,5,'07/5/2019',570098273,5,1,'05/6/2019',null,null),
 
-	(5,1,5,1,'06/01/2017',318218935,1,2,'07/4/2019',null,null);
-	(5,1,5,1,'09/03/2018',335676685,1,2,'07/4/2019',null,null);
-	(5,1,5,1,'10/04/2019',337599324,1,2,'07/4/2019',null,null);
-	(5,1,5,1,'01/10/2016',336109574,1,2,'07/4/2019',null,null);
+	(5,1,5,1,'06/01/2017',318218935,1,2,'07/4/2019',null,null),
+	(5,1,5,1,'09/03/2018',335676685,1,2,'07/4/2019',null,null),
+	(5,1,5,1,'10/04/2019',337599324,1,2,'07/4/2019',null,null),
+	(5,1,5,1,'01/10/2016',336109574,1,2,'07/4/2019',null,null),
 	(5,1,5,1,'08/12/2018',335351470,1,2,'07/4/2019',null,null);
 
 
 
 INSERT INTO ofj_inasistencia(id_reunion ,id_grupo_reunion ,id_club_grupo_reunion ,id_grupo ,id_club_grupo ,id_grupo_hist_grupo ,id_club_grupo_hist_grupo ,fecha_hlector,doc_lector,id_club_hist_lector)VALUES 	
 			(6,5,1,5,1,5,1,'06/01/2017',318218935,1),
-			(9,5,1,5,1,5,1,'01/10/2016',336109574,1),
+			(9,5,1,5,1,5,1,'01/10/2016',336109574,1);
+
+				
 
