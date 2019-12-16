@@ -29,20 +29,20 @@
  
                     <div class="form-group col-md-12">
                         <label>Fecha</label>
-                        <input type="date" data-date-format="DD MMMM YYYY" min= "{{$today}}" name="fecha" class="form-control" name="resumen" placeholder="">
+                        <input type="date" data-date-format="DD MMMM YYYY" name="fecha" class="form-control" name="resumen" placeholder="">
                     </div>
                     <div class="form-group col-md-12">
                         <label> Libro </label>
                         <select name="id_libro"class="form-control" > 
                             @foreach($libros as $lib )
-                                <option value="{{$lib->cod}}">{{ucwords(strtolower($lib->nombre))}}</option>
+                                <option value="{{$lib->cod}}">{{ucwords(strtolower($lib->titulo_original))}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-12">
                         <label> Moderador </label>
                         <select name="fk_hist_lector"class="form-control" > 
-                            @foreach($ $miembrosClub as $miembro )
+                            @foreach($miembrosClub as $miembro)
                                 <option value="{{$miembro->docidentidad}}">{{$miembro->docidentidad}}{{ucwords(strtolower($miembro->nombre1))}} {{ucwords(strtolower($miembro->apellido2))}}</option>
                             @endforeach
                         </select>

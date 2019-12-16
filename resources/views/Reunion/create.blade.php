@@ -30,21 +30,32 @@
                         </select>
                     </div>
                     <div class="form-group col-md-12">
-                        <label>Horario inicio (Formato 24 horas)</label>
-                        <input  type="number" class="form-control" name="precio" placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>Horario Fin (Formato 24 horas)</label>
-                        <input type="number" class="form-control" name="resumen" placeholder="">
-                    </div>
+                        <label>Fecha</label>
+                        <input type="date" data-date-format="DD MMMM YYYY"  name="fecha" class="form-control" name="resumen" placeholder="">
+                    </div>  
                     <div class="form-group col-md-12">
                         <label> Libro </label>
                         <select name="fk_libro"class="form-control" > 
-                            @foreach($libros as $lib )
-                                <option value="{{$lib->cod}}">{{ucwords(strtolower($lib->nombre))}}</option>
+                            @foreach($libros as $lib)
+                                <option value="{{$lib->cod}}">{{ucwords(strtolower($lib->titulo_original))}}</option>
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group col-md-12">
+                        <label> Valoración </label>
+                        <select name="valoracion"class="form-control" > 
+                        <option disabled selected value> -- OPCIONAL -- </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Conclusión</label>
+                        <input type="text"   name="conclusiones" class="form-control"  placeholder="Campo opcional">
+                    </div> 
 
                 </div>
             </div>

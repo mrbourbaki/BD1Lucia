@@ -158,19 +158,19 @@ class ClubController extends Controller
             // Consultando los grupos en donde se insertaran los nuevo miembros del club
             $gruposNino = DB::select(DB::raw("SELECT g.cod, COUNT(h.id_grupo), g.tipo_grupo
                                             FROM ofj_hist_grupo h, ofj_grupo_lectura g
-                                            WHERE g.cod = h.id_grupo AND g.cod=$cod AND g.tipo_grupo = 'NINO' 
+                                            WHERE g.cod = h.id_grupo AND g.cod='$cod' AND g.tipo_grupo = 'NINO' 
                                             GROUP BY g.cod, g.tipo_grupo
                                             HAVING COUNT(h.id_grupo) < 10")); 
 
             $gruposJoven = DB::select(DB::raw("SELECT g.cod, COUNT(h.id_grupo), g.tipo_grupo
                                             FROM ofj_hist_grupo h, ofj_grupo_lectura g
-                                            WHERE g.cod = h.id_grupo AND g.cod=$cod AND g.tipo_grupo = 'JOVEN' 
+                                            WHERE g.cod = h.id_grupo AND g.cod='$cod' AND g.tipo_grupo = 'JOVEN' 
                                             GROUP BY g.cod, g.tipo_grupo
                                             HAVING COUNT(h.id_grupo) < 10"));
 
             $gruposAdulto = DB::select(DB::raw("SELECT g.cod, COUNT(h.id_grupo), g.tipo_grupo
                                             FROM ofj_hist_grupo h, ofj_grupo_lectura g
-                                            WHERE g.cod = h.id_grupo AND g.cod=$cod AND g.tipo_grupo = 'ADULTO'
+                                            WHERE g.cod = h.id_grupo AND g.cod='$cod' AND g.tipo_grupo = 'ADULTO'
                                             GROUP BY g.cod, g.tipo_grupo
                                             HAVING COUNT(h.id_grupo) < 15"));
             // END
@@ -178,7 +178,7 @@ class ClubController extends Controller
             // Verificando si el lector ya existe en el historial
             $yaExiste=DB::select(DB::raw("SELECT EXISTS (SELECT * 
                                                             FROM ofj_hist_lector 
-                                                            WHERE doc_lector = $lec_id)"));
+                                                            WHERE doc_lector = '$lec_id')"));
             if ($yaExiste[0]->exists == TRUE){
                 $update_hist_lector = DB::update('UPDATE ofj_hist_lector 
                                             SET fecha_fin = ? 
