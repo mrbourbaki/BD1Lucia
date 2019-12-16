@@ -52,7 +52,7 @@ class ReunionController extends Controller
         }
         else {
                 //Retorna vista para jovenes y adultos
-                return view ('Reunion.create',["gruposJoven"=>$gruposJoven,"gruposAdulto"=>$gruposAdulto,"libros"=>$libros,"fecha_actual"=>$today])
+                return view ('Reunion.create',["gruposJoven"=>$gruposJoven,"gruposAdulto"=>$gruposAdulto,"libros"=>$libros,"fecha_actual"=>$today]);
         }
         
     }
@@ -60,13 +60,17 @@ class ReunionController extends Controller
     public function store(Request $request)
     {
         $reunion=new Reunion;
-        $reunion->
-        $reunion->
-        $reunion->
-        $reunion->
-        $reunion->
-        $reunion->
-        $->save();
+        $reunion->id_grupo=$request->id_grupo;
+        $reunion->id_club_grupo=$request->id_club_grupo;
+        $reunion->id_grupo_hist_grupo=$request->id_grupo_hist_grupo;
+        $reunion->id_club_hist_grupo=$request->id_club_hist_grupo;
+        $reunion->fecha_hlector=$request->fecha_hlector;
+        $reunion->doc_lector=$request->doc_lector;
+        $reunion->id_club_hist_lector=$request->id_club_hist_lector;
+        $reunion->id_libro=$request->id_libro;
+        $reunion->conclusiones=$request->conclusiones;
+        $reunion->valoracion=$request->valoracion;
+        $reunion->save();
         return Redirect::to('Reunion')->with('success','Se ha creado la reunion satisfactoriamente');
     }
 

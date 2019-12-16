@@ -100,7 +100,7 @@ class ClubController extends Controller
     {
         $club = Club::findOrFail($docidentidad);
         $club->delete();
-        return Redirect::to('Club');
+        return Redirect::to('Club')->with('success','Se Elimino Club');
     }
 
     public function filtraMiembro ($cod) 
