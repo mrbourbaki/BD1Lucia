@@ -278,7 +278,7 @@ CREATE TABLE ofj_hist_grupo (
     fecha_ini DATE NOT NULL,
     fecha_fin DATE,
 	CONSTRAINT pk_hist_grupo PRIMARY KEY (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector,id_grupo,id_club_grupo),
-	CONSTRAINT fk_hist_grupo_grupo FOREIGN KEY (id_grupo,id_club_grupo) REFERENCES ofj_grupo_lectura (cod,id_club),
+	CONSTRAINT fk_hist_grupo_grupo FOREIGN KEY (id_grupo,id_club_grupo) REFERENCES ofj_grupo_lectura (cod,id_club) ON DELETE CASCADE,
 	CONSTRAINT fk_hist_lector_grupo FOREIGN KEY (fecha_hist_lector,doc_lector_hist_lector,id_club_hist_lector) REFERENCES ofj_hist_lector (fecha_ini,doc_lector,id_club)
 );
 
