@@ -293,7 +293,7 @@ CREATE TABLE ofj_reunion (
     id_club_hist_lector INT NOT NULL,
     id_libro INT NOT NULL,
     fecha DATE NOT NULL,
-    conclusiones VARCHAR(100),
+    conclusiones VARCHAR(300),
     valoracion SMALLINT,
     CONSTRAINT pk_reunion PRIMARY KEY (cod,id_grupo,id_club_grupo),
     CONSTRAINT fk_grupo_reunion FOREIGN KEY (id_grupo,id_club_grupo) REFERENCES ofj_grupo_lectura(cod,id_club),
