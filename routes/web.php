@@ -29,3 +29,8 @@ Route::resource('Reunion','ReunionController');
 Route::resource('Estructura','EstructuraController');
 Route::get('Club/filtraMiembro/{cod}','ClubController@filtraMiembro');
 Route::put('Club/agregaMiembro/{cod}','ClubController@agregaMiembro');
+
+//Reportes
+Route::get('/reportesClub', "Reporte4Controller@pre_index");
+Route::get('/reportesClub/pre4/{cod}', "Reporte4Controller@pre_reporte4");
+Route::post('/reportesClub/pre4/{codigo}/reporte4', "Reporte4Controller@index");
