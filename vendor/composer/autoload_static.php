@@ -462,7 +462,7 @@ class ComposerStaticInit4b14d6307da22a07d6167bf1f1148a47
         'App\\Http\\Requests\\LibroFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LibroFormRequest.php',
         'App\\Http\\Requests\\ObraFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ObraFormRequest.php',
         'App\\Http\\Requests\\SalaFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SalaFormRequest.php',
-        'App\\Institucion' => __DIR__ . '/../..' . '/app/Hist_lector.php',
+        'App\\Institucion' => __DIR__ . '/../..' . '/app/Hist_grupo.php',
         'App\\Lector' => __DIR__ . '/../..' . '/app/Lector.php',
         'App\\Libro' => __DIR__ . '/../..' . '/app/Libro.php',
         'App\\Obra' => __DIR__ . '/../..' . '/app/Obra.php',

@@ -34,3 +34,6 @@ Route::put('Club/agregaMiembro/{cod}','ClubController@agregaMiembro');
 Route::get('/reportesClub', "Reporte4Controller@pre_index");
 Route::get('/reportesClub/pre4/{cod}', "Reporte4Controller@pre_reporte4");
 Route::post('/reportesClub/pre4/{codigo}/reporte4', "Reporte4Controller@index");
+
+Route::get('/reportesLibro', "Reporte7Controller@index");
+Route::get('/reportesLibro/ficha/{cod}', "Reporte7Controller@ficha");

@@ -20,7 +20,6 @@ class Reporte4Controller extends Controller
     }
     public function pre_reporte4($codigo)
     {
-
         return view("Reportes.Reporte4.pre_reporte4",["codigo"=>$codigo]);  
     }
     public function __contruct()

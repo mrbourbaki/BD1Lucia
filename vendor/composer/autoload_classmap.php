@@ -51,7 +51,7 @@ return array(
     'App\\Http\\Requests\\LibroFormRequest' => $baseDir . '/app/Http/Requests/LibroFormRequest.php',
     'App\\Http\\Requests\\ObraFormRequest' => $baseDir . '/app/Http/Requests/ObraFormRequest.php',
     'App\\Http\\Requests\\SalaFormRequest' => $baseDir . '/app/Http/Requests/SalaFormRequest.php',
-    'App\\Institucion' => $baseDir . '/app/Hist_lector.php',
+    'App\\Institucion' => $baseDir . '/app/Hist_grupo.php',
     'App\\Lector' => $baseDir . '/app/Lector.php',
     'App\\Libro' => $baseDir . '/app/Libro.php',
     'App\\Obra' => $baseDir . '/app/Obra.php',
