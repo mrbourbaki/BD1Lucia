@@ -22,13 +22,10 @@ class Reporte4Controller extends Controller
     {
         return view("Reportes.Reporte4.pre_reporte4",["codigo"=>$codigo]);  
     }
-    public function __contruct()
-    {
-        $this->middleware("guest");
-    }
+
     public function index(Request $request,$codigo)
     {
-        $fecha=$request->fecha;
+        $fecha=$request->input("fecha");
         $fecha_explode = explode('|',$fecha);
         $report = new Inasistencias (array(
             "club"=>$codigo,
@@ -37,5 +34,9 @@ class Reporte4Controller extends Controller
         ));
         $report->run();
         return view("Reportes.Reporte4.reporte4",["report"=>$report]);
+    }
+    public function __contruct()
+    {
+        $this->middleware("guest");
     }
 }
