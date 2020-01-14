@@ -17,6 +17,9 @@
             ),
             "precio"=>array(
                 "label"=>"Costo",
+            ),
+            "fecha"=>array(
+                "label"=>"Fecha",
             ), 
             "nombre1"=>array(
                 "label"=>"Nombre",
@@ -29,13 +32,14 @@
         "headers"=>array(
             array(
                 "Obra informacion "=>array("colSpan"=>3),
+                "Fecha de presentacion"=>array("colSpan"=>1),
                 "Elenco"=>array("colSpan"=>3),
             )
         ), 
             "cssClass"=>array(
                 "table"=>"table-bordered table-striped table-hover"
             ), 
-            "removeDuplicate"=>array("titulo","resumen","precio"),
+            "removeDuplicate"=>array("titulo","resumen","precio","fecha"),
             
             
             
