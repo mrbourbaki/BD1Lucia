@@ -32,7 +32,7 @@
                             <td>
                                 <a href="{{route('Libro.edit',$lib->cod)}}"><button class="btn btn-info">Editar</button></a>
                                 <a data-target="#modal-delete-{{$lib->cod}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
-                                <a data-target="#modal-info{{$lib->cod}}" data-toggle="modal"><button class="btn btn-primary">Informacion</button></a>
+                                <a href="/reportesLibro/ficha/{{$lib->cod}}/"><button class="btn btn-info">ficha</button></a>
                                 <a href="{{route('Estructura.create',$lib->cod)}}"><button class="btn btn-success">Agregar Estructura</button></a
                                 
                             </td>
