@@ -45,6 +45,19 @@
                 "table"=>"table-bordered table-striped table-hover"
             ),       
      ));
+
+     koolreport\widgets\koolphp\Table:: create(array(
+        "dataSource"=>$this->dataStore("cap"),
+        "columns"=>array(
+            "nombre"=>array(
+                "label"=>" Capitulos "
+            ),
+ 
+        ),
+            "cssClass"=>array(
+                "table"=>"table-bordered table-striped table-hover"
+            ),      
+     ));
      ?>
    </div> 
  </body>

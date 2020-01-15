@@ -16,12 +16,9 @@ class FichaLibroCom extends \koolreport\KoolReport
                     "connectionString"=>"pgsql:host=localhost;port=5432;dbname=bd1lucia",
                     "username"=>"postgres",
                     "password"=>"1234",
-
                 )
             )
-
         );
-
     }
 
     protected function setup(){
@@ -33,6 +30,17 @@ class FichaLibroCom extends \koolreport\KoolReport
                     ":codigo"=>$this->params["codigo"]
                 ))
         ->pipe($this->dataStore("result"));
+
+
+        $this->src("automaker")
+        ->query("SELECT  nombre 
+                FROM ofj_estructura
+                WHERE id_libro=:codigo ")
+                ->params(array(
+                    ":codigo"=>$this->params["codigo"]
+                ))
+        ->pipe($this->dataStore("cap")); 
+
     }
 
 }

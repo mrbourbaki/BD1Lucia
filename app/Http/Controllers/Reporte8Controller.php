@@ -32,7 +32,6 @@ class Reporte8Controller extends Controller
     {
 
         $calendario=DB::select(DB::raw("SELECT * FROM ofj_calendario WHERE id_obra = $codigo"));    
-        
             return view('Reportes.Reporte8.pre_reporte8', ["calendario" =>$calendario]); 
             
     }

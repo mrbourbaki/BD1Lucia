@@ -34,6 +34,17 @@ class FichaLibro extends \koolreport\KoolReport
                     ":codigo"=>$this->params["codigo"]
                 ))
         ->pipe($this->dataStore("result"));
+
+
+        $this->src("automaker")
+        ->query("SELECT  nombre 
+                FROM ofj_estructura
+                WHERE id_libro=:codigo ")
+                ->params(array(
+                    ":codigo"=>$this->params["codigo"]
+                ))
+        ->pipe($this->dataStore("cap")); 
+
     }
 
 }
