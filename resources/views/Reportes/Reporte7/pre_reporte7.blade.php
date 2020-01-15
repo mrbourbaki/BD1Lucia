@@ -19,9 +19,6 @@
                     <h4>Ficha del Libro </h4>
             
                    
-
-
-
                  <div class="form-group col-md-8">
                      <button class="btn btn-dager" type="reset">volver</button>
                 </div>    

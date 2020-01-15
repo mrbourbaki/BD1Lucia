@@ -14,6 +14,7 @@
             </div>
 
             <div class="modal-body">
+            <p> Costo de la entrada  : $ {{$ob->precio}}</p>
             </div>
 
             <div class="modal-footer">

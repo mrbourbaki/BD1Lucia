@@ -57,3 +57,10 @@ Route::put('/reportesClub/pre4/{cod}/reporte4', "ReporteClubController@index");
 
 Route::get('/reportesLibro', "Reporte7Controller@index");
 Route::get('/reportesLibro/ficha/{cod}', "Reporte7Controller@ficha");
+
+Route::get('/reportesObra', "Reporte8Controller@index");
+Route::get('/reportesObra/ficha/{cod}', "Reporte8Controller@ficha");
+Route::get('/reportesObra/calendario/{cod}', "Reporte8Controller@calendario");
+Route::put('/reportesObra/pre8/{cod}/reporte8', "Reporte8Controller@reporte8");
+
+Route::get('/reportesObra/elenco/{cod}', "Reporte8Controller@elenco");
