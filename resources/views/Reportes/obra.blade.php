@@ -25,9 +25,12 @@
                             <td>{{ $ob->titulo }}</td>
                             <td>
                             <a href="/reportesObra/ficha/{{$ob->cod}}/"><button class="btn btn-info">ficha de la obra </button></a>
+                            <a href="/reportesObra/elenco/{{$ob->cod}}/"><button class="btn btn-warning">Elenco</button></a>
+                            <a href="/reportesObra/calendario/{{$ob->cod}}/"><button class="btn btn-info">Calendario</button></a>
+                            <a data-target="#modal-info{{$ob->cod}}" data-toggle="modal"><button class="btn btn-warning">Informacion</button></a>
                             </td>
                         </tr>
-      
+                        @include('Obra.infomodal')
                     @endforeach
                 </table>
             </div>
