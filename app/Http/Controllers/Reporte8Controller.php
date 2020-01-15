@@ -40,7 +40,8 @@ class Reporte8Controller extends Controller
 
     public function ficha($codigo)
     {
-        
+     
+
         $report = new ObraActuada (array(
             "codigo"=>$codigo
         ));
