@@ -7,13 +7,15 @@ WHERE  l.fk_editorial=e.cod AND e.fk_lugar =lu.codigo AND l.fk_clase=cl.cod AND 
 
 2)
 --PAGOS
-SELECT p.id_club_hist_lector AS club, INITCAP(l.nombre1) AS nombre_miembro, INITCAP(l.apellido1) AS apellido_miembro, 
-	   p.cod AS número_pago, INITCAP(p.tipo_pago) AS tipo_pago 	
+SELECT   p.cod AS número_pago, TO_CHAR((p.fecha),'DD" de "MON" de "YYYY') AS fecha_pago,  INITCAP(p.tipo_pago) AS tipo_pago 	
 FROM ofj_pago p, ofj_lector l
-WHERE l.docidentidad=p.doc_lector_hist_lector
-ORDER BY p.id_club_hist_lector,número_pago;
+WHERE p.id_club_hist_lectorl= AND l.docidentidad=
+ORDER BY número_pago;
 --ASISTENCIAS
-
+SELECT DISTINCT r.cod AS id_reunion , r.fecha AS fecha_reunion
+FROM ofj_reunion r, ofj_inasistencia i, ofj_lector l, ofj_hist_grupo h, ofj_grupo_lectura g
+ WHERE h.doc_lector_hist_lector='$docid'  AND h.id_grupo=r.id_grupo AND r.id_club_grupo='$cod' AND NOT EXISTS(SELECT * FROM ofj_inasistencia i
+                                                                                                             WHERE i.id_reunion=r.cod AND i.doc_lector='$docid';
 --GRUPOS
 SELECT INITCAP(c.nombre) AS nombre_club, g.cod AS grupo_lectura, g.tipo_grupo AS tipo_grupo
 FROM ofj_club c, ofj_grupo_lectura g
@@ -21,11 +23,11 @@ WHERE c.cod=g.id_club
 ORDER BY c.nombre,g.cod;
 
 3)
-SELECT DISTINCT c.cod AS Club, TO_CHAR(AVG(a.valoracion),'9.9')  AS Valoración, l.titulo_original AS Nombre_libro
+SELECT DISTINCT  TO_CHAR(AVG(a.valoracion),'9.9')  AS Valoración, l.titulo_original AS Nombre_libro
 FROM ofj_reunion a, ofj_grupo_lectura g, ofj_libro l, ofj_club c 
-WHERE a.id_libro=l.cod AND c.cod=a.id_club_grupo
+WHERE a.id_libro=l.cod AND c.cod=a.id_club_grupo AND c.cod=
 GROUP BY c.cod, a.id_libro, l.titulo_original
-ORDER BY  Club, Valoración;
+ORDER BY   Valoración desc;
 
 4)
 SELECT   s.Nombre_lector, s.Apellido_lector, ROUND((s.Inasistencias::DECIMAL/s.Cantidad_reuniones)*100) AS Porcentaje_inasistencias

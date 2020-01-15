@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html>
+<style>
+    .caja{
+      float: left;
+      width: calc(30% - 20px);
+      height: 100px;
+      margin-top: 30px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+</style>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

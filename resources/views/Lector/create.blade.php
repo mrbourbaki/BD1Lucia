@@ -44,7 +44,7 @@
 
                     <div class="form-group col-md-6">
                         <label>Fecha de nacimiento</label>
-                        <input type="date" data-date-format="DD MMMM YYYY" min="01/01/1930" max= "31/12/2011" class="form-control" name="fecha_nac" placeholder = "Campo obligatorio">
+                        <input type="date" data-date-format="DD MMMM YYYY" min="01/01/1930" max= "31/12/2011" class="form-control" name="fecha_ini" placeholder = "Campo obligatorio">
                     </div>
 
                     <div class="form-group col-md-12">

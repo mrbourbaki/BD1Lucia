@@ -31,9 +31,29 @@ Route::get('Club/filtraMiembro/{cod}','ClubController@filtraMiembro');
 Route::put('Club/agregaMiembro/{cod}','ClubController@agregaMiembro');
 
 //Reportes
-Route::get('/reportesClub', "Reporte4Controller@pre_index");
-Route::get('/reportesClub/pre4/{cod}', "Reporte4Controller@pre_reporte4");
-Route::put('/reportesClub/pre4/{cod}/reporte4', "Reporte4Controller@index");
+
+Route::get('/reportesMiembro', "ReporteMiembroController@pre_index");
+
+//2
+Route::get('/reportesMiembro/{docid}/prepagos',"ReporteMiembroController@pre_reporte2pagos")->name('prePagos');
+Route::put('/reportesMiembro/{docid}/pagos',"ReporteMiembroController@reporte2pagos")->name('reporte2pagos');
+
+Route::get('/reportesMiembro/{docid}/preasistencias',"ReporteMiembro2Controller@pre_reporte2asistencias");
+Route::post('/reportesMiembro/{docid}/asistencias',"ReporteMiembro2Controller@reporte2asistencias");
+
+Route::get('/reportesMiembro/{docid}/pregrupos',"ReporteMiembro2Controller@reporte2asistencias");
+Route::post('/reportesMiembro/{docid}/grupos',"ReporteMiembro2Controller@reporte2grupos");
+
+Route::get('/reportesMiembro/{docid}/libros',"ReporteMiembroController@reporte8")->name('Reportelibrosanalizados');
+
+           
+//3
+Route::get('/reportesClub/reporte3/{cod}', "ReporteClubController@reporte3");
+
+//4
+Route::get('/reportesClub', "ReporteClubController@pre_index");
+Route::get('/reportesClub/pre4/{cod}', "ReporteClubController@pre_reporte4");
+Route::put('/reportesClub/pre4/{cod}/reporte4', "ReporteClubController@index");
 
 Route::get('/reportesLibro', "Reporte7Controller@index");
 Route::get('/reportesLibro/ficha/{cod}', "Reporte7Controller@ficha");
