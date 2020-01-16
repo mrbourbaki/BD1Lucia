@@ -14,22 +14,16 @@
             </div>
 
 
+
             <div class="modal-body">
-                <p> Primer Nombre: {{$lector->nombre1}} </p> 
+                <p> Nombres : {{$lector->nombre1}} {{DB::table('ofj_lector')->where('docidentidad','=', $lector->docidentidad)->value('nombre2')}} </p> 
             </div>
 
             <div class="modal-body">
-                <p> Segundo Nombre: {{DB::table('ofj_lector')->where('docidentidad','=', $lector->docidentidad)->value('nombre2')}}</p>
+                <p> Apellidos :  {{$lector->apellido1}}  , {{DB::table('ofj_lector')->where('docidentidad','=', $lector->docidentidad)->value('apellido2')}}</p> 
             </div>
 
-            <div class="modal-body">
-                <p> Primer Apellido:  {{$lector->apellido1}}</p> 
-            </div>
-
-            <div class="modal-body">
-                <p> Segundo Apellido: {{DB::table('ofj_lector')->where('docidentidad','=', $lector->docidentidad)->value('apellido2')}}</p>
-            </div>
-
+            
             <div class="modal-body">
                 <p> Fecha de Nacimiento : {{DB::table('ofj_lector')->where('docidentidad','=', $lector->docidentidad)->value('fecha_nac')}}</p>
             </div>
@@ -37,6 +31,14 @@
             <div class="modal-body">
                 <p>  Telefono  : {{DB::table('ofj_lector')->where('docidentidad','=', $lector->docidentidad)->value('telefono')}}</p>
             </div>
+
+            <div class="modal-body">
+                <p>  Nacionalidad  : {{DB::table('ofj_lector')->where('docidentidad','=', $lector->docidentidad )
+                                        ->join('ofj_lugar','ofj_lector.fk_nacionalidad', '=', 'ofj_lugar.codigo')->value('nombre')}}</p>
+            </div>
+
+
+
 
 
             <div class="modal-footer">
