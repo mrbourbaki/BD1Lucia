@@ -47,8 +47,14 @@ class ReporteObraController extends Controller
                                           c.valoracion IS NOT NULL AND g.id_obra='$cod' AND g.id_obra=m.id_obra_cal AND c.fecha BETWEEN '$fechai' AND '$fechaf'
                                     GROUP BY o.titulo,valoracion_obra,nombre,apellido
                                     ORDER BY o.titulo;");
-        $pdf=PDF::loadview('Reportes.Reporte9.reporte9',compact('presentaciones','cod','fechainicio','fechafinal','obras'));
-        return $pdf->stream();
+
+        if($presentaciones){
+            $pdf=PDF::loadview('Reportes.Reporte9.reporte9',compact('presentaciones','cod','fechainicio','fechafinal','obras'));
+            return $pdf->stream();
+        }else{
+            return Redirect::to('/reportesObra')->with('error','No hay información disponible para el club');
+
+        }
     }
 
 }

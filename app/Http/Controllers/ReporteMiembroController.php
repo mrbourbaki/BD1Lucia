@@ -45,8 +45,14 @@ class ReporteMiembroController extends Controller
                                 FROM ofj_pago p, ofj_lector l   
                                 WHERE p.id_club_hist_lector='$request->id_club' AND p.doc_lector_hist_lector='$docid' AND l.docidentidad='$docid' AND p.fecha_pago BETWEEN '$fechai' AND '$fechaf'
                                 ORDER BY numero_pago;"));
-    $pdf = PDF::loadView('Reportes.Reporte2.reporte2pagos',compact('lector','pagos','club','fechainicio','fechafinal'));
-    return $pdf->stream();
+
+    if($pagos){
+        $pdf = PDF::loadView('Reportes.Reporte2.reporte2pagos',compact('lector','pagos','club','fechainicio','fechafinal'));
+        return $pdf->stream();
+    }else{
+        return Redirect::to('/reportesMiembro')->with('error','no tiene pagos');
+    }
+
     }
 
     public function pre_reporte2asistencias($docid)
@@ -75,8 +81,14 @@ class ReporteMiembroController extends Controller
                                 WHERE h.doc_lector_hist_lector='$docid'  AND h.id_grupo=r.id_grupo AND r.id_club_grupo='$cod' AND r.fecha BETWEEN '$fechai' AND '$fechaf' AND NOT EXISTS(SELECT * FROM ofj_inasistencia i
                                                                                                                                                                                                WHERE i.id_reunion=r.cod AND i.doc_lector='$docid')
                                 ORDER BY id_reunion ASC;"));
-    $pdf = PDF::loadView('Reportes.Reporte2.reporte2asistencias',compact('lector','club','asistencias','fechainicio','fechafinal'));
-    return $pdf->stream();
+  
+        if($asistencias){
+            $pdf = PDF::loadView('Reportes.Reporte2.reporte2asistencias',compact('lector','club','asistencias','fechainicio','fechafinal'));
+            return $pdf->stream();
+        }else{
+            return Redirect::to('/reportesMiembro')->with('error','no tiene asistencias');
+        }
+
     }
 
     public function pre_reporte2grupos($docid)
@@ -105,6 +117,13 @@ class ReporteMiembroController extends Controller
                                       AND h.fecha_ini BETWEEN '$fechai' AND '$fechaf'"));
     $pdf = PDF::loadView('Reportes.Reporte2.reporte2grupos',compact('lector','club','grupos','fechainicio','fechafinal'));
     return $pdf->stream();
+
+    if($grupos){
+        $pdf = PDF::loadView('Reportes.Reporte2.reporte2grupos',compact('lector','club','grupos','fechainicio','fechafinal'));
+        return $pdf->stream();
+    }else{
+        return Redirect::to('/reportesMiembro')->with('error','no tiene grupos');
+    }
     } 
 
     public function pre_reporte8($docid)
@@ -133,8 +152,13 @@ class ReporteMiembroController extends Controller
                                                                                                                                                                   WHERE i.id_reunion=r.cod AND i.doc_lector='$docid')
                                 GROUP BY  nombre
                                 ORDER BY  cod_reu ASC;"));
-    $pdf = PDF::loadView('Reportes.Reporte88.reporte8',compact('lector','club','libros','fechainicio','fechafinal'));
-    return $pdf->stream();
+
+     if($libros){
+        $pdf = PDF::loadView('Reportes.Reporte88.reporte8',compact('lector','club','libros','fechainicio','fechafinal'));
+        return $pdf->stream();
+     }else{
+        return Redirect::to('/reportesMiembro')->with('error','no tiene Libros');
+     }
         
     }  
 }
