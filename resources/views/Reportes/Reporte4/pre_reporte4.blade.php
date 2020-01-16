@@ -13,8 +13,8 @@
             @endif
 
             <div id="formulario">
-                <form action="/reportesClub/pre4/{{$codigo}}/reporte4" method="post">{{ csrf_field() }}
-                <input type="hidden" name="_method" value="PUT">
+                <form action="/reportesClub/{{$cod}}/reporte4" method="post">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-row">
                         <h4>En el siguiente reporte se visualizarán los miembros del club que posean 30% o más de inasistencia </h4>
@@ -30,13 +30,7 @@
                                 <option value="01-11-2019|31-12-2019">NOVIEMBRE-DICIEMBRE 2019</option>
                             </select>
                         </div>
-                        <?php         
-                                $fecha="01-01-2019|28-02-2019";
-                                $fecha_explode = explode('|',$fecha);
-                                echo $fecha_explode[0];
-                                echo "xdddddddddddddd";
-                                echo $fecha_explode[1];
-                        ?>
+ 
                     </div>
 
                     <div class="form-group col-md-8">

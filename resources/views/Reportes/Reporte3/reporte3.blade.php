@@ -4,34 +4,30 @@
 			border: 1px solid #999999;
 		}
 		div.a {
-			
   			text-transform: capitalize;
 		}
 </style>
 <body>
 <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" >
-           <center> <h2> Miembros con 30% o más de inasistencias: </h3> </center>
+           <center> <h2> Listado de libros analizados ordenados por valoración </h3> </center>
         </div>
 		<div class="a"> 
-			@foreach($club as $cl)
-			<h5> Club: {{$cl->nombre}}  </h5>
-            @endforeach
-
+			<h5> Club: {{$club->nombre}} </h3>
 		</div>
     </div>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Nombre y Apellido del miembro</th>
-				<th>Porcentaje de inasistencias</th>
+				<th>Valoración</th>
+				<th>Nombre original</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($inasistencias as $ina)
+			@foreach($obras as $obra)
 			<tr>
-			<td>{{$ina->nombre}},{{$ina->apellido}}</td>
-            <td>{{$ina->porcentaje}}</td>
+			<td>{{$obra->valoracion}}</td>
+            <td>{{$obra->nombre_libro}}</td>
 			</tr>
 			@endforeach
 		</tbody>

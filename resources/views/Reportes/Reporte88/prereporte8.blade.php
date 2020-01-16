@@ -15,12 +15,11 @@
             @endif
 
             <div id="formulario">
-                <form action="/reportesMiembro/{{$docid}}/grupos" method="post">
+                <form action="/reportesMiembro/{{$docid}}/librosanalizados" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-row">
-                        <h4>Seleccione las siguientes opciones:</h4>
-                        
+                        <h4>Seleccione las siguientes opciones:</h4>    
                         <div class="form-group col-md-12">
                         <label>Clubes de lectura</label>
                         <select name="id_club"class="form-control"> 
@@ -29,6 +28,11 @@
                             @endforeach
                         </select>
                         </div>
+
+                        <div class="form-row">
+                            <h4>Seleccione un periodo para criterio de libros analizados:</h4>
+                        </div>
+
                         <div class="caja">
                             <label>Fecha inicio</label>
                             <input type="date" data-date-format="DD-MM-YYYY"  class="form-control" name="fecha_ini" placeholder = "Campo obligatorio">

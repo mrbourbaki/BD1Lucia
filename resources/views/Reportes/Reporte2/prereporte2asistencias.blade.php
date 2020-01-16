@@ -28,7 +28,7 @@
                                 <option value="{{$club->cod}}">{{$club->nombre}}</option>
                             @endforeach
                         </select>
-
+                        </div>
                         <div class="caja">
                             <label>Fecha inicio</label>
                             <input type="date" data-date-format="DD-MM-YYYY"  class="form-control" name="fecha_ini" placeholder = "Campo obligatorio">

@@ -16,12 +16,12 @@
             @foreach($lector as $lec)
 			<h5> Miembro: {{$lec->nombre}} {{$lec->apellido}} </h5>
             @endforeach
-		</div>
-		<div class="a"> 
-            @foreach($club as $cl)
+			@foreach($club as $cl)
 			<h5> Club: {{$cl->nombre}}  </h5>
             @endforeach
+			<h5>Periodo de consulta: {{$fechainicio}} al {{$fechafinal}}</h5> 
 		</div>
+
     </div>
 	<table class="table">
 		<thead>

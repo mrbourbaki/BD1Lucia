@@ -23,11 +23,12 @@
                     @foreach($obra as $ob)
                         <tr>
                             <td>{{ $ob->titulo }}</td>
-                            <td>
-                            <a href="/reportesObra/ficha/{{$ob->cod}}/"><button class="btn btn-info">ficha de la obra </button></a>
+                            <td> 
+                            <a href="/reportesObra/{{$ob->cod}}/prevaloracion/"><button class="btn btn-info">Presentaciones valoradas </button></a>
+                            <a href="/reportesObra/ficha/{{$ob->cod}}/"><button class="btn btn-success">Ficha de la obra </button></a>
                             <a href="/reportesObra/elenco/{{$ob->cod}}/"><button class="btn btn-warning">Elenco</button></a>
-                            <a href="/reportesObra/calendario/{{$ob->cod}}/"><button class="btn btn-info">Calendario</button></a>
-                            <a data-target="#modal-info{{$ob->cod}}" data-toggle="modal"><button class="btn btn-warning">Informacion</button></a>
+                            <a href="/reportesObra/calendario/{{$ob->cod}}/"><button class="btn btn-danger">Calendario</button></a>
+                            <a data-target="#modal-info{{$ob->cod}}" data-toggle="modal"><button class="btn btn-primary">Informacion</button></a>
                             </td>
                         </tr>
                         @include('Obra.infomodal')

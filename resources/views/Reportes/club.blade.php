@@ -26,9 +26,9 @@
                             <td>{{$club->nombre}}</td>
                             <td>{{DB::table('ofj_lugar')->where('codigo','=', $club->fk_lugar)->value('nombre')}}</td>
                             <td>
-                                <a href="/reportesMiembro/{{$club->cod}}"><button class="btn btn-warning">Miembros</button></a>
-                                <a href="/reportesClub/pre4/{{$club->cod}}"><button class="btn btn-info">Inasistencias</button></a>
-                                <a href="/reportesClub/reporte3/{{$club->cod}}"><button class="btn btn-success">Obras analizadas</button></a>   
+                                <a href="/reportesClub/{{$club->cod}}/pre4"><button class="btn btn-info">Inasistencias</button></a>
+                                <a href="/reportesClub/{{$club->cod}}/pre_reporte3"><button class="btn btn-success">Obras analizadas</button></a>
+                                <a href="/reportesClub/{{$club->cod}}/pre_reporte11"><button class="btn btn-warning">Obras actuadas</button></a>   
                             </td>
                         </tr>
           

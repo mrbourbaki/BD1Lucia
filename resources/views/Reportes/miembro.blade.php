@@ -30,7 +30,7 @@
                                 <a href="/reportesMiembro/{{$lector->docidentidad}}/prepagos"><button class="btn btn-warning">Pagos</button></a>
                                 <a href="/reportesMiembro/{{$lector->docidentidad}}/preasistencias"><button class="btn btn-info">Asistencias</button></a>
                                 <a href="/reportesMiembro/{{$lector->docidentidad}}/pregrupos"><button class="btn btn-success">Grupos</button></a> 
-                                <a href="{{route( 'Reportelibrosanalizados', ['docid' => $lector->docidentidad]) }}"><button class="btn btn-danger">Libros analizados</button></a> 
+                                <a href="/reportesMiembro/{{$lector->docidentidad}}/preanalizado"><button class="btn btn-danger">Libros analizados</button></a> 
                             </td>
                         </tr>
           
