@@ -32,6 +32,15 @@ Route::put('Club/agregaMiembro/{cod}','ClubController@agregaMiembro');
 
 //Reportes
 
+
+
+//1
+Route::get('/reportesOrganizacion', "ReporteOrganizacion@index");
+Route::get('/reportesOrganizacion/miembros/{cod}', "ReporteOrganizacion@miembros");
+Route::get('/reportesOrganizacion/{cod}/ficha', "ReporteOrganizacion@ficha");
+
+
+//
 Route::get('/reportesMiembro', "ReporteMiembroController@pre_index");
 
 //2
