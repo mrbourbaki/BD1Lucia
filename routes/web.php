@@ -54,7 +54,7 @@ Route::get('/reportesClub/reporte3/{cod}', "ReporteClubController@reporte3");
 Route::get('/reportesClub', "ReporteClubController@pre_index");
 Route::get('/reportesClub/pre4/{cod}', "ReporteClubController@pre_reporte4");
 Route::put('/reportesClub/pre4/{cod}/reporte4', "ReporteClubController@index");
-
+//7
 Route::get('/reportesLibro', "Reporte7Controller@index");
 Route::get('/reportesLibro/ficha/{cod}', "Reporte7Controller@ficha");
 

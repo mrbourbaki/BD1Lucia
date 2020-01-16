@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClubFormRequest;
 use App\Lector;
 use App\Club;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -17,7 +18,7 @@ class ReporteMiembro2Controller extends Controller
      return view('Reportes.Reporte2.prereporte2asistencias', ["docid" =>$docid,"clubes"=>$clubes]);
     }
 
-    public function reporte2asistencias(Reque $request, $docid)
+    public function reporte2asistencias(Request $request, $docid)
     { 
     $fechai=date('Y-m-d', strtotime(str_replace('-','/', $request->fecha_ini)));
     $fechaf=date('Y-m-d', strtotime(str_replace('-','/', $request->fecha_fin)));      

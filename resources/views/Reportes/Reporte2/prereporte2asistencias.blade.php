@@ -15,8 +15,7 @@
             @endif
 
             <div id="formulario">
-                <form action= "/reportesMiembro/{{$docid}}/asistencias" method="post">
-                {{ csrf_field() }}
+                <form action= "/reportesMiembro/{{$docid}}/asistencias" method="post">{{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-row">
                         <h4>Seleccione las  siguientes opciones:</h4>
