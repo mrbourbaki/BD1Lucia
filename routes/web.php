@@ -60,7 +60,7 @@ Route::post('/reportesMiembro/{docid}/librosanalizados',"ReporteMiembroControlle
            
 //3
 Route::get('/reportesClub/{cod}/pre_reporte3', "ReporteClubController@pre_reporte3");
-Route::post('/reportesClub/{cod}/reporte3', "ReporteClubController@reporte43");
+Route::post('/reportesClub/{cod}/reporte3', "ReporteClubController@reporte3");
 
 //4
 Route::get('/reportesClub/{cod}/pre4', "ReporteClubController@pre_reporte4");

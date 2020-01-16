@@ -157,6 +157,20 @@
               </ul>
             </li>
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-th"></i>
+                <span>Reportes</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/reportesClub"><i class="fa fa-circle-o"></i>Clubes</a></li>
+                <li><a href="/reportesMiembro"><i class="fa fa-circle-o"></i> Miembros</a></li>
+                <li><a href="/reportesLibro"><i class="fa fa-circle-o"></i> Libros</a></li>
+                <li><a href="/reportesObra"><i class="fa fa-circle-o"></i> Obras actuadas</a></li>
+              </ul>
+            </li>
+
 
                        
            

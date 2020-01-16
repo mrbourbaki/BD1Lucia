@@ -7,6 +7,15 @@
             @include ('Club.search') <!-- hago la llamdada a la plantilla del buscador que esta en esta carpeta y hara la funcion de buscar -->
         </div>
     </div>
+    @if(count($errors)>0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li> {{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

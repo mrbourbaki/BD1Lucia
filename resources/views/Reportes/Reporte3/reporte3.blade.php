@@ -13,7 +13,9 @@
            <center> <h2> Listado de libros analizados ordenados por valoración </h3> </center>
         </div>
 		<div class="a"> 
-			<h5> Club: {{$club->nombre}} </h3>
+				@foreach($club as $cl)
+			<h5> Club: {{$cl->nombre}} </h3>
+				@endforeach
 		</div>
     </div>
 	<table class="table">

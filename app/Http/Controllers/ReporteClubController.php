@@ -5,7 +5,7 @@ use App\Club;
 use App\Http\Requests\ClubFormRequest;
 use Barryvdh\DomPDF\Facade as PDF;
 use Datetime;
-
+use Redirect;
 use DB;
 class ReporteClubController extends Controller
 {
@@ -22,7 +22,7 @@ class ReporteClubController extends Controller
 
     public function pre_reporte3($cod)
     {
-        return view("Reportes.Reporte3.pre_reporte3",["cod"=>$cod]);  
+        return view("Reportes.Reporte3.prereporte3",["cod"=>$cod]);  
     }
 
     public function reporte3(Request $request, $cod){
@@ -39,8 +39,13 @@ class ReporteClubController extends Controller
         WHERE a.id_libro=l.cod AND c.cod=a.id_club_grupo AND c.cod='$cod' AND a.fecha BETWEEN '$fechai' AND '$fechaf'
         GROUP BY  a.id_libro, l.titulo_original
         ORDER BY   valoracion desc");
-        $pdf = PDF::loadView('Reportes.Reporte3.reporte3',compact('obras','club','fechainicio','fechafinal'));
-        return $pdf->stream();
+        if($obras){
+            $pdf = PDF::loadView('Reportes.Reporte3.reporte3',compact('obras','club','fechainicio','fechafinal'));
+            return $pdf->stream();
+        }
+        else {
+            return Redirect::to('/reportesClub')->with(['msg','No hay información disponible para el club']);
+        }
     }
 
     public function pre_reporte4($cod)
