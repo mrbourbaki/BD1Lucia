@@ -26,14 +26,14 @@
                             <td>{{$lector->nombre1}}</td>
                             <td>{{$lector->apellido1}}</td>
                             <td>
-                                <a data-target="#modal1" data-toggle="modal"><button class="btn btn-primary">Ficha miembro</button></a>
+                                <a data-target="#modal-info2{{$lector->docidentidad}}" data-toggle="modal"><button class="btn btn-primary">Ficha miembro</button></a>
                                 <a href="/reportesMiembro/{{$lector->docidentidad}}/prepagos"><button class="btn btn-warning">Pagos</button></a>
                                 <a href="/reportesMiembro/{{$lector->docidentidad}}/preasistencias"><button class="btn btn-info">Asistencias</button></a>
                                 <a href="/reportesMiembro/{{$lector->docidentidad}}/pregrupos"><button class="btn btn-success">Grupos</button></a> 
                                 <a href="/reportesMiembro/{{$lector->docidentidad}}/preanalizado"><button class="btn btn-danger">Libros analizados</button></a> 
                             </td>
                         </tr>
-          
+                        @include('Reportes.Reporte2.infomodal') <!-- info --> 
                     @endforeach
                 </table>
             </div>
