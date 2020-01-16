@@ -69,3 +69,17 @@ INSERT INTO libro (titulo_original, sinopsis, nro_pags, ano, titulo_espanol, tem
 ('ODYSSEY', 'Es un libro sobre la guerra y cosas tristes', 1000, 1312, 'LA ODISEA', 'GUERRA', 1, 1, NULL),
 ('ODYSSEY 2', 'Es un libro sobre la guerra y cosas tristes e la guerra, pero la segunda parte', 1033, 1323, 'LA ODISEA 2', 'GUERRA', 1, 1, 1),
 ('ILLIADE', 'Es un libro sobre cosas tristes despues', 1012, 1356, 'LA ILIADA', 'TRISTEZA', 2, 2, NULL);
+
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(1,'INICIO','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(1,'LA MENTIRA','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(1,'EL ENCUENTRO','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(1,'LA SPICOLOGA','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(2,'EL ROPERO','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(2,'ENCUENTRO CON ASLAN','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(2,'EL ENGAÑO DEL HERMANO','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(2,'LA GRAN PELEA','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(3,'EL REENCUENTRO','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(3,'EL PRINCIPE','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(3,'AMIGOS','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(3,'AMOR ETERNO','CAPITULO');
+insert into ofj_estructura(id_libro,nombre,tipo)VALUES(3,'REGRESO A CASA','CAPITULO');
